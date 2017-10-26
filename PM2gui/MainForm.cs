@@ -31,13 +31,14 @@ namespace PM2gui
         Pico.ChannelSettings[] channelSettings = new Pico.ChannelSettings[Pico.PicoInterfacer.MAX_CHANNELS];
         PM2WaveForm.WaveFormData waveFormData = new PM2WaveForm.WaveFormData();
         PM2WaveForm.PlottableData plottableData = new PM2WaveForm.PlottableData();
+        PM2WaveForm.FFTData fftData = new PM2WaveForm.FFTData();
         FilterInfoCollection CaptureDevice;
         VideoCaptureDevice FinalFrame;
         System.Drawing.Point? prevPositiontD = null;
         ToolTip tooltiptD = new ToolTip();
         System.Drawing.Point? prevPositionfD = null;
         ToolTip tooltipfD = new ToolTip();
-
+        PM2WaveForm.LorentzParams lp = new PM2WaveForm.LorentzParams();
         short handle;
 
         private void PM2gui_Load(object sender, EventArgs e)
@@ -71,10 +72,10 @@ namespace PM2gui
             pM2tD.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             pM2tD.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             pM2tD.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
-            pM2tD.ChartAreas[0].AxisX.Maximum = 1000;
-            pM2tD.ChartAreas[0].AxisX.Minimum = 0;
-            pM2tD.ChartAreas[0].AxisX.Interval = 100;
-            pM2tD.ChartAreas[0].AxisY.Interval = 2000;
+           // pM2tD.ChartAreas[0].AxisX.Maximum = 1000;
+            //pM2tD.ChartAreas[0].AxisX.Minimum = 0;
+            //pM2tD.ChartAreas[0].AxisX.Interval = 100;
+            //pM2tD.ChartAreas[0].AxisY.Interval = 2000;
 
 
             //frequency domain
@@ -87,8 +88,11 @@ namespace PM2gui
             pM2fD.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
             pM2fD.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = true;
             //pM2fD.ChartAreas[0].AxisY.Interval = 200;
-            pM2fD.ChartAreas[0].AxisX.Minimum = 0;
-            pM2fD.ChartAreas[0].AxisX.Interval = 100;
+            //pM2fD.ChartAreas[0].AxisX.Minimum = 0;
+            //pM2fD.ChartAreas[0].AxisX.Interval = 100;
+
+            //lorentz
+            LorentzButton.Enabled = false;
         }
 
         private void pM2tD_MouseMove(object sender, MouseEventArgs e)
@@ -151,17 +155,20 @@ namespace PM2gui
             }
         }
 
+
+        // PICO READING AND FFT
         private void StartWaveButton_Click(object sender, EventArgs e)
         {
             WaveFormTimer.Start();
             StartWaveButton.Enabled = false;
             StopWaveButton.Enabled = true;
+            LorentzButton.Enabled = true;
         }
 
         private void WaveFormTimer_Tick(object sender, EventArgs e)
         {
             plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings);
-            UpdateCharts();
+            UpdateWaveCharts();
 
         }
 
@@ -170,10 +177,12 @@ namespace PM2gui
             WaveFormTimer.Stop();
             StartWaveButton.Enabled = true;
             StopWaveButton.Enabled = false;
+            LorentzButton.Checked = false;
+            LorentzButton.Enabled = false;
 
         }
 
-        private void UpdateCharts()
+        private void UpdateWaveCharts()
         {
             pM2tD.Series["Series1"].Points.Clear();
             pM2fD.Series["Series1"].Points.Clear();
@@ -183,12 +192,14 @@ namespace PM2gui
                 pM2tD.Series["Series1"].Points.AddXY(plottableData.WaveFormData.time[i] / 1e6, plottableData.WaveFormData.amp[i]); // time in ms
                 if (i%2 == 0)
                 {
-                    pM2fD.Series["Series1"].Points.AddXY((i / 2 - 0.221) / 1.3072, plottableData.fft[i / 2] / plottableData.fft.Max());
+                    pM2fD.Series["Series1"].Points.AddXY((i / 2 - 0.221) / 1.3072, plottableData.fftData.fft[i / 2]);
+                    // developed linear correlation calibration equation to determine parameters (0.221, 1.3072) to get correct peak frequency
                 }
 
             }
         }
 
+        //USB CAMERA
         private void StartVideoButton_Click(object sender, EventArgs e)
         {
             StartVideoButton.Enabled = false;
@@ -214,5 +225,49 @@ namespace PM2gui
         {
             pM2WaveForm.ShutDown(handle);
         }
+
+        //LORENTZ FITTING
+        private void LorentzButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (LorentzTimer.Enabled == true)
+            {
+                LorentzTimer.Stop();
+            }
+            else
+            {
+                LorentzTimer.Start();
+            }
+        }
+
+        private void LorentzTimer_Tick(object sender, EventArgs e)
+        {
+            if (plottableData.fftData != null)
+            {
+                lp = pM2WaveForm.GetLorentzParams(plottableData.fftData);
+                lpALabel.Text = lp.A.ToString();
+                lpGamLabel.Text = lp.gam.ToString();
+                lpx0Label.Text = lp.xO.ToString();
+
+                UpdateLorentCharts();
+            }
+            else
+            {
+                MessageBox.Show("Could not perform lorentzian fit. Please ensure you are reading data");
+                LorentzTimer.Stop();
+                LorentzButton.Checked = false;
+            }
+        }
+
+        private void UpdateLorentCharts()
+        {
+            pM2fD.Series["Series2"].Points.Clear();
+
+            for (int i = 0; i < plottableData.fftData.fft.Length; i++)
+            {
+                double yValue = lp.A * lp.gam / ((plottableData.fftData.freq[i] - lp.xO) * (plottableData.fftData.freq[i] - lp.xO ) + lp.gam * lp.gam);
+            pM2fD.Series["Series2"].Points.AddXY(plottableData.fftData.freq[i], yValue);
+            }
+        }
+
     }
 }

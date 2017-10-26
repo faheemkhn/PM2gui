@@ -10,6 +10,7 @@ using System.Threading;
 using System.Numerics;
 using Accord.Extensions;
 using AForge;
+using MathNet.Numerics.Optimization;
 
 
 namespace PM2Waveform
@@ -38,17 +39,29 @@ namespace PM2Waveform
             public int[] amp { get; set; }
 
         }
+        public class FFTData
+        {
+            public double[] freq { get; set; }
+            public double[] fft { get; set; }
+        }
+        public class LorentzParams
+        {
+            public double xO;
+            public double gam;
+            public double A;
+        }
         public class PlottableData
         {
-            public double[] fft;
+            public FFTData fftData;
             public WaveFormData WaveFormData;
         }
+
 
         /****************************************************************************
          * adc_to_mv
          * Convert an 16-bit ADC count into millivolts
          ****************************************************************************/
-        int adc_to_mv(int raw, int ch)
+        private int adc_to_mv(int raw, int ch)
         {
             return (raw * inputRanges[ch]) / Imports.PS2000_MAX_VALUE;
         }
@@ -129,22 +142,43 @@ namespace PM2Waveform
 
         }
 
-        public double[] GetFFT(int[] amp)
+        /****************************************************************************
+        * GetFFT
+        *  Get the raw FFT of an array
+        ****************************************************************************/
+        private FFTData GetFFT(int[] amp)
         {
+            FFTData fftData = new FFTData();
             double[] fft = new double[amp.Length];
+            double[] freq = new double[amp.Length / 2];
             Complex[] fftComplex = new Complex[amp.Length];
             for (int i = 0; i < amp.Length; i++)
             {
                 fftComplex[i] = new Complex(amp[i], 0);
             }
             AForge.Math.FourierTransform.FFT(fftComplex, AForge.Math.FourierTransform.Direction.Forward);
-            for (int i = 0; i < amp.Length; i++)
+            for (int i = 0; i < amp.Length / 2; i++)
             {
-                fft[i] = fftComplex[i].Magnitude;
+                try
+                {
+                    //fft[i] = fftComplex[i].Magnitude;
+                    fft[i] = 20 * Math.Log10(Math.Abs(fftComplex[i].Magnitude));
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                if (i % 2 == 0)
+                {
+                    freq[i/2] = (i / 2 - 0.221) / 1.3072;
+                }
             }
 
-            fft = fft.Take(fft.Length / 2).ToArray(); 
-            return fft; 
+            fft = fft.Take(fft.Length / 2).ToArray();
+            fftData.fft = fft;
+            fftData.freq = freq;
+            return fftData; 
         }
 
         /****************************************************************************
@@ -187,15 +221,49 @@ namespace PM2Waveform
         ****************************************************************************/
         public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings)
         {
-            
             // Get block of waveform data from pico
             WaveFormData waveFormData = new WaveFormData();
 
             // Method that communicates with Pico to get blocked data
             waveFormData = HandlePicoBlockData(0, channelSettings, handle);
 
-            return new PlottableData { fft = GetFFT(waveFormData.amp), WaveFormData = waveFormData };
+            return new PlottableData { fftData = GetFFT(waveFormData.amp), WaveFormData = waveFormData };
         }
 
+        public LorentzParams GetLorentzParams(FFTData fftData)
+        {
+            LorentzParams lp = new LorentzParams();
+
+            //double[] soln1 = QuadFit(fftData);
+            for (int i = 1; i < fftData.fft.Length; i++)
+            {
+                fftData.fft[i] = 1 / fftData.fft[i];
+            }
+            double[] soln = MathNet.Numerics.Fit.Polynomial(fftData.freq, fftData.fft, 2);
+            lp.xO = -soln[1] / 2 / soln[0];
+            lp.gam = Math.Sqrt(soln[2] / soln[0] - lp.xO * lp.xO);
+            lp.A = 1 / soln[0] / lp.gam;
+
+            return lp;
+            
+
+        }
+
+        private double[] QuadFit(FFTData fftData)
+        {
+            LstSquQuadRegr solvr = new LstSquQuadRegr();
+            double[] soln = new double[3];
+
+            for (int i = 0; i < fftData.fft.Length; i++)
+            {
+                solvr.AddPoints(fftData.freq[i], 1 / fftData.fft[i]);
+            }
+
+            soln[0] = solvr.aTerm();
+            soln[1] = solvr.bTerm();
+            soln[2] = solvr.cTerm();
+
+            return soln;
+        }
     }
 }
