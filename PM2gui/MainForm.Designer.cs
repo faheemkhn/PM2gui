@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -57,7 +57,6 @@
             this.FftComboBox = new System.Windows.Forms.ComboBox();
             this.MovAvButton = new System.Windows.Forms.CheckBox();
             this.MeasDevComboBox = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pM2tD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pM2fD)).BeginInit();
@@ -92,33 +91,33 @@
             // 
             // pM2tD
             // 
-            chartArea11.Name = "ChartArea1";
-            this.pM2tD.ChartAreas.Add(chartArea11);
+            chartArea1.Name = "ChartArea1";
+            this.pM2tD.ChartAreas.Add(chartArea1);
             this.pM2tD.ImeMode = System.Windows.Forms.ImeMode.On;
             this.pM2tD.Location = new System.Drawing.Point(151, 12);
             this.pM2tD.Name = "pM2tD";
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series16.Name = "Series1";
-            this.pM2tD.Series.Add(series16);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Name = "Series1";
+            this.pM2tD.Series.Add(series1);
             this.pM2tD.Size = new System.Drawing.Size(534, 226);
             this.pM2tD.TabIndex = 4;
             this.pM2tD.Text = "chart2";
             // 
             // pM2fD
             // 
-            chartArea12.Name = "ChartArea1";
-            this.pM2fD.ChartAreas.Add(chartArea12);
+            chartArea2.Name = "ChartArea1";
+            this.pM2fD.ChartAreas.Add(chartArea2);
             this.pM2fD.Location = new System.Drawing.Point(151, 262);
             this.pM2fD.Name = "pM2fD";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series17.Name = "Series1";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series18.Name = "Series2";
-            this.pM2fD.Series.Add(series17);
-            this.pM2fD.Series.Add(series18);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Series1";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "Series2";
+            this.pM2fD.Series.Add(series2);
+            this.pM2fD.Series.Add(series3);
             this.pM2fD.Size = new System.Drawing.Size(534, 226);
             this.pM2fD.TabIndex = 5;
             this.pM2fD.Text = "chart2";
@@ -295,14 +294,6 @@
             this.MeasDevComboBox.TabIndex = 26;
             this.MeasDevComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasDevComboBox_SelectedIndexChanged);
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(763, 269);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 27;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -318,7 +309,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 630);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.MeasDevComboBox);
             this.Controls.Add(this.MovAvButton);
             this.Controls.Add(this.FftComboBox);
@@ -376,7 +366,6 @@
         private System.Windows.Forms.ComboBox FftComboBox;
         private System.Windows.Forms.CheckBox MovAvButton;
         private System.Windows.Forms.ComboBox MeasDevComboBox;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label5;
     }
 }
