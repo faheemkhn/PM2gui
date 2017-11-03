@@ -11,6 +11,8 @@ using System.Numerics;
 using Accord.Extensions;
 using AForge;
 using MathNet.Numerics.Optimization;
+using NationalInstruments.Visa;
+using System.Windows.Forms;
 
 
 namespace PM2Waveform
@@ -31,6 +33,7 @@ namespace PM2Waveform
         //instantiate classes and structures
         //public Pico.ChannelSettings[] channelSettings;
         public Pico.PicoInterfacer pi = new Pico.PicoInterfacer(handle);
+        Tek tek = new Tek();
 
         //define class to handle time and amplitude arrays
         public class WaveFormData
@@ -76,7 +79,7 @@ namespace PM2Waveform
             ****************************************************************************/
         private WaveFormData HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle)
         {
-            int sampleCount = BUFFER_SIZE;
+            int sampleCount = 1024;// BUFFER_SIZE;
             short timeUnit = 0;
             int timeIndisposed;
             short status = 0;
@@ -98,7 +101,6 @@ namespace PM2Waveform
                 * the most suitable time units (ReportedTimeUnits), and the maximum oversample at the current timebase*/
             int timeInterval = 0;
             int maxSamples;
-
             do
             {
                 status = Imports.GetTimebase(handle, _timebase, sampleCount, out timeInterval, out timeUnit, _oversample, out maxSamples);
@@ -142,40 +144,177 @@ namespace PM2Waveform
 
         }
 
+        private WaveFormData HandleTekBlockData(MessageBasedSession mbSession)
+        {
+            WaveFormData waveFormData = new WaveFormData();
+
+            //get voltage and time interval information ("wfmpre?)
+            //tek.tekWrite(mbSession, "rem");
+            string settings;
+            try
+            {
+                mbSession.RawIO.Write("wfmpre:wfid?");
+                settings = mbSession.RawIO.ReadString();
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+                settings = "";
+            }
+
+
+
+            //string settings = tek.TekQuery(mbSession, "wfmpre?");
+
+            // parse tek settings to get the time and voltage intervals based on the current tek settings
+            double dvolt = double.Parse(settings.Split(',')[2].Split(' ')[1]);
+            double dtime = double.Parse(settings.Split(',')[3].Split(' ')[1]);
+
+            //get datapoints at a given point in time ("curve?")
+            //tek.tekWrite(mbSession, "rem");
+
+            //make time and amp arrays
+            //int[] amp = Array.ConvertAll(tek.TekQuery(mbSession, "curve?").Split(','), int.Parse);
+
+            List<int> test = new List<int>() ;
+            bool tooShort = true;
+            while (tooShort)
+            {
+                List<int> ampRaw = new List<int>();
+                mbSession.RawIO.Write("data:encdg ascii;");
+                //mbSession.RawIO.Write("curve?");
+                //string[] rawz = mbSession.RawIO.ReadString().Split(',');
+                try
+                {
+                    mbSession.RawIO.Write("curve?");
+                    List<string> rawList = mbSession.RawIO.ReadString().Split(' ')[1].Split(',').ToList();
+                    //ampRaw = Array.ConvertAll(raw, int.Parse).ToList();
+                    ampRaw = rawList.Take(rawList.Count() - 1).Select(int.Parse).ToList();
+                    test.AddRange(ampRaw);
+                }
+                catch (Exception exp)
+                {
+                    ampRaw = null;
+                }
+                //List<int> ampRaw = Array.ConvertAll(tek.TekQuery(mbSession, "curve?").Split(','), int.Parse).ToList();
+
+                /*mbSession.RawIO.Write("curve?");
+                List<string> rawList = mbSession.RawIO.ReadString().Split(' ')[1].Split(',').ToList();
+                //ampRaw = Array.ConvertAll(raw, int.Parse).ToList();
+                ampRaw = rawList.Take(rawList.Count() - 1).Select(int.Parse).ToList();
+                test.AddRange(ampRaw);*/
+
+                if (test.Count >= 1024)
+                {
+                    test = test.Take(1024).ToList();
+                    tooShort = false;
+                }
+                    
+            }
+
+            int[] amp = test.ToArray();
+            
+            int[] time = new int[amp.Length];
+            for (int i = 0; i < amp.Length; i++)
+            {
+                time[i] = Convert.ToInt32(i * dtime * 1000000); // convert to nanoseconds
+            }
+
+            waveFormData.amp = amp;
+            waveFormData.time = time;
+
+            return waveFormData;
+        }
+
+
         /****************************************************************************
         * GetFFT
         *  Get the raw FFT of an array
         ****************************************************************************/
-        private FFTData GetFFT(int[] amp)
+        private FFTData GetFFT(int[] amp, int[] time, int FFTstyle, int nFFTavg, bool isFFTavg, bool isFFTstyleChange, double[] lastfft)
         {
             FFTData fftData = new FFTData();
             double[] fft = new double[amp.Length];
             double[] freq = new double[amp.Length / 2];
             Complex[] fftComplex = new Complex[amp.Length];
+
+
+            // if FFT style has changed, reset the averaging by making last FFT null.
+            if (isFFTstyleChange)
+            {
+                lastfft = null;
+            }
+
+            //calculate fft
             for (int i = 0; i < amp.Length; i++)
             {
                 fftComplex[i] = new Complex(amp[i], 0);
             }
             AForge.Math.FourierTransform.FFT(fftComplex, AForge.Math.FourierTransform.Direction.Forward);
+
+            // transform fft based on user selected style
             for (int i = 0; i < amp.Length / 2; i++)
             {
-                try
+                time[i] = time[i] - time.Min();
+                switch (FFTstyle)
                 {
-                    //fft[i] = fftComplex[i].Magnitude;
-                    fft[i] = 20 * Math.Log10(Math.Abs(fftComplex[i].Magnitude));
+                    case 0: //Log
+                        fft[i] = 20 * Math.Log10(fftComplex[i].Magnitude);
+                        if (fft[i] == Double.NegativeInfinity || fft[i] == Double.NaN)
+                        {
+                            fft[i] = 0;
+                        }
+                        break;
+                    case 1: // Log - Complex Conjugate
+                        fft[i] = 20 * Math.Log10(Complex.Conjugate(fftComplex[i]).Magnitude*fftComplex[i].Magnitude);
+                        if (fft[i] == Double.NegativeInfinity || fft[i] == Double.NaN)
+                        {
+                            fft[i] = 0;
+                        }
+                        break;
+                    case 2: // Magnitude
+                        fft[i] = fftComplex[i].Magnitude;
+                        break;
+                    case 3: // Magnitude - Complex Conjugate
+                        fft[i] = Complex.Conjugate(fftComplex[i]).Magnitude * fftComplex[i].Magnitude;
+                        break;
+                    default:
+                        break;
                 }
-                catch (Exception)
-                {
 
-                    throw;
-                }
                 if (i % 2 == 0)
                 {
-                    freq[i/2] = (i / 2 - 0.221) / 1.3072;
+                    /*switch (i/2)
+                    {
+                        case 0:
+                            freq[i / 2] = i / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            break;
+                        case 512:
+                            freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            break;
+                        default:
+                            //freq[i / 2] = (i / 2 - 0.221) / 1.3072;
+                            freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            break;
+                    }*/
+                    freq[i / 2] = (i / 2 - 0.221) / 1.3072;
+                    //freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -3;
                 }
             }
 
             fft = fft.Take(fft.Length / 2).ToArray();
+
+            // transform FFT based on user selected averaging technique- New Average = (New Spectrum • 1/N) + (Old Average) • (N−1)/N
+            if (lastfft == null)
+            {
+                isFFTavg = false;
+            }
+            if (isFFTavg)
+            {
+                for (int i = 0; i < fft.Length; i++)
+                    fft[i] = fft[i] * 1 / nFFTavg + lastfft[i] * (nFFTavg - 1) / nFFTavg;
+            }
+
             fftData.fft = fft;
             fftData.freq = freq;
             return fftData; 
@@ -219,7 +358,7 @@ namespace PM2Waveform
         *  this function demonstrates how to collect a single block of data
         *  from the unit (start collecting immediately)
         ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings)
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, int FFTstyle, int nFFTavg, bool isFFTavg, bool isFFTstyleChange, double[] lastfft)
         {
             // Get block of waveform data from pico
             WaveFormData waveFormData = new WaveFormData();
@@ -227,8 +366,20 @@ namespace PM2Waveform
             // Method that communicates with Pico to get blocked data
             waveFormData = HandlePicoBlockData(0, channelSettings, handle);
 
-            return new PlottableData { fftData = GetFFT(waveFormData.amp), WaveFormData = waveFormData };
+            return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, FFTstyle, nFFTavg, isFFTavg, isFFTstyleChange, lastfft), WaveFormData = waveFormData };
         }
+
+        public PlottableData GetTekPlottableData(MessageBasedSession mbSession,  int FFTstyle, int nFFTavg, bool isFFTavg, bool isFFTstyleChange, double[] lastfft)
+        {
+            // Get block of waveform data from pico
+            WaveFormData waveFormData = new WaveFormData();
+
+            // Method that communicates with Pico to get blocked data
+            waveFormData = HandleTekBlockData(mbSession);
+
+            return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, FFTstyle, nFFTavg, isFFTavg, isFFTstyleChange, lastfft), WaveFormData = waveFormData };
+        }
+
 
         public LorentzParams GetLorentzParams(FFTData fftData)
         {
