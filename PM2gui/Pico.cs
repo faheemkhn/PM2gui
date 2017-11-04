@@ -77,7 +77,7 @@ namespace PM2gui
             public const int MAX_CHANNELS = 4;
             public const int COMPATIBLE_STREAMING_MAX_SAMPLES = 60000;
 
-            static public short timebase = 8;
+            static public short timebase = 1;
             static public short oversample = 1;
             //bool _hasFastStreaming = false;
 
