@@ -14,6 +14,7 @@ using AForge;
 using AForge.Video;
 using AForge.Video.DirectShow;
 using NationalInstruments.Visa;
+using System.IO.Ports;
 
 namespace PM2gui
 {
@@ -42,7 +43,10 @@ namespace PM2gui
         PM2WaveForm.LorentzParams lp = new PM2WaveForm.LorentzParams();
         private MessageBasedSession mbSession;
         ResourceManager rmSession = new ResourceManager();
+        ushort[] inputRanges = Pico.PicoInterfacer.inputRanges;
         Tek tek = new Tek();
+        SerialPort picoPort;
+
         short handle;
         int FFTstyle;
         int nFFTavg;
@@ -50,20 +54,16 @@ namespace PM2gui
         bool isFFTstyleChange;
         double[] lastfft = null;
         public string resourceName { get; private set; }
+        bool isPicoPortOpen = false;
 
         private void PM2gui_Load(object sender, EventArgs e)
         {
             //Populate test and measurement device comboxbox
-            var resources = rmSession.Find("(ASRL|GPIB|TCPIP|USB)?*");
+            /*var resources = rmSession.Find("(ASRL|GPIB|TCPIP|USB)?*");
             foreach (string s in resources)
             {
                 MeasDevComboBox.Items.Add(s);
-            }
-
-
-
-
-
+            }*/
 
             // Init Picoscope
             if ((handle = Imports.OpenUnit()) <= 0)
@@ -76,6 +76,8 @@ namespace PM2gui
                 channelSettings = pM2WaveForm.InitPico(handle);
             }
             StopWaveButton.Enabled = false;
+            FreqMaxComboBox.SelectedIndex = 0;//10;
+            VoltRangComboBox.SelectedIndex = 10; //10;
 
             //Init USB Camera
             StopViewingButton.Enabled = false;
@@ -94,9 +96,9 @@ namespace PM2gui
             pM2tD.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             pM2tD.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
             //pM2tD.ChartAreas[0].AxisX.Maximum = 1000;
-            //pM2tD.ChartAreas[0].AxisX.Minimum = 0;
-            //pM2tD.ChartAreas[0].AxisX.Maximum = 1000;
-            //pM2tD.ChartAreas[0].AxisY.Minimum = 0;
+            pM2tD.ChartAreas[0].AxisX.Minimum = 0;
+            pM2tD.ChartAreas[0].AxisY.Maximum = inputRanges[VoltRangComboBox.SelectedIndex];
+            pM2tD.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex]*-1;
             //pM2tD.ChartAreas[0].AxisY.Interval = 100;
             //pM2tD.ChartAreas[0].AxisY.Interval = 2000;
 
@@ -110,17 +112,28 @@ namespace PM2gui
             pM2fD.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
             pM2fD.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
             pM2fD.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = true;
-            //pM2fD.ChartAreas[0].AxisY.Interval = 200;
+            //pM2fD.ChartAreas[0].AxisY.Interval = 2000;
             //pM2fD.ChartAreas[0].AxisX.Minimum = 0;
             //pM2fD.ChartAreas[0].AxisX.Maximum = 100;
             //pM2fD.ChartAreas[0].AxisY.Minimum = 0;
             //pM2fD.ChartAreas[0].AxisY.Maximum = 100;
-            //pM2fD.ChartAreas[0].AxisX.Interval = 10;
+            //pM2fD.ChartAreas[0].AxisX.Interval = -2000;
             MovAvTextBox.Enabled = false;
 
             //lorentz
             LorentzStopButton.Enabled = false;
             LorentzStartButton.Enabled = false;
+            try
+            {
+                picoPort = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+                picoPort.Open();
+                isPicoPortOpen = true;
+            }
+            catch (Exception)
+            {
+            }
+
+
         }
 
         private void pM2tD_MouseMove(object sender, MouseEventArgs e)
@@ -284,6 +297,19 @@ namespace PM2gui
             }
         }
 
+        private void FreqMaxComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pM2WaveForm._timebase = (short)(FreqMaxComboBox.SelectedIndex + 1);
+        }
+
+        private void VoltRangComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            channelSettings[0].range = (Imports.Range)(VoltRangComboBox.SelectedIndex);
+            pM2WaveForm.ChangePicoVoltage(handle, channelSettings);
+            pM2tD.ChartAreas[0].AxisY.Maximum = inputRanges[VoltRangComboBox.SelectedIndex];
+            pM2tD.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex] * -1;
+        }
+
         //USB CAMERA
         private void StartVideoButton_Click(object sender, EventArgs e)
         {
@@ -309,6 +335,8 @@ namespace PM2gui
         private void PM2gui_FormClosing(object sender, FormClosingEventArgs e)
         {
             pM2WaveForm.ShutDown(handle);
+            if (isPicoPortOpen)
+                picoPort.Close();
         }
 
         //LORENTZ FITTING
@@ -318,9 +346,9 @@ namespace PM2gui
             if (plottableData.fftData != null)
             {
                 lp = pM2WaveForm.GetLorentzParams(plottableData.fftData);
-                lpALabel.Text = lp.A.ToString();
-                lpGamLabel.Text = lp.gam.ToString();
-                lpx0Label.Text = lp.xO.ToString();
+                lpAlphaLabel.Text = lp.alpha.ToString();
+                lpGam0Label.Text = lp.gam0.ToString();
+                lpBetaLabel.Text = lp.beta.ToString();
 
                 UpdateLorentCharts();
             }
@@ -339,7 +367,8 @@ namespace PM2gui
 
             for (int i = 0; i < plottableData.fftData.fft.Length; i++)
             {
-                double yValue = lp.A * lp.gam / ((plottableData.fftData.freq[i] - lp.xO) * (plottableData.fftData.freq[i] - lp.xO ) + lp.gam * lp.gam);
+                double yValue = 1 / lp.alpha / (Math.Pow(plottableData.fftData.freq[i] - lp.gam0, 2) + lp.beta);
+                    //lp.beta * lp.gam0 / ((plottableData.fftData.freq[i] - lp.alpha) * (plottableData.fftData.freq[i] - lp.alpha ) + lp.gam0 * lp.gam0);
             pM2fD.Series["Series2"].Points.AddXY(plottableData.fftData.freq[i], yValue);
             }
         }
@@ -354,10 +383,15 @@ namespace PM2gui
         private void LorentzStopButton_Click(object sender, EventArgs e)
         {
             LorentzTimer.Stop();
+            pM2fD.Series["Series2"].Points.Clear();
             LorentzStartButton.Enabled = true;
             LorentzStopButton.Enabled = false;
         }
 
-
+        private void PiezoButton_Click(object sender, EventArgs e)
+        {
+            if (isPicoPortOpen)
+                picoPort.Write("P" + startFreqPiezoTextBox.Text + stopFreqPiezoTextbox.Text);
+        }
     }
 }

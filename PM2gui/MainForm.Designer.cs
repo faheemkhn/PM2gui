@@ -47,9 +47,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lpALabel = new System.Windows.Forms.Label();
-            this.lpGamLabel = new System.Windows.Forms.Label();
-            this.lpx0Label = new System.Windows.Forms.Label();
+            this.lpAlphaLabel = new System.Windows.Forms.Label();
+            this.lpGam0Label = new System.Windows.Forms.Label();
+            this.lpBetaLabel = new System.Windows.Forms.Label();
             this.LorentzStopButton = new System.Windows.Forms.Button();
             this.LorentzStartButton = new System.Windows.Forms.Button();
             this.MovAvTextBox = new System.Windows.Forms.TextBox();
@@ -58,6 +58,15 @@
             this.MovAvButton = new System.Windows.Forms.CheckBox();
             this.MeasDevComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.VoltRangComboBox = new System.Windows.Forms.ComboBox();
+            this.FreqMaxComboBox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.startFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.stopFreqPiezoTextbox = new System.Windows.Forms.MaskedTextBox();
+            this.PiezoButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pM2tD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pM2fD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
@@ -65,7 +74,7 @@
             // 
             // StartWaveButton
             // 
-            this.StartWaveButton.Location = new System.Drawing.Point(29, 84);
+            this.StartWaveButton.Location = new System.Drawing.Point(29, 57);
             this.StartWaveButton.Name = "StartWaveButton";
             this.StartWaveButton.Size = new System.Drawing.Size(85, 30);
             this.StartWaveButton.TabIndex = 1;
@@ -76,7 +85,7 @@
             // 
             // StopWaveButton
             // 
-            this.StopWaveButton.Location = new System.Drawing.Point(29, 120);
+            this.StopWaveButton.Location = new System.Drawing.Point(29, 93);
             this.StopWaveButton.Name = "StopWaveButton";
             this.StopWaveButton.Size = new System.Drawing.Size(85, 30);
             this.StopWaveButton.TabIndex = 2;
@@ -124,7 +133,7 @@
             // 
             // CamPictureBox
             // 
-            this.CamPictureBox.Location = new System.Drawing.Point(812, 78);
+            this.CamPictureBox.Location = new System.Drawing.Point(1003, 76);
             this.CamPictureBox.Name = "CamPictureBox";
             this.CamPictureBox.Size = new System.Drawing.Size(409, 323);
             this.CamPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -134,7 +143,7 @@
             // CamComboBox
             // 
             this.CamComboBox.FormattingEnabled = true;
-            this.CamComboBox.Location = new System.Drawing.Point(812, 407);
+            this.CamComboBox.Location = new System.Drawing.Point(1003, 405);
             this.CamComboBox.Name = "CamComboBox";
             this.CamComboBox.Size = new System.Drawing.Size(121, 21);
             this.CamComboBox.TabIndex = 7;
@@ -142,7 +151,7 @@
             // 
             // StartVideoButton
             // 
-            this.StartVideoButton.Location = new System.Drawing.Point(1039, 407);
+            this.StartVideoButton.Location = new System.Drawing.Point(1230, 405);
             this.StartVideoButton.Name = "StartVideoButton";
             this.StartVideoButton.Size = new System.Drawing.Size(93, 23);
             this.StartVideoButton.TabIndex = 8;
@@ -152,7 +161,7 @@
             // 
             // StopViewingButton
             // 
-            this.StopViewingButton.Location = new System.Drawing.Point(1138, 407);
+            this.StopViewingButton.Location = new System.Drawing.Point(1329, 405);
             this.StopViewingButton.Name = "StopViewingButton";
             this.StopViewingButton.Size = new System.Drawing.Size(83, 23);
             this.StopViewingButton.TabIndex = 9;
@@ -194,30 +203,30 @@
             // 
             // lpALabel
             // 
-            this.lpALabel.AutoSize = true;
-            this.lpALabel.Location = new System.Drawing.Point(51, 342);
-            this.lpALabel.Name = "lpALabel";
-            this.lpALabel.Size = new System.Drawing.Size(19, 13);
-            this.lpALabel.TabIndex = 14;
-            this.lpALabel.Text = "00";
+            this.lpAlphaLabel.AutoSize = true;
+            this.lpAlphaLabel.Location = new System.Drawing.Point(51, 342);
+            this.lpAlphaLabel.Name = "lpALabel";
+            this.lpAlphaLabel.Size = new System.Drawing.Size(19, 13);
+            this.lpAlphaLabel.TabIndex = 14;
+            this.lpAlphaLabel.Text = "00";
             // 
             // lpGamLabel
             // 
-            this.lpGamLabel.AutoSize = true;
-            this.lpGamLabel.Location = new System.Drawing.Point(61, 364);
-            this.lpGamLabel.Name = "lpGamLabel";
-            this.lpGamLabel.Size = new System.Drawing.Size(19, 13);
-            this.lpGamLabel.TabIndex = 15;
-            this.lpGamLabel.Text = "00";
+            this.lpGam0Label.AutoSize = true;
+            this.lpGam0Label.Location = new System.Drawing.Point(61, 364);
+            this.lpGam0Label.Name = "lpGamLabel";
+            this.lpGam0Label.Size = new System.Drawing.Size(19, 13);
+            this.lpGam0Label.TabIndex = 15;
+            this.lpGam0Label.Text = "00";
             // 
             // lpx0Label
             // 
-            this.lpx0Label.AutoSize = true;
-            this.lpx0Label.Location = new System.Drawing.Point(64, 386);
-            this.lpx0Label.Name = "lpx0Label";
-            this.lpx0Label.Size = new System.Drawing.Size(19, 13);
-            this.lpx0Label.TabIndex = 16;
-            this.lpx0Label.Text = "00";
+            this.lpBetaLabel.AutoSize = true;
+            this.lpBetaLabel.Location = new System.Drawing.Point(64, 386);
+            this.lpBetaLabel.Name = "lpx0Label";
+            this.lpBetaLabel.Size = new System.Drawing.Size(19, 13);
+            this.lpBetaLabel.TabIndex = 16;
+            this.lpBetaLabel.Text = "00";
             // 
             // LorentzStopButton
             // 
@@ -292,6 +301,7 @@
             this.MeasDevComboBox.Name = "MeasDevComboBox";
             this.MeasDevComboBox.Size = new System.Drawing.Size(121, 21);
             this.MeasDevComboBox.TabIndex = 26;
+            this.MeasDevComboBox.Visible = false;
             this.MeasDevComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasDevComboBox_SelectedIndexChanged);
             // 
             // label5
@@ -302,12 +312,135 @@
             this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 28;
             this.label5.Text = "Tek Device Address";
+            this.label5.Visible = false;
+            // 
+            // VoltRangComboBox
+            // 
+            this.VoltRangComboBox.FormattingEnabled = true;
+            this.VoltRangComboBox.Items.AddRange(new object[] {
+            "10 mV",
+            "20 mV",
+            "50 mV",
+            "100 mV",
+            "200 mV",
+            "500 mV",
+            "1 V",
+            "2 V",
+            "5 V",
+            "10 V",
+            "20 V"});
+            this.VoltRangComboBox.Location = new System.Drawing.Point(691, 142);
+            this.VoltRangComboBox.Name = "VoltRangComboBox";
+            this.VoltRangComboBox.Size = new System.Drawing.Size(121, 21);
+            this.VoltRangComboBox.TabIndex = 29;
+            this.VoltRangComboBox.SelectedIndexChanged += new System.EventHandler(this.VoltRangComboBox_SelectedIndexChanged);
+            // 
+            // FreqMaxComboBox
+            // 
+            this.FreqMaxComboBox.FormattingEnabled = true;
+            this.FreqMaxComboBox.Items.AddRange(new object[] {
+            "50 MHz (10 ns)",
+            "25 MHz (20 ns)",
+            "13 MHz (40 ns)",
+            "6 MHz (80 ns)",
+            "3 MHz (160 ns)",
+            "1563 kHz (320 ns)",
+            "781 kHz (640 ns)",
+            "391 kHz (1280 ns)",
+            "195 kHz (2560 ns)",
+            "98 kHz (5120 ns)",
+            "49 kHz (10 us)",
+            "24 kHz (20 us)",
+            "12 kHz (40 us)",
+            "6104 Hz (81 us)",
+            "3052 Hz (163 us)",
+            "1526 Hz (327 us)",
+            "763 Hz (655 us)"});
+            this.FreqMaxComboBox.Location = new System.Drawing.Point(691, 31);
+            this.FreqMaxComboBox.Name = "FreqMaxComboBox";
+            this.FreqMaxComboBox.Size = new System.Drawing.Size(121, 21);
+            this.FreqMaxComboBox.TabIndex = 30;
+            this.FreqMaxComboBox.SelectedIndexChanged += new System.EventHandler(this.FreqMaxComboBox_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(691, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "Max Frequency (Sampling Time)";
+            this.label6.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(691, 126);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Voltage Range";
+            this.label7.Visible = false;
+            // 
+            // startFreqPiezoTextBox
+            // 
+            this.startFreqPiezoTextBox.Location = new System.Drawing.Point(170, 577);
+            this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
+            this.startFreqPiezoTextBox.Size = new System.Drawing.Size(100, 20);
+            this.startFreqPiezoTextBox.TabIndex = 34;
+            this.startFreqPiezoTextBox.Text = "10";
+            // 
+            // stopFreqPiezoTextbox
+            // 
+            this.stopFreqPiezoTextbox.Location = new System.Drawing.Point(299, 577);
+            this.stopFreqPiezoTextbox.Name = "stopFreqPiezoTextbox";
+            this.stopFreqPiezoTextbox.Size = new System.Drawing.Size(100, 20);
+            this.stopFreqPiezoTextbox.TabIndex = 35;
+            this.stopFreqPiezoTextbox.Text = "80";
+            // 
+            // PiezoButton
+            // 
+            this.PiezoButton.Location = new System.Drawing.Point(434, 567);
+            this.PiezoButton.Name = "PiezoButton";
+            this.PiezoButton.Size = new System.Drawing.Size(85, 30);
+            this.PiezoButton.TabIndex = 36;
+            this.PiezoButton.TabStop = false;
+            this.PiezoButton.Text = "Piezo";
+            this.PiezoButton.UseVisualStyleBackColor = true;
+            this.PiezoButton.Click += new System.EventHandler(this.PiezoButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(148, 561);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 13);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Starting Frequency (kHz)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(296, 561);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(130, 13);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "Stopping Frequency (kHz)";
             // 
             // PM2gui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 630);
+            this.ClientSize = new System.Drawing.Size(1452, 630);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.PiezoButton);
+            this.Controls.Add(this.stopFreqPiezoTextbox);
+            this.Controls.Add(this.startFreqPiezoTextBox);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.FreqMaxComboBox);
+            this.Controls.Add(this.VoltRangComboBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.MeasDevComboBox);
             this.Controls.Add(this.MovAvButton);
@@ -316,9 +449,9 @@
             this.Controls.Add(this.MovAvTextBox);
             this.Controls.Add(this.LorentzStopButton);
             this.Controls.Add(this.LorentzStartButton);
-            this.Controls.Add(this.lpx0Label);
-            this.Controls.Add(this.lpGamLabel);
-            this.Controls.Add(this.lpALabel);
+            this.Controls.Add(this.lpBetaLabel);
+            this.Controls.Add(this.lpGam0Label);
+            this.Controls.Add(this.lpAlphaLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -346,7 +479,6 @@
         private System.Windows.Forms.Button StartWaveButton;
         private System.Windows.Forms.Button StopWaveButton;
         private System.Windows.Forms.Timer WaveFormTimer;
-        private System.Windows.Forms.DataVisualization.Charting.Chart pM2tD;
         private System.Windows.Forms.DataVisualization.Charting.Chart pM2fD;
         private System.Windows.Forms.PictureBox CamPictureBox;
         private System.Windows.Forms.ComboBox CamComboBox;
@@ -356,9 +488,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lpALabel;
-        private System.Windows.Forms.Label lpGamLabel;
-        private System.Windows.Forms.Label lpx0Label;
+        private System.Windows.Forms.Label lpAlphaLabel;
+        private System.Windows.Forms.Label lpGam0Label;
+        private System.Windows.Forms.Label lpBetaLabel;
         private System.Windows.Forms.Button LorentzStopButton;
         private System.Windows.Forms.Button LorentzStartButton;
         private System.Windows.Forms.TextBox MovAvTextBox;
@@ -367,6 +499,16 @@
         private System.Windows.Forms.CheckBox MovAvButton;
         private System.Windows.Forms.ComboBox MeasDevComboBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox VoltRangComboBox;
+        private System.Windows.Forms.ComboBox FreqMaxComboBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox startFreqPiezoTextBox;
+        private System.Windows.Forms.MaskedTextBox stopFreqPiezoTextbox;
+        private System.Windows.Forms.Button PiezoButton;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.DataVisualization.Charting.Chart pM2tD;
     }
 }
 

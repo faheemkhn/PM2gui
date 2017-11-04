@@ -28,7 +28,7 @@ namespace PM2Waveform
         public short _timebase = Pico.PicoInterfacer.timebase;
         public short _oversample = Pico.PicoInterfacer.oversample;
         public short MAX_CHANNELS = Pico.PicoInterfacer.MAX_CHANNELS;
-        private int _channelCount = SINGLE_SCOPE; //DUAL_SCOPE;
+        private int channelCount = SINGLE_SCOPE; //DUAL_SCOPE;
 
         //instantiate classes and structures
         //public Pico.ChannelSettings[] channelSettings;
@@ -49,9 +49,9 @@ namespace PM2Waveform
         }
         public class LorentzParams
         {
-            public double xO;
-            public double gam;
-            public double A;
+            public double alpha;
+            public double gam0;
+            public double beta;
         }
         public class PlottableData
         {
@@ -91,7 +91,7 @@ namespace PM2Waveform
             PinnedArray<short>[] pinned = new PinnedArray<short>[1];
 
             // Channel buffers
-            for (int i = 0; i < _channelCount; i++)
+            for (int i = 0; i < channelCount; i++)
             {
                 short[] buffer = new short[sampleCount];
                 pinned[i] = new PinnedArray<short>(buffer);
@@ -238,7 +238,6 @@ namespace PM2Waveform
             double[] freq = new double[amp.Length / 2];
             Complex[] fftComplex = new Complex[amp.Length];
 
-
             // if FFT style has changed, reset the averaging by making last FFT null.
             if (isFFTstyleChange)
             {
@@ -253,7 +252,7 @@ namespace PM2Waveform
             AForge.Math.FourierTransform.FFT(fftComplex, AForge.Math.FourierTransform.Direction.Forward);
 
             // transform fft based on user selected style
-            for (int i = 0; i < amp.Length / 2; i++)
+            for (int i = 0; i < amp.Length; i++)
             {
                 time[i] = time[i] - time.Min();
                 switch (FFTstyle)
@@ -287,18 +286,18 @@ namespace PM2Waveform
                     /*switch (i/2)
                     {
                         case 0:
-                            freq[i / 2] = i / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            freq[i / 2] = i / amp.Length / (time[9] - time[8]) / 10 ^ -9;
                             break;
                         case 512:
-                            freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            freq[i / 2] = 1 / amp.Length / (time[9] - time[8]) / 10 ^ -9;
                             break;
                         default:
                             //freq[i / 2] = (i / 2 - 0.221) / 1.3072;
-                            freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -9;
+                            freq[i / 2] = 1 / amp.Length / (time[9] - time[8]) / 10 ^ -9;
                             break;
                     }*/
-                    freq[i / 2] = (i / 2 - 0.221) / 1.3072;
-                    //freq[i / 2] = 1 / amp.Length / (time[1] - time[0]) / 10 ^ -3;
+                    //freq[i / 2] = (i / 2 - 0.221) / 1.3072;
+                    freq[i / 2] = Convert.ToDouble(i/2) / (time[9] - time[8]) * 1e9;
                 }
             }
 
@@ -329,11 +328,11 @@ namespace PM2Waveform
             
 
             Pico.ChannelSettings[] channelSettings = new Pico.ChannelSettings[MAX_CHANNELS];
-            for (int i = 0; i < _channelCount; i++)
+            for (int i = 0; i < channelCount; i++)
             {
                 channelSettings[i].enabled = 1;
                 channelSettings[i].DCcoupled = 1; //DC coupled
-                channelSettings[i].range = Imports.Range.Range_5V;
+                channelSettings[i].range = Imports.Range.Range_20V;
             }
 
             pi.SetDefaults(handle, channelSettings);
@@ -342,6 +341,17 @@ namespace PM2Waveform
             pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
 
             return channelSettings;
+        }
+
+        public  void ChangePicoVoltage(short handle, Pico.ChannelSettings[] channelSettings)
+        {
+
+
+            pi.SetDefaults(handle, channelSettings);
+
+            // disable trigger
+            pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
+
         }
 
         /****************************************************************************
@@ -391,9 +401,9 @@ namespace PM2Waveform
                 fftData.fft[i] = 1 / fftData.fft[i];
             }
             double[] soln = MathNet.Numerics.Fit.Polynomial(fftData.freq, fftData.fft, 2);
-            lp.xO = -soln[1] / 2 / soln[0];
-            lp.gam = Math.Sqrt(soln[2] / soln[0] - lp.xO * lp.xO);
-            lp.A = 1 / soln[0] / lp.gam;
+            lp.alpha = soln[0];
+            lp.gam0 = -soln[1] / 2 / soln[0];
+            lp.beta = soln[2] - Math.Pow(soln[1],2) / 4 / Math.Pow(soln[0],2);
 
             return lp;
             
@@ -415,6 +425,81 @@ namespace PM2Waveform
             soln[2] = solvr.cTerm();
 
             return soln;
+        }
+
+        public class FilterButterworth
+        {
+            /// <summary>
+            /// rez amount, from sqrt(2) to ~ 0.1
+            /// </summary>
+            private readonly float resonance;
+
+            private readonly float frequency;
+            private readonly int sampleRate;
+            private readonly PassType passType;
+
+            private readonly float c, a1, a2, a3, b1, b2;
+
+            /// <summary>
+            /// Array of input values, latest are in front
+            /// </summary>
+            private float[] inputHistory = new float[2];
+
+            /// <summary>
+            /// Array of output values, latest are in front
+            /// </summary>
+            private float[] outputHistory = new float[3];
+
+            public FilterButterworth(float frequency, int sampleRate, PassType passType, float resonance)
+            {
+                this.resonance = resonance;
+                this.frequency = frequency;
+                this.sampleRate = sampleRate;
+                this.passType = passType;
+
+                switch (passType)
+                {
+                    case PassType.Lowpass:
+                        c = 1.0f / (float)Math.Tan(Math.PI * frequency / sampleRate);
+                        a1 = 1.0f / (1.0f + resonance * c + c * c);
+                        a2 = 2f * a1;
+                        a3 = a1;
+                        b1 = 2.0f * (1.0f - c * c) * a1;
+                        b2 = (1.0f - resonance * c + c * c) * a1;
+                        break;
+                    case PassType.Highpass:
+                        c = (float)Math.Tan(Math.PI * frequency / sampleRate);
+                        a1 = 1.0f / (1.0f + resonance * c + c * c);
+                        a2 = -2f * a1;
+                        a3 = a1;
+                        b1 = 2.0f * (c * c - 1.0f) * a1;
+                        b2 = (1.0f - resonance * c + c * c) * a1;
+                        break;
+                }
+            }
+
+            public enum PassType
+            {
+                Highpass,
+                Lowpass,
+            }
+
+            public void Update(float newInput)
+            {
+                float newOutput = a1 * newInput + a2 * this.inputHistory[0] + a3 * this.inputHistory[1] - b1 * this.outputHistory[0] - b2 * this.outputHistory[1];
+
+                this.inputHistory[1] = this.inputHistory[0];
+                this.inputHistory[0] = newInput;
+
+                this.outputHistory[2] = this.outputHistory[1];
+                this.outputHistory[1] = this.outputHistory[0];
+                this.outputHistory[0] = newOutput;
+            }
+
+            public float Value
+            {
+                get { return this.outputHistory[0]; }
+            }
         }
     }
 }
