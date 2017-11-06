@@ -11,7 +11,7 @@ using System.Numerics;
 using Accord.Extensions;
 using AForge;
 using MathNet.Numerics.Optimization;
-using NationalInstruments.Visa;
+//using NationalInstruments.Visa;
 using System.Windows.Forms;
 
 
@@ -33,7 +33,7 @@ namespace PM2Waveform
         //instantiate classes and structures
         //public Pico.ChannelSettings[] channelSettings;
         public Pico.PicoInterfacer pi = new Pico.PicoInterfacer(handle);
-        Tek tek = new Tek();
+        //Tek tek = new Tek();
 
         //define class to handle time and amplitude arrays
         public class WaveFormData
@@ -144,7 +144,7 @@ namespace PM2Waveform
 
         }
 
-        private WaveFormData HandleTekBlockData(MessageBasedSession mbSession)
+        /*private WaveFormData HandleTekBlockData(MessageBasedSession mbSession)
         {
             WaveFormData waveFormData = new WaveFormData();
 
@@ -202,7 +202,7 @@ namespace PM2Waveform
                 List<string> rawList = mbSession.RawIO.ReadString().Split(' ')[1].Split(',').ToList();
                 //ampRaw = Array.ConvertAll(raw, int.Parse).ToList();
                 ampRaw = rawList.Take(rawList.Count() - 1).Select(int.Parse).ToList();
-                test.AddRange(ampRaw);*/
+                test.AddRange(ampRaw);
 
                 if (test.Count >= 1024)
                 {
@@ -224,7 +224,7 @@ namespace PM2Waveform
             waveFormData.time = time;
 
             return waveFormData;
-        }
+        }*/
 
 
         /****************************************************************************
@@ -379,7 +379,7 @@ namespace PM2Waveform
             return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, FFTstyle, nFFTavg, isFFTavg, isFFTstyleChange, lastfft), WaveFormData = waveFormData };
         }
 
-        public PlottableData GetTekPlottableData(MessageBasedSession mbSession,  int FFTstyle, int nFFTavg, bool isFFTavg, bool isFFTstyleChange, double[] lastfft)
+        /*public PlottableData GetTekPlottableData(MessageBasedSession mbSession,  int FFTstyle, int nFFTavg, bool isFFTavg, bool isFFTstyleChange, double[] lastfft)
         {
             // Get block of waveform data from pico
             WaveFormData waveFormData = new WaveFormData();
@@ -388,7 +388,7 @@ namespace PM2Waveform
             waveFormData = HandleTekBlockData(mbSession);
 
             return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, FFTstyle, nFFTavg, isFFTavg, isFFTstyleChange, lastfft), WaveFormData = waveFormData };
-        }
+        }*/
 
 
         public LorentzParams GetLorentzParams(FFTData fftData)
@@ -410,7 +410,7 @@ namespace PM2Waveform
 
         }
 
-        private double[] QuadFit(FFTData fftData)
+        /*private double[] QuadFit(FFTData fftData)
         {
             LstSquQuadRegr solvr = new LstSquQuadRegr();
             double[] soln = new double[3];
@@ -425,7 +425,7 @@ namespace PM2Waveform
             soln[2] = solvr.cTerm();
 
             return soln;
-        }
+        }*/
 
         public class FilterButterworth
         {
