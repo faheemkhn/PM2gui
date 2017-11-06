@@ -13,7 +13,7 @@ using PS2000Imports;
 using AForge;
 using AForge.Video;
 using AForge.Video.DirectShow;
-using NationalInstruments.Visa;
+//using NationalInstruments.Visa;
 using System.IO.Ports;
 
 namespace PM2gui
@@ -41,10 +41,9 @@ namespace PM2gui
         System.Drawing.Point? prevPositionfD = null;
         ToolTip tooltipfD = new ToolTip();
         PM2WaveForm.LorentzParams lp = new PM2WaveForm.LorentzParams();
-        private MessageBasedSession mbSession;
-        ResourceManager rmSession = new ResourceManager();
+        //private MessageBasedSession mbSession;
+        //ResourceManager rmSession = new ResourceManager();
         ushort[] inputRanges = Pico.PicoInterfacer.inputRanges;
-        Tek tek = new Tek();
         SerialPort picoPort;
 
         short handle;
@@ -58,26 +57,20 @@ namespace PM2gui
 
         private void PM2gui_Load(object sender, EventArgs e)
         {
-            //Populate test and measurement device comboxbox
-            /*var resources = rmSession.Find("(ASRL|GPIB|TCPIP|USB)?*");
-            foreach (string s in resources)
-            {
-                MeasDevComboBox.Items.Add(s);
-            }*/
 
             // Init Picoscope
             if ((handle = Imports.OpenUnit()) <= 0)
             {
                 MessageBox.Show("Picoscope could not be opened. Check connection and start again.");
-                //Application.Exit();
+                Application.Exit();
             }
             else
             {
                 channelSettings = pM2WaveForm.InitPico(handle);
             }
             StopWaveButton.Enabled = false;
-            FreqMaxComboBox.SelectedIndex = 0;//10;
-            VoltRangComboBox.SelectedIndex = 10; //10;
+            FreqMaxComboBox.SelectedIndex = 10;
+            VoltRangComboBox.SelectedIndex = 10;
 
             //Init USB Camera
             StopViewingButton.Enabled = false;
@@ -200,13 +193,13 @@ namespace PM2gui
         // PICO READING AND FFT
         private void MeasDevComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            resourceName = (string)MeasDevComboBox.SelectedItem;
-            mbSession = (MessageBasedSession)rmSession.Open(resourceName);
+            //resourceName = (string)MeasDevComboBox.SelectedItem;
+            //mbSession = (MessageBasedSession)rmSession.Open(resourceName);
             //Init Tek
             //tek.initTekSettings();
             //view
-            mbSession.RawIO.Write("factory\n");
-            mbSession.RawIO.Write("ch1:volts 0.1\n");
+            //mbSession.RawIO.Write("factory\n");
+            //mbSession.RawIO.Write("ch1:volts 0.1\n");
             //autorange
 
             //trigger
