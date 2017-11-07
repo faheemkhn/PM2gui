@@ -15,6 +15,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 //using NationalInstruments.Visa;
 using System.IO.Ports;
+using System.Management;
 
 namespace PM2gui
 {
@@ -94,6 +95,8 @@ namespace PM2gui
             pM2tD.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex]*-1;
             //pM2tD.ChartAreas[0].AxisY.Interval = 100;
             //pM2tD.ChartAreas[0].AxisY.Interval = 2000;
+            pM2tD.ChartAreas[0].AxisX.Title = "Time (us)";
+            pM2tD.ChartAreas[0].AxisY.Title = "Amplitude (mV)";
 
 
             //frequency domain
@@ -105,6 +108,8 @@ namespace PM2gui
             pM2fD.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
             pM2fD.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
             pM2fD.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = true;
+            pM2fD.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
+            pM2fD.ChartAreas[0].AxisY.Title = "Magnitude";
             //pM2fD.ChartAreas[0].AxisY.Interval = 2000;
             //pM2fD.ChartAreas[0].AxisX.Minimum = 0;
             //pM2fD.ChartAreas[0].AxisX.Maximum = 100;
@@ -118,7 +123,7 @@ namespace PM2gui
             LorentzStartButton.Enabled = false;
             try
             {
-                picoPort = new SerialPort("COM3", 9600, Parity.None, 8, StopBits.One);
+                picoPort = new SerialPort(AutodetectArduinoPort(), 9600, Parity.None, 8, StopBits.One);
                 picoPort.Open();
                 isPicoPortOpen = true;
             }
@@ -127,6 +132,33 @@ namespace PM2gui
             }
 
 
+        }
+
+        private string AutodetectArduinoPort()
+        {
+            ManagementScope connectionScope = new ManagementScope();
+            SelectQuery serialQuery = new SelectQuery("SELECT * FROM Win32_SerialPort");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(connectionScope, serialQuery);
+
+            try
+            {
+                foreach (ManagementObject item in searcher.Get())
+                {
+                    string desc = item["Description"].ToString();
+                    string deviceId = item["DeviceID"].ToString();
+
+                    if (desc.Contains("Arduino"))
+                    {
+                        return deviceId;
+                    }
+                }
+            }
+            catch (ManagementException e)
+            {
+                /* Do Nothing */
+            }
+
+            return null;
         }
 
         private void pM2tD_MouseMove(object sender, MouseEventArgs e)

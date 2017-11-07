@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -56,8 +56,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.FftComboBox = new System.Windows.Forms.ComboBox();
             this.MovAvButton = new System.Windows.Forms.CheckBox();
-            this.MeasDevComboBox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.VoltRangComboBox = new System.Windows.Forms.ComboBox();
             this.FreqMaxComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -74,7 +72,7 @@
             // 
             // StartWaveButton
             // 
-            this.StartWaveButton.Location = new System.Drawing.Point(29, 57);
+            this.StartWaveButton.Location = new System.Drawing.Point(29, 12);
             this.StartWaveButton.Name = "StartWaveButton";
             this.StartWaveButton.Size = new System.Drawing.Size(85, 30);
             this.StartWaveButton.TabIndex = 1;
@@ -85,7 +83,7 @@
             // 
             // StopWaveButton
             // 
-            this.StopWaveButton.Location = new System.Drawing.Point(29, 93);
+            this.StopWaveButton.Location = new System.Drawing.Point(29, 48);
             this.StopWaveButton.Name = "StopWaveButton";
             this.StopWaveButton.Size = new System.Drawing.Size(85, 30);
             this.StopWaveButton.TabIndex = 2;
@@ -100,40 +98,40 @@
             // 
             // pM2tD
             // 
-            chartArea1.Name = "ChartArea1";
-            this.pM2tD.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.pM2tD.ChartAreas.Add(chartArea7);
             this.pM2tD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pM2tD.Location = new System.Drawing.Point(151, 12);
+            this.pM2tD.Location = new System.Drawing.Point(170, 12);
             this.pM2tD.Name = "pM2tD";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Name = "Series1";
-            this.pM2tD.Series.Add(series1);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Name = "Series1";
+            this.pM2tD.Series.Add(series10);
             this.pM2tD.Size = new System.Drawing.Size(534, 226);
             this.pM2tD.TabIndex = 4;
             this.pM2tD.Text = "chart2";
             // 
             // pM2fD
             // 
-            chartArea2.Name = "ChartArea1";
-            this.pM2fD.ChartAreas.Add(chartArea2);
-            this.pM2fD.Location = new System.Drawing.Point(151, 262);
+            chartArea8.Name = "ChartArea1";
+            this.pM2fD.ChartAreas.Add(chartArea8);
+            this.pM2fD.Location = new System.Drawing.Point(170, 262);
             this.pM2fD.Name = "pM2fD";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Name = "Series2";
-            this.pM2fD.Series.Add(series2);
-            this.pM2fD.Series.Add(series3);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Name = "Series1";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.Name = "Series2";
+            this.pM2fD.Series.Add(series11);
+            this.pM2fD.Series.Add(series12);
             this.pM2fD.Size = new System.Drawing.Size(534, 226);
             this.pM2fD.TabIndex = 5;
             this.pM2fD.Text = "chart2";
             // 
             // CamPictureBox
             // 
-            this.CamPictureBox.Location = new System.Drawing.Point(1003, 76);
+            this.CamPictureBox.Location = new System.Drawing.Point(808, 71);
             this.CamPictureBox.Name = "CamPictureBox";
             this.CamPictureBox.Size = new System.Drawing.Size(409, 323);
             this.CamPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -143,15 +141,14 @@
             // CamComboBox
             // 
             this.CamComboBox.FormattingEnabled = true;
-            this.CamComboBox.Location = new System.Drawing.Point(1003, 405);
+            this.CamComboBox.Location = new System.Drawing.Point(808, 400);
             this.CamComboBox.Name = "CamComboBox";
             this.CamComboBox.Size = new System.Drawing.Size(121, 21);
             this.CamComboBox.TabIndex = 7;
-            this.CamComboBox.Visible = false;
             // 
             // StartVideoButton
             // 
-            this.StartVideoButton.Location = new System.Drawing.Point(1230, 405);
+            this.StartVideoButton.Location = new System.Drawing.Point(1035, 398);
             this.StartVideoButton.Name = "StartVideoButton";
             this.StartVideoButton.Size = new System.Drawing.Size(93, 23);
             this.StartVideoButton.TabIndex = 8;
@@ -161,7 +158,7 @@
             // 
             // StopViewingButton
             // 
-            this.StopViewingButton.Location = new System.Drawing.Point(1329, 405);
+            this.StopViewingButton.Location = new System.Drawing.Point(1134, 398);
             this.StopViewingButton.Name = "StopViewingButton";
             this.StopViewingButton.Size = new System.Drawing.Size(83, 23);
             this.StopViewingButton.TabIndex = 9;
@@ -201,29 +198,29 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "freq0 =";
             // 
-            // lpALabel
+            // lpAlphaLabel
             // 
             this.lpAlphaLabel.AutoSize = true;
             this.lpAlphaLabel.Location = new System.Drawing.Point(51, 342);
-            this.lpAlphaLabel.Name = "lpALabel";
+            this.lpAlphaLabel.Name = "lpAlphaLabel";
             this.lpAlphaLabel.Size = new System.Drawing.Size(19, 13);
             this.lpAlphaLabel.TabIndex = 14;
             this.lpAlphaLabel.Text = "00";
             // 
-            // lpGamLabel
+            // lpGam0Label
             // 
             this.lpGam0Label.AutoSize = true;
             this.lpGam0Label.Location = new System.Drawing.Point(61, 364);
-            this.lpGam0Label.Name = "lpGamLabel";
+            this.lpGam0Label.Name = "lpGam0Label";
             this.lpGam0Label.Size = new System.Drawing.Size(19, 13);
             this.lpGam0Label.TabIndex = 15;
             this.lpGam0Label.Text = "00";
             // 
-            // lpx0Label
+            // lpBetaLabel
             // 
             this.lpBetaLabel.AutoSize = true;
             this.lpBetaLabel.Location = new System.Drawing.Point(64, 386);
-            this.lpBetaLabel.Name = "lpx0Label";
+            this.lpBetaLabel.Name = "lpBetaLabel";
             this.lpBetaLabel.Size = new System.Drawing.Size(19, 13);
             this.lpBetaLabel.TabIndex = 16;
             this.lpBetaLabel.Text = "00";
@@ -252,7 +249,7 @@
             // 
             // MovAvTextBox
             // 
-            this.MovAvTextBox.Location = new System.Drawing.Point(170, 519);
+            this.MovAvTextBox.Location = new System.Drawing.Point(277, 518);
             this.MovAvTextBox.Name = "MovAvTextBox";
             this.MovAvTextBox.Size = new System.Drawing.Size(85, 20);
             this.MovAvTextBox.TabIndex = 21;
@@ -262,7 +259,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(60, 522);
+            this.label4.Location = new System.Drawing.Point(167, 521);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 13);
             this.label4.TabIndex = 22;
@@ -276,7 +273,7 @@
             "Log - Complex Conjugate",
             "Magnitude",
             "Magnitude - Complex Conjugate"});
-            this.FftComboBox.Location = new System.Drawing.Point(299, 496);
+            this.FftComboBox.Location = new System.Drawing.Point(277, 494);
             this.FftComboBox.Name = "FftComboBox";
             this.FftComboBox.Size = new System.Drawing.Size(121, 21);
             this.FftComboBox.TabIndex = 23;
@@ -285,7 +282,7 @@
             // 
             // MovAvButton
             // 
-            this.MovAvButton.Location = new System.Drawing.Point(160, 494);
+            this.MovAvButton.Location = new System.Drawing.Point(170, 494);
             this.MovAvButton.Name = "MovAvButton";
             this.MovAvButton.Size = new System.Drawing.Size(104, 24);
             this.MovAvButton.TabIndex = 25;
@@ -293,26 +290,6 @@
             this.MovAvButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.MovAvButton.UseVisualStyleBackColor = true;
             this.MovAvButton.CheckedChanged += new System.EventHandler(this.MovAvButton_CheckedChanged);
-            // 
-            // MeasDevComboBox
-            // 
-            this.MeasDevComboBox.FormattingEnabled = true;
-            this.MeasDevComboBox.Location = new System.Drawing.Point(12, 31);
-            this.MeasDevComboBox.Name = "MeasDevComboBox";
-            this.MeasDevComboBox.Size = new System.Drawing.Size(121, 21);
-            this.MeasDevComboBox.TabIndex = 26;
-            this.MeasDevComboBox.Visible = false;
-            this.MeasDevComboBox.SelectedIndexChanged += new System.EventHandler(this.MeasDevComboBox_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 13);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Tek Device Address";
-            this.label5.Visible = false;
             // 
             // VoltRangComboBox
             // 
@@ -329,7 +306,7 @@
             "5 V",
             "10 V",
             "20 V"});
-            this.VoltRangComboBox.Location = new System.Drawing.Point(691, 142);
+            this.VoltRangComboBox.Location = new System.Drawing.Point(12, 180);
             this.VoltRangComboBox.Name = "VoltRangComboBox";
             this.VoltRangComboBox.Size = new System.Drawing.Size(121, 21);
             this.VoltRangComboBox.TabIndex = 29;
@@ -356,7 +333,7 @@
             "3052 Hz (163 us)",
             "1526 Hz (327 us)",
             "763 Hz (655 us)"});
-            this.FreqMaxComboBox.Location = new System.Drawing.Point(691, 31);
+            this.FreqMaxComboBox.Location = new System.Drawing.Point(12, 126);
             this.FreqMaxComboBox.Name = "FreqMaxComboBox";
             this.FreqMaxComboBox.Size = new System.Drawing.Size(121, 21);
             this.FreqMaxComboBox.TabIndex = 30;
@@ -365,7 +342,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(691, 15);
+            this.label6.Location = new System.Drawing.Point(6, 109);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(158, 13);
             this.label6.TabIndex = 31;
@@ -375,7 +352,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(691, 126);
+            this.label7.Location = new System.Drawing.Point(26, 164);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 32;
@@ -400,7 +377,7 @@
             // 
             // PiezoButton
             // 
-            this.PiezoButton.Location = new System.Drawing.Point(434, 567);
+            this.PiezoButton.Location = new System.Drawing.Point(465, 567);
             this.PiezoButton.Name = "PiezoButton";
             this.PiezoButton.Size = new System.Drawing.Size(85, 30);
             this.PiezoButton.TabIndex = 36;
@@ -412,7 +389,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(148, 561);
+            this.label8.Location = new System.Drawing.Point(167, 561);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(124, 13);
             this.label8.TabIndex = 37;
@@ -431,7 +408,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1452, 630);
+            this.ClientSize = new System.Drawing.Size(1314, 630);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.PiezoButton);
@@ -441,8 +418,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.FreqMaxComboBox);
             this.Controls.Add(this.VoltRangComboBox);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.MeasDevComboBox);
             this.Controls.Add(this.MovAvButton);
             this.Controls.Add(this.FftComboBox);
             this.Controls.Add(this.label4);
@@ -497,8 +472,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox FftComboBox;
         private System.Windows.Forms.CheckBox MovAvButton;
-        private System.Windows.Forms.ComboBox MeasDevComboBox;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox VoltRangComboBox;
         private System.Windows.Forms.ComboBox FreqMaxComboBox;
         private System.Windows.Forms.Label label6;

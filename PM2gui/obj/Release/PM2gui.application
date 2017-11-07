@@ -7,14 +7,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PM2gui.exe.manifest" size="11916">
+    <dependentAssembly dependencyType="install" codebase="PM2gui.exe.manifest" size="10545">
       <assemblyIdentity name="PM2gui.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kIxp/jb92+iQCv9GqPve6jpwUnuZnXY/FcO5n3QmSGE=</dsig:DigestValue>
+        <dsig:DigestValue>bh+gJ0mDx0M8hMFMaV1GMfdjVXeR7+p5K7Av3g4geXk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
