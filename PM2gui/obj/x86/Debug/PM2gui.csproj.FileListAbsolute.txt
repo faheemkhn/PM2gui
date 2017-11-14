@@ -1,0 +1,7 @@
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.csprojResolveAssemblyReference.cache
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.csproj.PM2gui.exe.config
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.PM2gui.resources
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.Properties.Resources.resources
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.Resource1.resources
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.csproj.GenerateResource.Cache
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\x86\Debug\PM2gui.csproj.CoreCompileInputs.cache

@@ -24,7 +24,6 @@ C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\AForge.dll
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\AForge.xml
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.PM2gui.resources
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.Properties.Resources.resources
-C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.Resource1.resources
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.csproj.GenerateResource.Cache
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.csproj.CoreCompileInputs.cache
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.exe
@@ -53,3 +52,7 @@ C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\Ivi.Visa.xml
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\NationalInstruments.Visa.xml
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.csproj.PM2gui.exe.config
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.csprojResolveAssemblyReference.cache
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\PM2gui.exe.manifest
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\PM2gui.application
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.exe.manifest
+C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.application
