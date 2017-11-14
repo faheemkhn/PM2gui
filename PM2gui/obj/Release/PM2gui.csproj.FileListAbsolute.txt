@@ -51,3 +51,9 @@ C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Release\PM2gui.application
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Release\PM2gui.exe
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Release\PM2gui.pdb
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Release\PM2gui.csprojResolveAssemblyReference.cache
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\GeneralMatrix.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\LMA.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\nunit.framework.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\GeneralMatrix.pdb
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\LMA.pdb
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Release\nunit.framework.xml
