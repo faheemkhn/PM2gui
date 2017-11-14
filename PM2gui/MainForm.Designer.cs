@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -71,9 +71,9 @@
             this.trimStopFreqTextBox = new System.Windows.Forms.TextBox();
             this.trimFFTCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.MovAvButton = new System.Windows.Forms.RadioButton();
-            this.ContAvButton = new System.Windows.Forms.RadioButton();
             this.NoAvButton = new System.Windows.Forms.RadioButton();
+            this.ContAvButton = new System.Windows.Forms.RadioButton();
+            this.MovAvButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pM2tD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pM2fD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
@@ -108,42 +108,42 @@
             // 
             // pM2tD
             // 
-            chartArea7.Name = "ChartArea1";
-            this.pM2tD.ChartAreas.Add(chartArea7);
+            chartArea1.Name = "ChartArea1";
+            this.pM2tD.ChartAreas.Add(chartArea1);
             this.pM2tD.ImeMode = System.Windows.Forms.ImeMode.On;
             this.pM2tD.Location = new System.Drawing.Point(170, 12);
             this.pM2tD.Name = "pM2tD";
             this.pM2tD.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series10.BorderWidth = 2;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series10.Color = System.Drawing.Color.Black;
-            series10.Name = "Series1";
-            this.pM2tD.Series.Add(series10);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Black;
+            series1.Name = "Series1";
+            this.pM2tD.Series.Add(series1);
             this.pM2tD.Size = new System.Drawing.Size(534, 226);
             this.pM2tD.TabIndex = 4;
             this.pM2tD.Text = "chart2";
             // 
             // pM2fD
             // 
-            chartArea8.Name = "ChartArea1";
-            this.pM2fD.ChartAreas.Add(chartArea8);
+            chartArea2.Name = "ChartArea1";
+            this.pM2fD.ChartAreas.Add(chartArea2);
             this.pM2fD.Location = new System.Drawing.Point(170, 262);
             this.pM2fD.Name = "pM2fD";
             this.pM2fD.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series11.BorderWidth = 3;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Color = System.Drawing.Color.Black;
-            series11.Name = "Series1";
-            series12.BorderWidth = 2;
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.Color = System.Drawing.Color.Red;
-            series12.LabelForeColor = System.Drawing.Color.Bisque;
-            series12.Name = "Series2";
-            this.pM2fD.Series.Add(series11);
-            this.pM2fD.Series.Add(series12);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Black;
+            series2.Name = "Series1";
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Red;
+            series3.LabelForeColor = System.Drawing.Color.Bisque;
+            series3.Name = "Series2";
+            this.pM2fD.Series.Add(series2);
+            this.pM2fD.Series.Add(series3);
             this.pM2fD.Size = new System.Drawing.Size(534, 226);
             this.pM2fD.TabIndex = 5;
             this.pM2fD.Text = "chart2";
@@ -475,33 +475,11 @@
             this.groupBox1.Controls.Add(this.MovAvButton);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.MovAvTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(170, 493);
+            this.groupBox1.Location = new System.Drawing.Point(171, 486);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 85);
+            this.groupBox1.Size = new System.Drawing.Size(355, 84);
             this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
-            // 
-            // MovAvButton
-            // 
-            this.MovAvButton.AutoSize = true;
-            this.MovAvButton.Location = new System.Drawing.Point(6, 16);
-            this.MovAvButton.Name = "MovAvButton";
-            this.MovAvButton.Size = new System.Drawing.Size(103, 17);
-            this.MovAvButton.TabIndex = 0;
-            this.MovAvButton.Text = "Moving Average";
-            this.MovAvButton.UseVisualStyleBackColor = true;
-            this.MovAvButton.CheckedChanged += new System.EventHandler(this.MovAvButton_CheckedChanged_1);
-            // 
-            // ContAvButton
-            // 
-            this.ContAvButton.AutoSize = true;
-            this.ContAvButton.Location = new System.Drawing.Point(6, 39);
-            this.ContAvButton.Name = "ContAvButton";
-            this.ContAvButton.Size = new System.Drawing.Size(121, 17);
-            this.ContAvButton.TabIndex = 1;
-            this.ContAvButton.Text = "Continuous Average";
-            this.ContAvButton.UseVisualStyleBackColor = true;
-            this.ContAvButton.CheckedChanged += new System.EventHandler(this.ContAvButton_CheckedChanged_1);
             // 
             // NoAvButton
             // 
@@ -514,6 +492,28 @@
             this.NoAvButton.TabStop = true;
             this.NoAvButton.Text = "No Average";
             this.NoAvButton.UseVisualStyleBackColor = true;
+            // 
+            // ContAvButton
+            // 
+            this.ContAvButton.AutoSize = true;
+            this.ContAvButton.Location = new System.Drawing.Point(6, 39);
+            this.ContAvButton.Name = "ContAvButton";
+            this.ContAvButton.Size = new System.Drawing.Size(121, 17);
+            this.ContAvButton.TabIndex = 1;
+            this.ContAvButton.Text = "Continuous Average";
+            this.ContAvButton.UseVisualStyleBackColor = true;
+            this.ContAvButton.CheckedChanged += new System.EventHandler(this.ContAvButton_CheckedChanged_1);
+            // 
+            // MovAvButton
+            // 
+            this.MovAvButton.AutoSize = true;
+            this.MovAvButton.Location = new System.Drawing.Point(6, 16);
+            this.MovAvButton.Name = "MovAvButton";
+            this.MovAvButton.Size = new System.Drawing.Size(103, 17);
+            this.MovAvButton.TabIndex = 0;
+            this.MovAvButton.Text = "Moving Average";
+            this.MovAvButton.UseVisualStyleBackColor = true;
+            this.MovAvButton.CheckedChanged += new System.EventHandler(this.MovAvButton_CheckedChanged_1);
             // 
             // PM2gui
             // 
