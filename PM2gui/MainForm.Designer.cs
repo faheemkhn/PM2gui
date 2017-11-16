@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
-            this.pM2tD = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.pM2fD = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.shortTimeDomainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.freqDomainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CamPictureBox = new System.Windows.Forms.PictureBox();
             this.CamComboBox = new System.Windows.Forms.ComboBox();
             this.StartVideoButton = new System.Windows.Forms.Button();
             this.StopViewingButton = new System.Windows.Forms.Button();
             this.LorentzTimer = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lpAlphaLabel = new System.Windows.Forms.Label();
-            this.lpGam0Label = new System.Windows.Forms.Label();
-            this.lpBetaLabel = new System.Windows.Forms.Label();
             this.LorentzStopButton = new System.Windows.Forms.Button();
             this.LorentzStartButton = new System.Windows.Forms.Button();
             this.MovAvTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.FftComboBox = new System.Windows.Forms.ComboBox();
             this.VoltRangComboBox = new System.Windows.Forms.ComboBox();
             this.FreqMaxComboBox = new System.Windows.Forms.ComboBox();
@@ -69,36 +69,81 @@
             this.stopFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
             this.trimStartFreqTextBox = new System.Windows.Forms.TextBox();
             this.trimStopFreqTextBox = new System.Windows.Forms.TextBox();
-            this.trimFFTCheckBox = new System.Windows.Forms.CheckBox();
+            this.TrimFftCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.NoAvButton = new System.Windows.Forms.RadioButton();
             this.ContAvButton = new System.Windows.Forms.RadioButton();
             this.MovAvButton = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pM2tD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pM2fD)).BeginInit();
+            this.IterTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.longTimeDomainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.peakTrackerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.PeakGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.peakGuessCheckBox = new System.Windows.Forms.CheckBox();
+            this.StartExportButton = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ExportRateTextBox = new System.Windows.Forms.TextBox();
+            this.PeackTrackExportCheckBox = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.FreqExportCheckBox = new System.Windows.Forms.CheckBox();
+            this.LongTimeExportCheckBox = new System.Windows.Forms.CheckBox();
+            this.ShortTimeExportCheckBox = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ExportTimer = new System.Windows.Forms.Timer(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.QLabel = new System.Windows.Forms.Label();
+            this.amplitudeLabel = new System.Windows.Forms.Label();
+            this.f2Label = new System.Windows.Forms.Label();
+            this.f1Label = new System.Windows.Forms.Label();
+            this.f0Label = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.shortTimeDomainChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqDomainChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.longTimeDomainChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peakTrackerChart)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartWaveButton
             // 
-            this.StartWaveButton.Location = new System.Drawing.Point(29, 12);
+            resources.ApplyResources(this.StartWaveButton, "StartWaveButton");
             this.StartWaveButton.Name = "StartWaveButton";
-            this.StartWaveButton.Size = new System.Drawing.Size(85, 30);
-            this.StartWaveButton.TabIndex = 1;
             this.StartWaveButton.TabStop = false;
-            this.StartWaveButton.Text = "Start Reading";
             this.StartWaveButton.UseVisualStyleBackColor = true;
             this.StartWaveButton.Click += new System.EventHandler(this.StartWaveButton_Click);
             // 
             // StopWaveButton
             // 
-            this.StopWaveButton.Location = new System.Drawing.Point(29, 48);
+            resources.ApplyResources(this.StopWaveButton, "StopWaveButton");
             this.StopWaveButton.Name = "StopWaveButton";
-            this.StopWaveButton.Size = new System.Drawing.Size(85, 30);
-            this.StopWaveButton.TabIndex = 2;
             this.StopWaveButton.TabStop = false;
-            this.StopWaveButton.Text = "Stop Reading";
             this.StopWaveButton.UseVisualStyleBackColor = true;
             this.StopWaveButton.Click += new System.EventHandler(this.StopWaveButton_Click);
             // 
@@ -106,31 +151,27 @@
             // 
             this.WaveFormTimer.Tick += new System.EventHandler(this.WaveFormTimer_Tick);
             // 
-            // pM2tD
+            // shortTimeDomainChart
             // 
             chartArea1.Name = "ChartArea1";
-            this.pM2tD.ChartAreas.Add(chartArea1);
-            this.pM2tD.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pM2tD.Location = new System.Drawing.Point(170, 12);
-            this.pM2tD.Name = "pM2tD";
-            this.pM2tD.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.shortTimeDomainChart.ChartAreas.Add(chartArea1);
+            resources.ApplyResources(this.shortTimeDomainChart, "shortTimeDomainChart");
+            this.shortTimeDomainChart.Name = "shortTimeDomainChart";
+            this.shortTimeDomainChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series1.BorderWidth = 2;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Color = System.Drawing.Color.Black;
             series1.Name = "Series1";
-            this.pM2tD.Series.Add(series1);
-            this.pM2tD.Size = new System.Drawing.Size(534, 226);
-            this.pM2tD.TabIndex = 4;
-            this.pM2tD.Text = "chart2";
+            this.shortTimeDomainChart.Series.Add(series1);
             // 
-            // pM2fD
+            // freqDomainChart
             // 
             chartArea2.Name = "ChartArea1";
-            this.pM2fD.ChartAreas.Add(chartArea2);
-            this.pM2fD.Location = new System.Drawing.Point(170, 262);
-            this.pM2fD.Name = "pM2fD";
-            this.pM2fD.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.freqDomainChart.ChartAreas.Add(chartArea2);
+            resources.ApplyResources(this.freqDomainChart, "freqDomainChart");
+            this.freqDomainChart.Name = "freqDomainChart";
+            this.freqDomainChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series2.BorderWidth = 3;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -142,46 +183,34 @@
             series3.Color = System.Drawing.Color.Red;
             series3.LabelForeColor = System.Drawing.Color.Bisque;
             series3.Name = "Series2";
-            this.pM2fD.Series.Add(series2);
-            this.pM2fD.Series.Add(series3);
-            this.pM2fD.Size = new System.Drawing.Size(534, 226);
-            this.pM2fD.TabIndex = 5;
-            this.pM2fD.Text = "chart2";
+            this.freqDomainChart.Series.Add(series2);
+            this.freqDomainChart.Series.Add(series3);
             // 
             // CamPictureBox
             // 
-            this.CamPictureBox.Location = new System.Drawing.Point(808, 71);
+            this.CamPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.CamPictureBox, "CamPictureBox");
             this.CamPictureBox.Name = "CamPictureBox";
-            this.CamPictureBox.Size = new System.Drawing.Size(409, 323);
-            this.CamPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.CamPictureBox.TabIndex = 6;
             this.CamPictureBox.TabStop = false;
             // 
             // CamComboBox
             // 
             this.CamComboBox.FormattingEnabled = true;
-            this.CamComboBox.Location = new System.Drawing.Point(808, 400);
+            resources.ApplyResources(this.CamComboBox, "CamComboBox");
             this.CamComboBox.Name = "CamComboBox";
-            this.CamComboBox.Size = new System.Drawing.Size(121, 21);
-            this.CamComboBox.TabIndex = 7;
             // 
             // StartVideoButton
             // 
-            this.StartVideoButton.Location = new System.Drawing.Point(1035, 398);
+            resources.ApplyResources(this.StartVideoButton, "StartVideoButton");
             this.StartVideoButton.Name = "StartVideoButton";
-            this.StartVideoButton.Size = new System.Drawing.Size(93, 23);
-            this.StartVideoButton.TabIndex = 8;
-            this.StartVideoButton.Text = "Start Viewing";
             this.StartVideoButton.UseVisualStyleBackColor = true;
             this.StartVideoButton.Click += new System.EventHandler(this.StartVideoButton_Click);
             // 
             // StopViewingButton
             // 
-            this.StopViewingButton.Location = new System.Drawing.Point(1134, 398);
+            this.StopViewingButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.StopViewingButton, "StopViewingButton");
             this.StopViewingButton.Name = "StopViewingButton";
-            this.StopViewingButton.Size = new System.Drawing.Size(83, 23);
-            this.StopViewingButton.TabIndex = 9;
-            this.StopViewingButton.Text = "Stop Viewing";
             this.StopViewingButton.UseVisualStyleBackColor = true;
             this.StopViewingButton.Click += new System.EventHandler(this.StopViewingButton_Click);
             // 
@@ -190,380 +219,557 @@
             this.LorentzTimer.Interval = 1000;
             this.LorentzTimer.Tick += new System.EventHandler(this.LorentzTimer_Tick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 521);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "alpha";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 543);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "gam0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 565);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "beta";
-            // 
-            // lpAlphaLabel
-            // 
-            this.lpAlphaLabel.AutoSize = true;
-            this.lpAlphaLabel.Location = new System.Drawing.Point(64, 521);
-            this.lpAlphaLabel.Name = "lpAlphaLabel";
-            this.lpAlphaLabel.Size = new System.Drawing.Size(19, 13);
-            this.lpAlphaLabel.TabIndex = 14;
-            this.lpAlphaLabel.Text = "00";
-            // 
-            // lpGam0Label
-            // 
-            this.lpGam0Label.AutoSize = true;
-            this.lpGam0Label.Location = new System.Drawing.Point(65, 543);
-            this.lpGam0Label.Name = "lpGam0Label";
-            this.lpGam0Label.Size = new System.Drawing.Size(19, 13);
-            this.lpGam0Label.TabIndex = 15;
-            this.lpGam0Label.Text = "00";
-            // 
-            // lpBetaLabel
-            // 
-            this.lpBetaLabel.AutoSize = true;
-            this.lpBetaLabel.Location = new System.Drawing.Point(64, 565);
-            this.lpBetaLabel.Name = "lpBetaLabel";
-            this.lpBetaLabel.Size = new System.Drawing.Size(19, 13);
-            this.lpBetaLabel.TabIndex = 16;
-            this.lpBetaLabel.Text = "00";
-            // 
             // LorentzStopButton
             // 
-            this.LorentzStopButton.Location = new System.Drawing.Point(29, 298);
+            resources.ApplyResources(this.LorentzStopButton, "LorentzStopButton");
             this.LorentzStopButton.Name = "LorentzStopButton";
-            this.LorentzStopButton.Size = new System.Drawing.Size(85, 30);
-            this.LorentzStopButton.TabIndex = 18;
             this.LorentzStopButton.TabStop = false;
-            this.LorentzStopButton.Text = "Stop Fitting";
             this.LorentzStopButton.UseVisualStyleBackColor = true;
             this.LorentzStopButton.Click += new System.EventHandler(this.LorentzStopButton_Click);
             // 
             // LorentzStartButton
             // 
-            this.LorentzStartButton.Location = new System.Drawing.Point(29, 262);
+            resources.ApplyResources(this.LorentzStartButton, "LorentzStartButton");
             this.LorentzStartButton.Name = "LorentzStartButton";
-            this.LorentzStartButton.Size = new System.Drawing.Size(85, 30);
-            this.LorentzStartButton.TabIndex = 17;
             this.LorentzStartButton.TabStop = false;
-            this.LorentzStartButton.Text = "Start Fitting";
             this.LorentzStartButton.UseVisualStyleBackColor = true;
             this.LorentzStartButton.Click += new System.EventHandler(this.LorentzStartButton_Click);
             // 
             // MovAvTextBox
             // 
-            this.MovAvTextBox.Location = new System.Drawing.Point(257, 15);
+            resources.ApplyResources(this.MovAvTextBox, "MovAvTextBox");
             this.MovAvTextBox.Name = "MovAvTextBox";
-            this.MovAvTextBox.Size = new System.Drawing.Size(85, 20);
-            this.MovAvTextBox.TabIndex = 21;
-            this.MovAvTextBox.Text = "100";
             this.MovAvTextBox.TextChanged += new System.EventHandler(this.MovAvTextBox_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(147, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Number of Averages";
             // 
             // FftComboBox
             // 
             this.FftComboBox.FormattingEnabled = true;
             this.FftComboBox.Items.AddRange(new object[] {
-            "Log",
-            "Log - Complex Conjugate",
-            "Magnitude",
-            "Magnitude - Complex Conjugate"});
-            this.FftComboBox.Location = new System.Drawing.Point(583, 494);
+            resources.GetString("FftComboBox.Items"),
+            resources.GetString("FftComboBox.Items1"),
+            resources.GetString("FftComboBox.Items2"),
+            resources.GetString("FftComboBox.Items3")});
+            resources.ApplyResources(this.FftComboBox, "FftComboBox");
             this.FftComboBox.Name = "FftComboBox";
-            this.FftComboBox.Size = new System.Drawing.Size(121, 21);
-            this.FftComboBox.TabIndex = 23;
-            this.FftComboBox.Text = "Log";
             this.FftComboBox.SelectedIndexChanged += new System.EventHandler(this.FftComboBox_SelectedIndexChanged);
             // 
             // VoltRangComboBox
             // 
             this.VoltRangComboBox.FormattingEnabled = true;
             this.VoltRangComboBox.Items.AddRange(new object[] {
-            "10 mV",
-            "20 mV",
-            "50 mV",
-            "100 mV",
-            "200 mV",
-            "500 mV",
-            "1 V",
-            "2 V",
-            "5 V",
-            "10 V",
-            "20 V"});
-            this.VoltRangComboBox.Location = new System.Drawing.Point(12, 180);
+            resources.GetString("VoltRangComboBox.Items"),
+            resources.GetString("VoltRangComboBox.Items1"),
+            resources.GetString("VoltRangComboBox.Items2"),
+            resources.GetString("VoltRangComboBox.Items3"),
+            resources.GetString("VoltRangComboBox.Items4"),
+            resources.GetString("VoltRangComboBox.Items5"),
+            resources.GetString("VoltRangComboBox.Items6"),
+            resources.GetString("VoltRangComboBox.Items7"),
+            resources.GetString("VoltRangComboBox.Items8"),
+            resources.GetString("VoltRangComboBox.Items9"),
+            resources.GetString("VoltRangComboBox.Items10")});
+            resources.ApplyResources(this.VoltRangComboBox, "VoltRangComboBox");
             this.VoltRangComboBox.Name = "VoltRangComboBox";
-            this.VoltRangComboBox.Size = new System.Drawing.Size(121, 21);
-            this.VoltRangComboBox.TabIndex = 29;
             this.VoltRangComboBox.SelectedIndexChanged += new System.EventHandler(this.VoltRangComboBox_SelectedIndexChanged);
             // 
             // FreqMaxComboBox
             // 
             this.FreqMaxComboBox.FormattingEnabled = true;
             this.FreqMaxComboBox.Items.AddRange(new object[] {
-            "50 MHz (10 ns)",
-            "25 MHz (20 ns)",
-            "13 MHz (40 ns)",
-            "6 MHz (80 ns)",
-            "3 MHz (160 ns)",
-            "1563 kHz (320 ns)",
-            "781 kHz (640 ns)",
-            "391 kHz (1280 ns)",
-            "195 kHz (2560 ns)",
-            "98 kHz (5120 ns)",
-            "49 kHz (10 us)",
-            "24 kHz (20 us)",
-            "12 kHz (40 us)",
-            "6104 Hz (81 us)",
-            "3052 Hz (163 us)",
-            "1526 Hz (327 us)",
-            "763 Hz (655 us)"});
-            this.FreqMaxComboBox.Location = new System.Drawing.Point(12, 126);
+            resources.GetString("FreqMaxComboBox.Items"),
+            resources.GetString("FreqMaxComboBox.Items1"),
+            resources.GetString("FreqMaxComboBox.Items2"),
+            resources.GetString("FreqMaxComboBox.Items3"),
+            resources.GetString("FreqMaxComboBox.Items4"),
+            resources.GetString("FreqMaxComboBox.Items5"),
+            resources.GetString("FreqMaxComboBox.Items6"),
+            resources.GetString("FreqMaxComboBox.Items7"),
+            resources.GetString("FreqMaxComboBox.Items8"),
+            resources.GetString("FreqMaxComboBox.Items9"),
+            resources.GetString("FreqMaxComboBox.Items10"),
+            resources.GetString("FreqMaxComboBox.Items11"),
+            resources.GetString("FreqMaxComboBox.Items12"),
+            resources.GetString("FreqMaxComboBox.Items13"),
+            resources.GetString("FreqMaxComboBox.Items14"),
+            resources.GetString("FreqMaxComboBox.Items15"),
+            resources.GetString("FreqMaxComboBox.Items16")});
+            resources.ApplyResources(this.FreqMaxComboBox, "FreqMaxComboBox");
             this.FreqMaxComboBox.Name = "FreqMaxComboBox";
-            this.FreqMaxComboBox.Size = new System.Drawing.Size(121, 21);
-            this.FreqMaxComboBox.TabIndex = 30;
             this.FreqMaxComboBox.SelectedIndexChanged += new System.EventHandler(this.FreqMaxComboBox_SelectedIndexChanged);
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 109);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Max Frequency (Sampling Time)";
-            this.label6.Visible = false;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 164);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Voltage Range";
-            this.label7.Visible = false;
             // 
             // startFreqPiezoTextBox
             // 
-            this.startFreqPiezoTextBox.Location = new System.Drawing.Point(829, 485);
+            resources.ApplyResources(this.startFreqPiezoTextBox, "startFreqPiezoTextBox");
             this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
-            this.startFreqPiezoTextBox.Size = new System.Drawing.Size(100, 20);
-            this.startFreqPiezoTextBox.TabIndex = 34;
-            this.startFreqPiezoTextBox.Text = "10";
             // 
             // PiezoButton
             // 
-            this.PiezoButton.Location = new System.Drawing.Point(1124, 475);
+            resources.ApplyResources(this.PiezoButton, "PiezoButton");
             this.PiezoButton.Name = "PiezoButton";
-            this.PiezoButton.Size = new System.Drawing.Size(85, 30);
-            this.PiezoButton.TabIndex = 36;
             this.PiezoButton.TabStop = false;
-            this.PiezoButton.Text = "Piezo";
             this.PiezoButton.UseVisualStyleBackColor = true;
             this.PiezoButton.Click += new System.EventHandler(this.PiezoButton_Click);
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(826, 469);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(124, 13);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "Starting Frequency (kHz)";
             // 
             // YShiftCheckBox
             // 
-            this.YShiftCheckBox.AutoSize = true;
-            this.YShiftCheckBox.Location = new System.Drawing.Point(29, 334);
+            resources.ApplyResources(this.YShiftCheckBox, "YShiftCheckBox");
             this.YShiftCheckBox.Name = "YShiftCheckBox";
-            this.YShiftCheckBox.Size = new System.Drawing.Size(71, 17);
-            this.YShiftCheckBox.TabIndex = 39;
-            this.YShiftCheckBox.Text = "Y-Shift Fit";
             this.YShiftCheckBox.UseVisualStyleBackColor = true;
             this.YShiftCheckBox.CheckedChanged += new System.EventHandler(this.YShiftCheckBox_CheckedChanged);
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 392);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(147, 13);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "Starting Trim Frequency (kHz)";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 441);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(156, 13);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "Stopping  Trim Frequency (kHz)";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(966, 469);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(124, 13);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Starting Frequency (kHz)";
             // 
             // stopFreqPiezoTextBox
             // 
-            this.stopFreqPiezoTextBox.Location = new System.Drawing.Point(969, 485);
+            resources.ApplyResources(this.stopFreqPiezoTextBox, "stopFreqPiezoTextBox");
             this.stopFreqPiezoTextBox.Name = "stopFreqPiezoTextBox";
-            this.stopFreqPiezoTextBox.Size = new System.Drawing.Size(100, 20);
-            this.stopFreqPiezoTextBox.TabIndex = 45;
-            this.stopFreqPiezoTextBox.Text = "80";
             // 
             // trimStartFreqTextBox
             // 
-            this.trimStartFreqTextBox.Location = new System.Drawing.Point(29, 408);
+            resources.ApplyResources(this.trimStartFreqTextBox, "trimStartFreqTextBox");
             this.trimStartFreqTextBox.Name = "trimStartFreqTextBox";
-            this.trimStartFreqTextBox.Size = new System.Drawing.Size(100, 20);
-            this.trimStartFreqTextBox.TabIndex = 46;
-            this.trimStartFreqTextBox.Text = "0";
             // 
             // trimStopFreqTextBox
             // 
-            this.trimStopFreqTextBox.Location = new System.Drawing.Point(29, 457);
+            resources.ApplyResources(this.trimStopFreqTextBox, "trimStopFreqTextBox");
             this.trimStopFreqTextBox.Name = "trimStopFreqTextBox";
-            this.trimStopFreqTextBox.Size = new System.Drawing.Size(100, 20);
-            this.trimStopFreqTextBox.TabIndex = 47;
-            this.trimStopFreqTextBox.Text = "0";
             // 
-            // trimFFTCheckBox
+            // TrimFftCheckBox
             // 
-            this.trimFFTCheckBox.AutoSize = true;
-            this.trimFFTCheckBox.Location = new System.Drawing.Point(29, 357);
-            this.trimFFTCheckBox.Name = "trimFFTCheckBox";
-            this.trimFFTCheckBox.Size = new System.Drawing.Size(68, 17);
-            this.trimFFTCheckBox.TabIndex = 48;
-            this.trimFFTCheckBox.Text = "Trim FFT";
-            this.trimFFTCheckBox.UseVisualStyleBackColor = true;
-            this.trimFFTCheckBox.CheckedChanged += new System.EventHandler(this.trimFFTCheckBox_CheckedChanged);
+            resources.ApplyResources(this.TrimFftCheckBox, "TrimFftCheckBox");
+            this.TrimFftCheckBox.Name = "TrimFftCheckBox";
+            this.TrimFftCheckBox.UseVisualStyleBackColor = true;
+            this.TrimFftCheckBox.CheckedChanged += new System.EventHandler(this.TrimFftCheckBox_CheckedChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.NoAvButton);
             this.groupBox1.Controls.Add(this.ContAvButton);
             this.groupBox1.Controls.Add(this.MovAvButton);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.MovAvTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(171, 486);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 84);
-            this.groupBox1.TabIndex = 50;
             this.groupBox1.TabStop = false;
             // 
             // NoAvButton
             // 
-            this.NoAvButton.AutoSize = true;
+            resources.ApplyResources(this.NoAvButton, "NoAvButton");
             this.NoAvButton.Checked = true;
-            this.NoAvButton.Location = new System.Drawing.Point(6, 62);
             this.NoAvButton.Name = "NoAvButton";
-            this.NoAvButton.Size = new System.Drawing.Size(82, 17);
-            this.NoAvButton.TabIndex = 2;
             this.NoAvButton.TabStop = true;
-            this.NoAvButton.Text = "No Average";
             this.NoAvButton.UseVisualStyleBackColor = true;
             // 
             // ContAvButton
             // 
-            this.ContAvButton.AutoSize = true;
-            this.ContAvButton.Location = new System.Drawing.Point(6, 39);
+            resources.ApplyResources(this.ContAvButton, "ContAvButton");
             this.ContAvButton.Name = "ContAvButton";
-            this.ContAvButton.Size = new System.Drawing.Size(121, 17);
-            this.ContAvButton.TabIndex = 1;
-            this.ContAvButton.Text = "Continuous Average";
             this.ContAvButton.UseVisualStyleBackColor = true;
             this.ContAvButton.CheckedChanged += new System.EventHandler(this.ContAvButton_CheckedChanged_1);
             // 
             // MovAvButton
             // 
-            this.MovAvButton.AutoSize = true;
-            this.MovAvButton.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.MovAvButton, "MovAvButton");
             this.MovAvButton.Name = "MovAvButton";
-            this.MovAvButton.Size = new System.Drawing.Size(103, 17);
-            this.MovAvButton.TabIndex = 0;
-            this.MovAvButton.Text = "Moving Average";
             this.MovAvButton.UseVisualStyleBackColor = true;
             this.MovAvButton.CheckedChanged += new System.EventHandler(this.MovAvButton_CheckedChanged_1);
             // 
+            // IterTextBox
+            // 
+            resources.ApplyResources(this.IterTextBox, "IterTextBox");
+            this.IterTextBox.Name = "IterTextBox";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // longTimeDomainChart
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.longTimeDomainChart.ChartAreas.Add(chartArea3);
+            resources.ApplyResources(this.longTimeDomainChart, "longTimeDomainChart");
+            this.longTimeDomainChart.Name = "longTimeDomainChart";
+            this.longTimeDomainChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.Black;
+            series4.Name = "Series1";
+            this.longTimeDomainChart.Series.Add(series4);
+            title1.Name = "Title1";
+            title1.Position.Auto = false;
+            title1.Position.Height = 5.516974F;
+            title1.Position.Width = 85F;
+            title1.Position.X = 8F;
+            title1.Position.Y = 45F;
+            title1.Text = "Long Time Domain";
+            this.longTimeDomainChart.Titles.Add(title1);
+            // 
+            // peakTrackerChart
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea4);
+            resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
+            this.peakTrackerChart.Name = "peakTrackerChart";
+            this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Black;
+            series5.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series5);
+            title2.Name = "Peak Tracker";
+            title2.Position.Auto = false;
+            title2.Position.Height = 5.516974F;
+            title2.Position.Width = 70F;
+            title2.Position.X = 15F;
+            title2.Position.Y = 45F;
+            title2.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title2);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.stopFreqPiezoTextBox);
+            this.groupBox2.Controls.Add(this.startFreqPiezoTextBox);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.PiezoButton);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.PeakGuessTextBox);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.peakGuessCheckBox);
+            this.groupBox3.Controls.Add(this.IterTextBox);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.trimStartFreqTextBox);
+            this.groupBox3.Controls.Add(this.YShiftCheckBox);
+            this.groupBox3.Controls.Add(this.TrimFftCheckBox);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.groupBox1);
+            this.groupBox3.Controls.Add(this.trimStopFreqTextBox);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // PeakGuessTextBox
+            // 
+            resources.ApplyResources(this.PeakGuessTextBox, "PeakGuessTextBox");
+            this.PeakGuessTextBox.Name = "PeakGuessTextBox";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // peakGuessCheckBox
+            // 
+            resources.ApplyResources(this.peakGuessCheckBox, "peakGuessCheckBox");
+            this.peakGuessCheckBox.Name = "peakGuessCheckBox";
+            this.peakGuessCheckBox.UseVisualStyleBackColor = true;
+            this.peakGuessCheckBox.CheckedChanged += new System.EventHandler(this.peakGuessCheckBox_CheckedChanged);
+            // 
+            // StartExportButton
+            // 
+            resources.ApplyResources(this.StartExportButton, "StartExportButton");
+            this.StartExportButton.Name = "StartExportButton";
+            this.StartExportButton.TabStop = false;
+            this.StartExportButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ExportRateTextBox);
+            this.groupBox4.Controls.Add(this.PeackTrackExportCheckBox);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.FreqExportCheckBox);
+            this.groupBox4.Controls.Add(this.LongTimeExportCheckBox);
+            this.groupBox4.Controls.Add(this.ShortTimeExportCheckBox);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.StartExportButton);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // ExportRateTextBox
+            // 
+            resources.ApplyResources(this.ExportRateTextBox, "ExportRateTextBox");
+            this.ExportRateTextBox.Name = "ExportRateTextBox";
+            // 
+            // PeackTrackExportCheckBox
+            // 
+            resources.ApplyResources(this.PeackTrackExportCheckBox, "PeackTrackExportCheckBox");
+            this.PeackTrackExportCheckBox.Name = "PeackTrackExportCheckBox";
+            this.PeackTrackExportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // FreqExportCheckBox
+            // 
+            resources.ApplyResources(this.FreqExportCheckBox, "FreqExportCheckBox");
+            this.FreqExportCheckBox.Name = "FreqExportCheckBox";
+            this.FreqExportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // LongTimeExportCheckBox
+            // 
+            resources.ApplyResources(this.LongTimeExportCheckBox, "LongTimeExportCheckBox");
+            this.LongTimeExportCheckBox.Name = "LongTimeExportCheckBox";
+            this.LongTimeExportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ShortTimeExportCheckBox
+            // 
+            resources.ApplyResources(this.ShortTimeExportCheckBox, "ShortTimeExportCheckBox");
+            this.ShortTimeExportCheckBox.Name = "ShortTimeExportCheckBox";
+            this.ShortTimeExportCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.TabStop = false;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label15);
+            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.button2);
+            this.groupBox5.Controls.Add(this.radioButton3);
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.radioButton1);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.TabStop = false;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // textBox3
+            // 
+            resources.ApplyResources(this.textBox3, "textBox3");
+            this.textBox3.Name = "textBox3";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // textBox2
+            // 
+            resources.ApplyResources(this.textBox2, "textBox2");
+            this.textBox2.Name = "textBox2";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.TabStop = false;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            resources.ApplyResources(this.radioButton3, "radioButton3");
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.TabStop = true;
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.TabStop = false;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            resources.ApplyResources(this.radioButton2, "radioButton2");
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.TabStop = true;
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            resources.ApplyResources(this.radioButton1, "radioButton1");
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.StopWaveButton);
+            this.groupBox6.Controls.Add(this.StartWaveButton);
+            this.groupBox6.Controls.Add(this.LorentzStartButton);
+            this.groupBox6.Controls.Add(this.LorentzStopButton);
+            this.groupBox6.Controls.Add(this.FftComboBox);
+            this.groupBox6.Controls.Add(this.VoltRangComboBox);
+            this.groupBox6.Controls.Add(this.FreqMaxComboBox);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Controls.Add(this.label7);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.QLabel);
+            this.groupBox7.Controls.Add(this.amplitudeLabel);
+            this.groupBox7.Controls.Add(this.f2Label);
+            this.groupBox7.Controls.Add(this.f1Label);
+            this.groupBox7.Controls.Add(this.f0Label);
+            this.groupBox7.Controls.Add(this.label17);
+            this.groupBox7.Controls.Add(this.label16);
+            this.groupBox7.Controls.Add(this.label1);
+            this.groupBox7.Controls.Add(this.label2);
+            this.groupBox7.Controls.Add(this.label3);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.TabStop = false;
+            // 
+            // QLabel
+            // 
+            resources.ApplyResources(this.QLabel, "QLabel");
+            this.QLabel.Name = "QLabel";
+            // 
+            // amplitudeLabel
+            // 
+            resources.ApplyResources(this.amplitudeLabel, "amplitudeLabel");
+            this.amplitudeLabel.Name = "amplitudeLabel";
+            // 
+            // f2Label
+            // 
+            resources.ApplyResources(this.f2Label, "f2Label");
+            this.f2Label.Name = "f2Label";
+            // 
+            // f1Label
+            // 
+            resources.ApplyResources(this.f1Label, "f1Label");
+            this.f1Label.Name = "f1Label";
+            // 
+            // f0Label
+            // 
+            resources.ApplyResources(this.f0Label, "f0Label");
+            this.f0Label.Name = "f0Label";
+            // 
             // PM2gui
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.StartWaveButton;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1314, 630);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.trimFFTCheckBox);
-            this.Controls.Add(this.trimStopFreqTextBox);
-            this.Controls.Add(this.trimStartFreqTextBox);
-            this.Controls.Add(this.stopFreqPiezoTextBox);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.YShiftCheckBox);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.PiezoButton);
-            this.Controls.Add(this.startFreqPiezoTextBox);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.FreqMaxComboBox);
-            this.Controls.Add(this.VoltRangComboBox);
-            this.Controls.Add(this.FftComboBox);
-            this.Controls.Add(this.LorentzStopButton);
-            this.Controls.Add(this.LorentzStartButton);
-            this.Controls.Add(this.lpBetaLabel);
-            this.Controls.Add(this.lpGam0Label);
-            this.Controls.Add(this.lpAlphaLabel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.CancelButton = this.StopViewingButton;
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.peakTrackerChart);
+            this.Controls.Add(this.longTimeDomainChart);
             this.Controls.Add(this.StopViewingButton);
             this.Controls.Add(this.StartVideoButton);
             this.Controls.Add(this.CamComboBox);
             this.Controls.Add(this.CamPictureBox);
-            this.Controls.Add(this.pM2fD);
-            this.Controls.Add(this.pM2tD);
-            this.Controls.Add(this.StopWaveButton);
-            this.Controls.Add(this.StartWaveButton);
+            this.Controls.Add(this.freqDomainChart);
+            this.Controls.Add(this.shortTimeDomainChart);
             this.Name = "PM2gui";
-            this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PM2gui_FormClosing);
             this.Load += new System.EventHandler(this.PM2gui_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pM2tD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pM2fD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shortTimeDomainChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.freqDomainChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.longTimeDomainChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peakTrackerChart)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -571,22 +777,15 @@
         private System.Windows.Forms.Button StartWaveButton;
         private System.Windows.Forms.Button StopWaveButton;
         private System.Windows.Forms.Timer WaveFormTimer;
-        private System.Windows.Forms.DataVisualization.Charting.Chart pM2fD;
+        private System.Windows.Forms.DataVisualization.Charting.Chart freqDomainChart;
         private System.Windows.Forms.PictureBox CamPictureBox;
         private System.Windows.Forms.ComboBox CamComboBox;
         private System.Windows.Forms.Button StartVideoButton;
         private System.Windows.Forms.Button StopViewingButton;
         private System.Windows.Forms.Timer LorentzTimer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lpAlphaLabel;
-        private System.Windows.Forms.Label lpGam0Label;
-        private System.Windows.Forms.Label lpBetaLabel;
         private System.Windows.Forms.Button LorentzStopButton;
         private System.Windows.Forms.Button LorentzStartButton;
         private System.Windows.Forms.TextBox MovAvTextBox;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox FftComboBox;
         private System.Windows.Forms.ComboBox VoltRangComboBox;
         private System.Windows.Forms.ComboBox FreqMaxComboBox;
@@ -595,7 +794,7 @@
         private System.Windows.Forms.MaskedTextBox startFreqPiezoTextBox;
         private System.Windows.Forms.Button PiezoButton;
         private System.Windows.Forms.Label label8;
-        public System.Windows.Forms.DataVisualization.Charting.Chart pM2tD;
+        public System.Windows.Forms.DataVisualization.Charting.Chart shortTimeDomainChart;
         private System.Windows.Forms.CheckBox YShiftCheckBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label10;
@@ -603,11 +802,54 @@
         private System.Windows.Forms.MaskedTextBox stopFreqPiezoTextBox;
         private System.Windows.Forms.TextBox trimStartFreqTextBox;
         private System.Windows.Forms.TextBox trimStopFreqTextBox;
-        private System.Windows.Forms.CheckBox trimFFTCheckBox;
+        private System.Windows.Forms.CheckBox TrimFftCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton NoAvButton;
         private System.Windows.Forms.RadioButton ContAvButton;
         private System.Windows.Forms.RadioButton MovAvButton;
+        private System.Windows.Forms.TextBox IterTextBox;
+        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.DataVisualization.Charting.Chart longTimeDomainChart;
+        public System.Windows.Forms.DataVisualization.Charting.Chart peakTrackerChart;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox PeakGuessTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox peakGuessCheckBox;
+        private System.Windows.Forms.Button StartExportButton;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox ExportRateTextBox;
+        private System.Windows.Forms.CheckBox PeackTrackExportCheckBox;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox FreqExportCheckBox;
+        private System.Windows.Forms.CheckBox LongTimeExportCheckBox;
+        private System.Windows.Forms.CheckBox ShortTimeExportCheckBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer ExportTimer;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label QLabel;
+        private System.Windows.Forms.Label amplitudeLabel;
+        private System.Windows.Forms.Label f2Label;
+        private System.Windows.Forms.Label f1Label;
+        private System.Windows.Forms.Label f0Label;
     }
 }
 
