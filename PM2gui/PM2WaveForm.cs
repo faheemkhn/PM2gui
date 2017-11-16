@@ -47,9 +47,9 @@ namespace PM2Waveform
         }
         public class LorentzParams
         {
-            public double alpha;
-            public double gam0;
-            public double beta;
+            public double A;
+            public double f0;
+            public double gamma;
             public double up;
         }
         public class PlottableData
@@ -65,6 +65,24 @@ namespace PM2Waveform
             public bool isFftMovAvg;
             public bool isFftStyleChange;
             public bool isFftContAvg;
+        }
+        public class LorentzSettings
+        {
+            public bool isYShiftLorentz;
+            public bool isTrimFft;
+            public bool isPeakGuess;
+            public int nIter;
+            public double trimStartFreq;
+            public double trimStopFreq;
+            public double PeakGuess;
+        }
+        public class FittingMetrics
+        {
+            public double f0;
+            public double f1;
+            public double f2;
+            public double amplitude;
+            public double Q;
         }
 
 
@@ -131,12 +149,21 @@ namespace PM2Waveform
             /* Start the device collecting, then wait for completion*/
 
             Imports.RunBlock(handle, sampleCount, timebase, oversample, out timeIndisposed);
-
+            int timer = 1;
+            bool isMessageDisconnect = false;
             short ready = 0;
             while (ready == 0)
             {
                 ready = Imports.Isready(handle);
                 Thread.Sleep(1);
+                timer++;
+                if (timer > 1e2 & !isMessageDisconnect)
+                {
+                    isMessageDisconnect = true;
+                    MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+                }
+
+               // break;
             }
 
             if (ready > 0)
@@ -304,24 +331,29 @@ namespace PM2Waveform
             return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
         }
 
-        public LorentzParams GetLorentzParams(FFTData fftData, bool isYShiftLorentz)
+        public LorentzParams GetLorentzParams(FFTData fftData, LorentzSettings lorentzSettings)
         {
             LorentzParams lp = new LorentzParams();
             double[][] dataPoints = new double[][] { fftData.freq, fftData.fft };
+            double[] startPoint = { 10, 25, 1, 1 };
+
+            if (lorentzSettings.isPeakGuess)
+                startPoint[1] = lorentzSettings.PeakGuess;
+
             LMA algorithm;
 
-            if (isYShiftLorentz)
+            if (lorentzSettings.isYShiftLorentz)
             {
                 LMAFunction lorentzShift = new LorenzianFunctionShift();
 
-                algorithm = new LMA(lorentzShift, new double[] { 200, 5, 5, 1 },
-                dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, 100);
+                algorithm = new LMA(lorentzShift, new double[] { 10, 24, 1,1 },
+                dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, lorentzSettings.nIter);
 
                 algorithm.Fit();
 
-                lp.alpha = algorithm.Parameters[0];
-                lp.beta = algorithm.Parameters[2];
-                lp.gam0 = algorithm.Parameters[1];
+                lp.A = algorithm.Parameters[0];
+                lp.gamma = algorithm.Parameters[2];
+                lp.f0 = algorithm.Parameters[1];
                 lp.up = algorithm.Parameters[3];
 
             }
@@ -329,14 +361,14 @@ namespace PM2Waveform
             {
                 LMAFunction lorentz = new LorenzianFunction();
 
-                algorithm = new LMA(lorentz, new double[] { 200, 5, 5 },
-                dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, 100);
+                algorithm = new LMA(lorentz, new double[] { 10, 24, 1 },
+                dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, lorentzSettings.nIter);
 
                 algorithm.Fit();
 
-                lp.alpha = algorithm.Parameters[0];
-                lp.beta = algorithm.Parameters[2];
-                lp.gam0 = algorithm.Parameters[1];
+                lp.A = algorithm.Parameters[0];
+                lp.gamma = algorithm.Parameters[2];
+                lp.f0 = algorithm.Parameters[1];
                 lp.up = 0;
 
             }
@@ -347,12 +379,12 @@ namespace PM2Waveform
 
         }
 
-        public FFTData TrimFFT(FFTData fftData, double startFreq, double stopFreq)
+        public FFTData TrimFFT(FFTData fftData, LorentzSettings lorentzSettings)
         {
             FFTData fftTrimData = new FFTData();
 
-            int startIndex = Array.FindIndex(fftData.freq, x => x >= startFreq);
-            int stopIndex = Array.FindIndex(fftData.freq, x => x >= stopFreq);
+            int startIndex = Array.FindIndex(fftData.freq, x => x >= lorentzSettings.trimStartFreq);
+            int stopIndex = Array.FindIndex(fftData.freq, x => x >= lorentzSettings.trimStopFreq);
 
             fftTrimData.fft = fftData.fft.ToList().Skip(startIndex + 1).Take(stopIndex - startIndex).ToArray();
             fftTrimData.freq = fftData.freq.ToList().ToList().Skip(startIndex + 1).Take(stopIndex - startIndex).ToArray();
@@ -360,13 +392,61 @@ namespace PM2Waveform
             return fftTrimData;
         }
 
+        public FittingMetrics GetFittingMetrics(LorentzParams lp, FFTSettings fftSettings)
+        {
+            FittingMetrics fm = new FittingMetrics();
+
+            fm.amplitude = lp.A / lp.gamma / lp.gamma + lp.up;
+            fm.f0 = lp.f0;
+
+            double ampPrime = 0;
+            switch (fftSettings.Fftstyle)
+            {
+                case 0: //Log (dB)
+                    ampPrime = fm.amplitude - 3;
+                    break;
+                case 1: // Log - Complex Conjugate (dB)
+                    ampPrime = fm.amplitude - 3;
+                    break;
+                case 2: // Magnitude (V)
+                    ampPrime = fm.amplitude * 0.5;
+                    break;
+                case 3: // Magnitude - Complex Conjugate (V)
+                    ampPrime = fm.amplitude * 0.5;
+                    break;
+            }
+            try
+            {
+                fm.f1 = fm.f0 + Math.Sqrt((lp.A + lp.gamma * lp.gamma * (lp.up - ampPrime)) / (ampPrime - lp.up));
+                fm.f2 = fm.f0 - Math.Sqrt((lp.A + lp.gamma * lp.gamma * (lp.up - ampPrime)) / (ampPrime - lp.up));
+            }
+            catch (Exception)
+            {
+
+                fm.f1 = 0;
+                fm.f2 = 0;
+            }
+            
+            if (fm.f1 - fm.f2 > 0)
+            {
+                fm.Q = fm.f0 / (fm.f1 - fm.f2);
+            }
+            else
+            {
+                fm.Q = 0;
+            }
+
+            return fm;
+
+
+        }
 
         public class LorenzianFunctionShift : LMAFunction
         {
 
             public override double GetY(double x, double[] a)
             {
-                double result = a[0] / (((x - a[1]) * (x - a[1]) + a[2] * a[2])) + a[3];
+                double result = a[3] + a[0] / (((x - a[1]) * (x - a[1]) + a[2] * a[2]));
                 return result;
             }
 

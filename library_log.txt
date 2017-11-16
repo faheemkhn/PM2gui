@@ -1,0 +1,6 @@
+Accord: Math library for calculating FFT (http://accord-framework.net/docs/html/R_Project_Accord_NET.htm)
+AForge: Video library for camera interfacing (http://www.aforgenet.com/framework/documentation.html)
+System.IO.Ports: Arduino interfacing
+Net.Kniaz.LMA: Curve fitting library for Lorentzian fitting using Levenberg-Marquadt Algorithm (http://www.kniaz.net/software/LMANDoc.html)
+DotNetMatrix: Helper library for Net.Kniaz.LMA
+System.Windows.Forms.DataVisualization.Charting: Charting Library (https://msdn.microsoft.com/en-us/library/dd456753.aspx)
