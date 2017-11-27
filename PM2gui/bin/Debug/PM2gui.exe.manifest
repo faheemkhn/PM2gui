@@ -43,14 +43,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.dll" size="65536">
-      <assemblyIdentity name="Accord" version="3.0.2.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.dll" size="131072">
+      <assemblyIdentity name="Accord" version="3.8.0.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cosd0wlM6n/fn6tDLysJxzEcAURbkXYpknPK54B7l/U=</dsig:DigestValue>
+        <dsig:DigestValue>uOuhJsy+HmQbBi+hpPRdCUUZvVvG6oGkok1MLlSeiD8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.Audio.dll" size="65536">
+      <assemblyIdentity name="Accord.Audio" version="3.8.0.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>MMlBbirm9/DIscs/CqEK2ti69+HYyctkheBNSZLZg3Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -79,14 +91,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.Math.dll" size="602112">
-      <assemblyIdentity name="Accord.Math" version="3.0.2.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.Math.dll" size="2220032">
+      <assemblyIdentity name="Accord.Math" version="3.8.0.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>VbKrrAZaZAUbaAyOeAhWX8Bn9BQi/5YF+D59KLSQdzo=</dsig:DigestValue>
+        <dsig:DigestValue>hld78zfDq6QmW3lDbnTtvX350O5Tfe4PXvqGwdyQY2c=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Accord.Math.Core.dll" size="1441792">
+      <assemblyIdentity name="Accord.Math.Core" version="3.8.0.0" publicKeyToken="FA1A88E29555CCF7" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>WRj7o1rqdIEdvT1Sc4CJT8cbK69TFfdVRiRbhUgg7ro=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -111,6 +135,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>lmpHQGCorKcMc7oJ0Lb+I1MDWWHHEHuQA++HnAEP+No=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AForge.Math.dll" size="68096">
+      <assemblyIdentity name="AForge.Math" version="2.2.5.0" publicKeyToken="ABBA2E25397EE8C9" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>pPJMmkZwXGb/eDjDpMYXWfW6WO6KWwYdBTQMYdeQwLc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -199,14 +235,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="145880">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="153560">
       <assemblyIdentity name="PM2gui" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YbCmONhJoum+2rUsKUYpz/7Rn3PxcWAQv/5nZK8ClKg=</dsig:DigestValue>
+        <dsig:DigestValue>j8z9nn4ThQ0+NF2mejrBy/pCbnLkBmscrupT0G6589E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -218,17 +254,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>EPeNHJD52xHAv/32WTg5WaqE/RO1SKWzxhu3mLjuhwA=</dsig:DigestValue>
+        <dsig:DigestValue>BR3TLz+P0EclQ5sXhEnTDxcIkbLbtZ5x/7AwU5eN+kQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Accord.dll.config" size="182">
+  <file name="Accord.dll.config" size="213">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>DYCSPDtSE777upJkOXpsp4P4vvEGS9BnxdskgtkRlJU=</dsig:DigestValue>
+      <dsig:DigestValue>MEnoP5t/qShagvs8d0DpwiW2ajH4BdNYKpv9NLXdjm4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="fourien_icon.ico" size="5430">
@@ -240,13 +276,13 @@
       <dsig:DigestValue>JT+QVAl7tBBicFuyDnqhWS6K+bLkn1Hb+T9EwUl7970=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PM2gui.exe.config" size="189">
+  <file name="PM2gui.exe.config" size="768">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rl5/qDc7Jz+tB+BIbOv9iMGPlRe6YJwrjmU09dnlPcs=</dsig:DigestValue>
+      <dsig:DigestValue>QyscAmMvGh6OV5G4GYR3lPTXNVG1ozk3GHEjwC9urg4=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

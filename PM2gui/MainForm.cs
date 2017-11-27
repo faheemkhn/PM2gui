@@ -24,9 +24,9 @@ namespace PM2gui
         public PM2gui()
         {
             InitializeComponent();
-            this.shortTimeDomainChart.MouseMove += new MouseEventHandler(pM2tD_MouseMove);
+            this.shortTimeDomainChart.MouseMove += new MouseEventHandler(shortTimeDomainChart_MouseMove);
             this.tooltiptD.AutomaticDelay = 10;
-            this.freqDomainChart.MouseMove += new MouseEventHandler(pM2fD_MouseMove);
+            this.freqDomainChart.MouseMove += new MouseEventHandler(freqDomainChart_MouseMove);
             this.tooltipfD.AutomaticDelay = 10;
         }
 
@@ -50,6 +50,7 @@ namespace PM2gui
         PM2WaveForm.FFTSettings fftSettings = new PM2WaveForm.FFTSettings();
         PM2WaveForm.LorentzSettings lorentzSettings = new PM2WaveForm.LorentzSettings();
         PM2WaveForm.FittingMetrics FittingMetrics = new PM2WaveForm.FittingMetrics();
+        PM2WaveForm.ExportSettings ExportSettings = new PM2WaveForm.ExportSettings();
 
         short handle;
        
@@ -58,6 +59,7 @@ namespace PM2gui
         double[] LorParArray = new double[4];
         double pM2f_min;
         double pM2f_max;
+        double peakTrackTime = 0;
 
         private void PM2gui_Load(object sender, EventArgs e)
         {
@@ -80,7 +82,7 @@ namespace PM2gui
             }
             else
             {
-                channelSettings = pM2WaveForm.InitPico(handle);
+                channelSettings = pM2WaveForm.StartPico(handle);
             }
             StopWaveButton.Enabled = false;
             FreqMaxComboBox.SelectedIndex = 10;
@@ -175,7 +177,7 @@ namespace PM2gui
                 picoPort.Close();
         }
 
-        private void pM2tD_MouseMove(object sender, MouseEventArgs e)
+        private void shortTimeDomainChart_MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.Location;
             if (prevPositiontD.HasValue && pos == prevPositiontD.Value)
@@ -205,7 +207,7 @@ namespace PM2gui
             }
         }
 
-        private void pM2fD_MouseMove(object sender, MouseEventArgs e)
+        private void freqDomainChart_MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.Location;
             if (prevPositionfD.HasValue && pos == prevPositionfD.Value)
@@ -250,7 +252,7 @@ namespace PM2gui
             plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft);
             fftSettings.isFftStyleChange = false;
             UpdateWaveCharts();
-            if (isPm2fdFreqRangeChanged() & !TrimFftCheckBox.Checked)
+            if (IsPm2fdFreqRangeChanged() & !TrimFftCheckBox.Checked)
                 UpdateTrimTextBox();
         }
 
@@ -368,9 +370,6 @@ namespace PM2gui
             StopViewingButton.Enabled = false;
         }
 
-
-
-
         //LORENTZ FITTING
 
         private void LorentzTimer_Tick(object sender, EventArgs e)
@@ -381,6 +380,7 @@ namespace PM2gui
             bool isPeakMessage = false;
             lorentzSettings.trimStartFreq = 0;
             lorentzSettings.trimStopFreq = plottableData.fftData.freq.Max();
+            
 
             // get trim frequency from user
             try
@@ -408,8 +408,9 @@ namespace PM2gui
             {
                 if (!isIterMessage)
                     MessageBox.Show("The LMA Algorithm iterations input is not an integer, a default value of 100 will be used");
-                lorentzSettings.nIter = 100;
                 isIterMessage = true;
+                lorentzSettings.nIter = 100;
+                
             }
 
             // get peak guess from user
@@ -421,10 +422,12 @@ namespace PM2gui
             {
                 if (!isPeakMessage)
                     MessageBox.Show("The peak guess is not a double, a default value of 25 will be used");
-                lorentzSettings.PeakGuess = 25;
                 isPeakMessage = true;
+                lorentzSettings.PeakGuess = 25;
+
             }
 
+            // trim FFT array based on user specifications
             if (lorentzSettings.isTrimFft && canTrimFFT)
             {
                 LorentzFftData = pM2WaveForm.TrimFFT(plottableData.fftData, lorentzSettings);
@@ -435,10 +438,10 @@ namespace PM2gui
                 LorentzFftData = plottableData.fftData;
             }
 
+            // get Lorentz parameters and update lorentz chart based
             if (plottableData.fftData != null)
             {
-                lorentzParams = pM2WaveForm.GetLorentzParams(LorentzFftData, lorentzSettings);
-
+                pM2WaveForm.GetLorentzParams(LorentzFftData, lorentzSettings, ref lorentzParams);
 
                 UpdateLorenztCharts();
             }
@@ -451,7 +454,10 @@ namespace PM2gui
             }
 
             FittingMetrics = pM2WaveForm.GetFittingMetrics(lorentzParams, fftSettings);
+
             UpdateFittingMetricsDisplay();
+            UpdatePeakTrackerChart();
+            peakTrackTime += LorentzTimer.Interval / 1000;
         }
 
         private void UpdateLorenztCharts()
@@ -473,6 +479,8 @@ namespace PM2gui
                 double yValue = lorentzShift.GetY(LorentzFftData.freq[i], LorParArray);
                 freqDomainChart.Series["Series2"].Points.AddXY(LorentzFftData.freq[i], yValue);
             }
+
+            plottableData.lorentzFftData = LorentzFftData;
         }
 
         private void UpdateFittingMetricsDisplay()
@@ -482,6 +490,11 @@ namespace PM2gui
             f2Label.Text = FittingMetrics.f2.ToString();
             amplitudeLabel.Text = FittingMetrics.amplitude.ToString();
             QLabel.Text = FittingMetrics.Q.ToString();
+        }
+
+        private void UpdatePeakTrackerChart()
+        {
+            peakTrackerChart.Series["Series1"].Points.AddXY(peakTrackTime, FittingMetrics.amplitude);
         }
 
         private void LorentzStartButton_Click(object sender, EventArgs e)
@@ -528,7 +541,7 @@ namespace PM2gui
             trimStopFreqTextBox.Text = Math.Floor(freqDomainChart.ChartAreas[0].AxisX.Maximum).ToString();
         }
 
-        private bool isPm2fdFreqRangeChanged()
+        private bool IsPm2fdFreqRangeChanged()
         {
 
             try
@@ -581,5 +594,34 @@ namespace PM2gui
                 picoPort.Write("P" + startFreqPiezoTextBox.Text + stopFreqPiezoTextBox.Text);
         }
 
+
+        // DATA EXPORT
+        private void StartExportButton_Click(object sender, EventArgs e)
+        {
+            ExportTimer.Start();
+        }
+
+        private void ExportTimer_Tick(object sender, EventArgs e)
+        {
+            ExportSettings.isWaveForm = ShortTimeExportCheckBox.Checked;
+            ExportSettings.isFFT = FreqExportCheckBox.Checked;
+            ExportSettings.isLongTimeDomain = DeflectionCheckBox.Checked;
+            ExportSettings.isPeakValue = PeakTrackCheckBox.Checked;
+            ExportSettings.isLorentzian = LorentzCheckBox.Checked;
+            ExportSettings.fileNamePrefix = fileNamePrefixTextBox.Text;
+            ExportSettings.fileNamePrefix = "";
+
+            pM2WaveForm.ExportWaveForm(ref plottableData, ExportSettings);
+        }
+
+        private void StopExportButton_Click(object sender, EventArgs e)
+        {
+            ExportTimer.Stop();
+        }
+
+        private void ExportRateTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ExportTimer.Interval = int.Parse(Math.Round(double.Parse(ExportRateTextBox.Text) * 1e3).ToString());
+        }
     }
 }

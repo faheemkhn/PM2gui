@@ -11,6 +11,8 @@ using System.Numerics;
 using DotNetMatrix;
 using Net.Kniaz.LMA;
 using System.Windows.Forms;
+using Accord.Audio.Filters;
+using System.IO;
 
 
 namespace PM2Waveform
@@ -29,9 +31,8 @@ namespace PM2Waveform
         private int channelCount = SINGLE_SCOPE; //DUAL_SCOPE;
 
         //instantiate classes and structures
-        //public Pico.ChannelSettings[] channelSettings;
         public Pico.PicoInterfacer pi = new Pico.PicoInterfacer(handle);
-        //Tek tek = new Tek();
+
 
         //define class to handle time and amplitude arrays
         public class WaveFormData
@@ -54,6 +55,7 @@ namespace PM2Waveform
         }
         public class PlottableData
         {
+            public FFTData lorentzFftData;
             public FFTData fftData;
             public WaveFormData WaveFormData;
         }
@@ -84,7 +86,25 @@ namespace PM2Waveform
             public double amplitude;
             public double Q;
         }
+        public class FilterSettings
+        {
+            public enum FilterType { lowPass, highPass, bandPass };
+            public double highFreq;
+            public double lowFreq;
+            public double sampleRate;
+        }
+        public class ExportSettings
+        {
+            public bool isWaveForm = false;
+            public bool isLongTimeDomain = false;
+            public bool isFFT = false;
+            public bool isPeakValue = false;
+            public bool isLorentzian = false;
+            public string fileNamePrefix;
+            public string fileSavePath;
+        }
 
+        //PICO INTERFACING AND DATA COLLECTION//
 
         /****************************************************************************
          * adc_to_mv
@@ -96,25 +116,86 @@ namespace PM2Waveform
         }
 
         /****************************************************************************
-            * HandlePicoBlockData
-            * - acquires data 
-            * Export:
-            *  - exports times and voltage readings of CHA as an array.
-            * Input :
-            * - offset : the offset into the data buffer to start the display's slice.
-            ****************************************************************************/
-        private WaveFormData HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle)
+        * StartPico
+        *  startup the device, get device info, and set channel settings
+        ****************************************************************************/
+        public Pico.ChannelSettings[] StartPico(short handle)
         {
-            int sampleCount = 1024;// BUFFER_SIZE;
+            
+
+            Pico.ChannelSettings[] channelSettings = new Pico.ChannelSettings[MAX_CHANNELS];
+            for (int i = 0; i < channelCount; i++)
+            {
+                channelSettings[i].enabled = 1;
+                channelSettings[i].DCcoupled = 1; //DC coupled
+                channelSettings[i].range = Imports.Range.Range_20V;
+            }
+
+            pi.SetDefaults(handle, channelSettings);
+
+            // disable trigger
+            pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
+
+            return channelSettings;
+        }
+
+        /****************************************************************************
+        * ChangePicoVoltage
+        *  change the voltage of the channel settings to what the user specifies
+        ****************************************************************************/
+        public void ChangePicoVoltage(short handle, Pico.ChannelSettings[] channelSettings)
+        {
+
+
+            pi.SetDefaults(handle, channelSettings);
+
+            // disable trigger
+            pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
+
+        }
+
+        /****************************************************************************
+        * ShutDowm
+        * Disconnects from device
+        ****************************************************************************/
+        public void ShutDown(short handle)
+        {
+            Imports.CloseUnit(handle);
+        }
+
+        /****************************************************************************
+        * GetPlottableData
+        *  this function demonstrates how to collect a single block of data
+        *  from the unit (start collecting immediately)
+        ****************************************************************************/
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft)
+        {
+            WaveFormData waveFormData = new WaveFormData();
+
+            // Method that communicates with Pico to get blocked data
+            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData);
+
+            return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
+        }
+
+        /****************************************************************************
+         * HandlePicoBlockData
+         * - acquires data 
+         * Output:
+         *  - exports times and voltage readings of Channel A as an array.
+         * Input :
+         * - offset : the offset into the data buffer to start the display's slice.
+        ****************************************************************************/
+        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData)
+        {
+            int sampleCount = 1024; // BUFFER_SIZE;
             short timeUnit = 0;
-            int timeIndisposed;
             short status = 0;
 
-            WaveFormData waveFormData = new WaveFormData();
             int[] time = new int[sampleCount];
             int[] amp = new int[sampleCount];
             PinnedArray<int> pinnedTimes = new PinnedArray<int>(time);
-            PinnedArray<short>[] pinned = new PinnedArray<short>[1];
+            PinnedArray<short>[] pinned = new PinnedArray<short>[channelCount];
 
             // Channel buffers
             for (int i = 0; i < channelCount; i++)
@@ -126,10 +207,9 @@ namespace PM2Waveform
             /* Find the maximum number of samples, the time interval (in nanoseconds),
                 * the most suitable time units (ReportedTimeUnits), and the maximum oversample at the current timebase*/
             int timeInterval = 0;
-            int maxSamples;
             do
             {
-                status = Imports.GetTimebase(handle, timebase, sampleCount, out timeInterval, out timeUnit, oversample, out maxSamples);
+                status = Imports.GetTimebase(handle, timebase, sampleCount, out timeInterval, out timeUnit, oversample, out int maxSamples);
 
                 if (status != 1)
                 {
@@ -141,14 +221,14 @@ namespace PM2Waveform
                     MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
                     break;
                 }
-                    
+
 
             }
             while (status == 0);
 
             /* Start the device collecting, then wait for completion*/
 
-            Imports.RunBlock(handle, sampleCount, timebase, oversample, out timeIndisposed);
+            Imports.RunBlock(handle, sampleCount, timebase, oversample, out int timeIndisposed);
             int timer = 1;
             bool isMessageDisconnect = false;
             short ready = 0;
@@ -163,14 +243,13 @@ namespace PM2Waveform
                     MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
                 }
 
-               // break;
+                // break;
             }
 
             if (ready > 0)
             {
-                short overflow;
 
-                Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], null, null, null, out overflow, timeUnit, sampleCount);
+                Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], null, null, null, out short overflow, timeUnit, sampleCount);
 
                 for (int i = 0; i < sampleCount; i++)
                 {
@@ -181,20 +260,22 @@ namespace PM2Waveform
             waveFormData.amp = amp;
 
             Imports.Stop(handle);
-            return waveFormData;
 
         }
 
+        // FFT CALCULATIONS //
         /****************************************************************************
-        * GetFFT
-        *  Get the raw FFT of an array
+            * GetFFT
+            *  Get the raw FFT of an array
         ****************************************************************************/
         private FFTData GetFFT(int[] amp, int[] time, FFTSettings fftSettings, double[] lastfft)
         {
             FFTData fftData = new FFTData();
             double[] fft = new double[amp.Length];
             double[] freq = new double[amp.Length / 2];
+            //AForge.Math.Complex[] fftComplex = new AForge.Math.Complex[amp.Length];
             Complex[] fftComplex = new Complex[amp.Length];
+
 
             // if FFT style has changed, reset the averaging by making last FFT null.
             if (fftSettings.isFftStyleChange)
@@ -205,9 +286,12 @@ namespace PM2Waveform
             //calculate fft
             for (int i = 0; i < amp.Length; i++)
             {
+                //fftComplex[i] = new AForge.Math.Complex();
                 fftComplex[i] = new Complex(amp[i], 0);
             }
-            AForge.Math.FourierTransform.FFT(fftComplex, AForge.Math.FourierTransform.Direction.Forward);
+            //AForge.Math.FourierTransform.FFT(fftComplex, AForge.Math.FourierTransform.Direction.Forward);
+            Accord.Math.Transforms.FourierTransform2.FFT(fftComplex, Accord.Math.FourierTransform.Direction.Forward);
+
 
             // transform fft based on user selected style
             for (int i = 0; i < amp.Length; i++)
@@ -223,7 +307,7 @@ namespace PM2Waveform
                         }
                         break;
                     case 1: // Log - Complex Conjugate
-                        fft[i] = 20 * Math.Log10(Complex.Conjugate(fftComplex[i]).Magnitude*fftComplex[i].Magnitude);
+                        fft[i] = 20 * Math.Log10(Complex.Conjugate(fftComplex[i]).Magnitude * fftComplex[i].Magnitude);
                         if (fft[i] == Double.NegativeInfinity || fft[i] == Double.NaN)
                         {
                             fft[i] = 0;
@@ -241,7 +325,7 @@ namespace PM2Waveform
 
                 if (i % 2 == 0)
                 {
-                    freq[i / 2] = Convert.ToDouble(i/2) / (time[9] - time[8]) * 1e3;
+                    freq[i / 2] = Convert.ToDouble(i / 2) / (time[9] - time[8]) * 1e3;
                 }
             }
 
@@ -268,117 +352,13 @@ namespace PM2Waveform
             fftData.fft = fft;
             fftData.freq = freq;
 
-            return fftData; 
+            return fftData;
         }
 
         /****************************************************************************
-        * Startup
-        *  startup the device, get device info, and set channel settings
+            *  TrimFFT
+            *  Trim FFT array prior to Lorentzian fitting based on user specifications
         ****************************************************************************/
-        public Pico.ChannelSettings[] InitPico(short handle)
-        {
-            
-
-            Pico.ChannelSettings[] channelSettings = new Pico.ChannelSettings[MAX_CHANNELS];
-            for (int i = 0; i < channelCount; i++)
-            {
-                channelSettings[i].enabled = 1;
-                channelSettings[i].DCcoupled = 1; //DC coupled
-                channelSettings[i].range = Imports.Range.Range_20V;
-            }
-
-            pi.SetDefaults(handle, channelSettings);
-
-            // disable trigger
-            pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
-
-            return channelSettings;
-        }
-
-        public  void ChangePicoVoltage(short handle, Pico.ChannelSettings[] channelSettings)
-        {
-
-
-            pi.SetDefaults(handle, channelSettings);
-
-            // disable trigger
-            pi.SetTrigger(null, 0, null, 0, null, null, 0, 0);
-
-        }
-
-        /****************************************************************************
-        * ShutDowm
-        * Disconnects from device
-        ****************************************************************************/
-        public void ShutDown(short handle)
-        {
-            Imports.CloseUnit(handle);
-        }
-
-        /****************************************************************************
-        * GetBlockData
-        *  this function demonstrates how to collect a single block of data
-        *  from the unit (start collecting immediately)
-        ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft)
-        {
-            // Get block of waveform data from pico
-            WaveFormData waveFormData = new WaveFormData();
-
-            // Method that communicates with Pico to get blocked data
-            waveFormData = HandlePicoBlockData(0, channelSettings, handle);
-
-            return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
-        }
-
-        public LorentzParams GetLorentzParams(FFTData fftData, LorentzSettings lorentzSettings)
-        {
-            LorentzParams lp = new LorentzParams();
-            double[][] dataPoints = new double[][] { fftData.freq, fftData.fft };
-            double[] startPoint = { 10, 25, 1, 1 };
-
-            if (lorentzSettings.isPeakGuess)
-                startPoint[1] = lorentzSettings.PeakGuess;
-
-            LMA algorithm;
-
-            if (lorentzSettings.isYShiftLorentz)
-            {
-                LMAFunction lorentzShift = new LorenzianFunctionShift();
-
-                algorithm = new LMA(lorentzShift, new double[] { 10, 24, 1,1 },
-                dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, lorentzSettings.nIter);
-
-                algorithm.Fit();
-
-                lp.A = algorithm.Parameters[0];
-                lp.gamma = algorithm.Parameters[2];
-                lp.f0 = algorithm.Parameters[1];
-                lp.up = algorithm.Parameters[3];
-
-            }
-            else
-            {
-                LMAFunction lorentz = new LorenzianFunction();
-
-                algorithm = new LMA(lorentz, new double[] { 10, 24, 1 },
-                dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, lorentzSettings.nIter);
-
-                algorithm.Fit();
-
-                lp.A = algorithm.Parameters[0];
-                lp.gamma = algorithm.Parameters[2];
-                lp.f0 = algorithm.Parameters[1];
-                lp.up = 0;
-
-            }
-
-
-
-            return lp;
-
-        }
-
         public FFTData TrimFFT(FFTData fftData, LorentzSettings lorentzSettings)
         {
             FFTData fftTrimData = new FFTData();
@@ -392,12 +372,66 @@ namespace PM2Waveform
             return fftTrimData;
         }
 
+        // LORENTZIAN FITTING //
+
+        /****************************************************************************
+            *  GetLorentzParams
+            *  Get lorentzian fitting parameters
+        ****************************************************************************/
+        public void GetLorentzParams(FFTData fftData, LorentzSettings lorentzSettings, ref LorentzParams lorentzParams)
+        {
+            double[][] dataPoints = new double[][] { fftData.freq, fftData.fft };
+            double[] startPoint = { 10, 25, 1, 1 };
+
+            if (lorentzSettings.isPeakGuess)
+                startPoint[1] = lorentzSettings.PeakGuess;
+
+            LMA algorithm;
+
+            if (lorentzSettings.isYShiftLorentz)
+            {
+                LMAFunction lorentzShift = new LorenzianFunctionShift();
+
+                algorithm = new LMA(lorentzShift, new double[] { 10, 24, 1, 1 },
+                dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, lorentzSettings.nIter);
+
+                algorithm.Fit();
+
+                lorentzParams.A = algorithm.Parameters[0];
+                lorentzParams.gamma = algorithm.Parameters[2];
+                lorentzParams.f0 = algorithm.Parameters[1];
+                lorentzParams.up = algorithm.Parameters[3];
+
+            }
+            else
+            {
+                LMAFunction lorentz = new LorenzianFunction();
+
+                algorithm = new LMA(lorentz, new double[] { 10, 24, 1 },
+                dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, lorentzSettings.nIter);
+
+                algorithm.Fit();
+
+                lorentzParams.A = algorithm.Parameters[0];
+                lorentzParams.gamma = algorithm.Parameters[2];
+                lorentzParams.f0 = algorithm.Parameters[1];
+                lorentzParams.up = 0;
+
+            }
+
+        }
+
+        /****************************************************************************
+            *  GetfittingMetrics
+            *  calculate the fitting parameters that the user is interested in
+        ****************************************************************************/
         public FittingMetrics GetFittingMetrics(LorentzParams lp, FFTSettings fftSettings)
         {
-            FittingMetrics fm = new FittingMetrics();
-
-            fm.amplitude = lp.A / lp.gamma / lp.gamma + lp.up;
-            fm.f0 = lp.f0;
+            FittingMetrics fm = new FittingMetrics
+            {
+                amplitude = lp.A / lp.gamma / lp.gamma + lp.up,
+                f0 = lp.f0
+            };
 
             double ampPrime = 0;
             switch (fftSettings.Fftstyle)
@@ -441,6 +475,25 @@ namespace PM2Waveform
 
         }
 
+        /****************************************************************************
+           *  LorentzianFunction
+           *  defines the lorentzian function
+       ****************************************************************************/
+        public class LorenzianFunction : LMAFunction
+        {
+
+            public override double GetY(double x, double[] a)
+            {
+                double result = a[0] / (((x - a[1]) * (x - a[1]) + a[2] * a[2]));
+                return result;
+            }
+
+        }
+
+        /****************************************************************************
+           *  LorentzianFunctionShift
+           *  defines the lorentzian function with an additional vertical shift
+       ****************************************************************************/
         public class LorenzianFunctionShift : LMAFunction
         {
 
@@ -452,14 +505,85 @@ namespace PM2Waveform
 
         }
 
-        public class LorenzianFunction : LMAFunction
+        // DATA EXPORTING //
+        /****************************************************************************
+           *  ExportWaveForm
+           *  defines the lorentzian function with an additional vertical shift
+       ****************************************************************************/
+        public void ExportWaveForm(ref PlottableData plottableData, ExportSettings exportSettings)
         {
 
-            public override double GetY(double x, double[] a)
+            string contFileName = GetFileName(exportSettings.fileSavePath + exportSettings.fileNamePrefix + "cont_");
+            string waveFileName = GetFileName(exportSettings.fileNamePrefix + exportSettings.fileNamePrefix + "wave_");
+
+            TextWriter waveWriter = new StreamWriter(waveFileName, false);
+            TextWriter contWriter = new StreamWriter(contFileName, false);
+
+            //wave export
+            if (exportSettings.isWaveForm)
             {
-                double result = a[0] / (((x - a[1]) * (x - a[1]) + a[2] * a[2]));
-                return result;
+                waveWriter.Write("Time\t");
+                waveWriter.Write("Amplitude\t");
             }
+
+            if (exportSettings.isFFT)
+            {
+                waveWriter.Write("FFT_frequency\t");
+                waveWriter.Write("FFT_mag\t");
+            }
+
+            if (exportSettings.isLorentzian)
+                waveWriter.Write("Lorentz_frequency\t");
+                waveWriter.Write("Lorentz_mag\t");
+
+
+            waveWriter.WriteLine();
+
+            for (int i = 0; i < plottableData.WaveFormData.time.Length; i++)
+            {
+                
+                if (exportSettings.isWaveForm)
+                {
+                    waveWriter.Write(plottableData.WaveFormData.time[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.WaveFormData.amp[i].ToString() + "\t");
+                }
+                    
+                if (exportSettings.isWaveForm & i < plottableData.fftData.freq.Length)
+                {
+                    waveWriter.Write(plottableData.fftData.freq[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.fftData.fft[i].ToString() + "\t");
+                }
+
+                if (exportSettings.isLorentzian & i < plottableData.lorentzFftData.freq.Length)
+                {
+                    waveWriter.Write(plottableData.lorentzFftData.freq[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.lorentzFftData.fft[i].ToString() + "\t");
+                }
+                 
+                waveWriter.WriteLine();
+                
+                
+                //cont writer
+            }
+        }
+
+        /****************************************************************************
+           *  GetFileName()
+           *  get file export name based on current time 
+       ****************************************************************************/
+       private string GetFileName(string prefix)
+        {
+            DateTime dateTime = DateTime.Now;
+            string fileName = prefix + dateTime.ToString();
+            return fileName.Replace(" ", "_").Replace("/","-").Replace(":","-");
+        }
+
+
+
+        // WAVEFORM FILTERING //
+        public void FilterWave(ref WaveFormData waveFormData, FilterSettings filterSettings)
+        {
+            LowPassFilter lpf = new LowPassFilter(filterSettings.lowFreq, filterSettings.sampleRate);
 
         }
 

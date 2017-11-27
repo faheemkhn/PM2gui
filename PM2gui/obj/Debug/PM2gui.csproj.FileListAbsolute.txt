@@ -62,3 +62,9 @@ C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\PM2gui.exe.lastcodeanalysissu
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\aa\PM2gui.resources.dll
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\PM2gui.PM2gui.aa.resources
 C:\Users\NIME\source\repos\PM2gui\PM2gui\obj\Debug\aa\PM2gui.resources.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\Accord.Audio.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\Accord.Math.Core.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\AForge.Math.dll
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\Accord.Audio.xml
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\Accord.Math.Core.xml
+C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\AForge.Math.xml
