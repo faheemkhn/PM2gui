@@ -13,6 +13,7 @@ using Net.Kniaz.LMA;
 using System.Windows.Forms;
 using Accord.Audio.Filters;
 using System.IO;
+using System.Diagnostics;
 
 
 namespace PM2Waveform
@@ -58,6 +59,8 @@ namespace PM2Waveform
             public FFTData lorentzFftData;
             public FFTData fftData;
             public WaveFormData WaveFormData;
+            public List<double> DeflectionList = new List<double>(100);
+            
         }
         public class FFTSettings
         {
@@ -96,14 +99,30 @@ namespace PM2Waveform
         public class ExportSettings
         {
             public bool isWaveForm = false;
-            public bool isLongTimeDomain = false;
+            public bool isDeflection = false;
             public bool isFFT = false;
             public bool isPeakValue = false;
             public bool isLorentzian = false;
             public string fileNamePrefix;
             public string fileSavePath;
         }
+        public class ProcessTimes
+        {
+            public TimeSpan samplingTime;
+            public TimeSpan fftTime;
+            public TimeSpan wavePlottingTime;
+            public TimeSpan freqPlottingTime;
+            public TimeSpan fittingTime;
+            public TimeSpan microViewingTime;
+            public TimeSpan ardunioComTime;
+            public TimeSpan exportTime;
 
+            public TimeSpan sumAllProcessTimes()
+            {
+                return samplingTime + fftTime + wavePlottingTime + freqPlottingTime + fittingTime + microViewingTime + ardunioComTime + exportTime; 
+            }
+        }
+        
         //PICO INTERFACING AND DATA COLLECTION//
 
         /****************************************************************************
@@ -168,14 +187,27 @@ namespace PM2Waveform
         *  this function demonstrates how to collect a single block of data
         *  from the unit (start collecting immediately)
         ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft)
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes)
         {
+            Stopwatch sw = new Stopwatch();
+
+
+            //sw.Start();
             WaveFormData waveFormData = new WaveFormData();
 
             // Method that communicates with Pico to get blocked data
-            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData);
+            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes);
+            //sw.Stop();
 
-            return new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
+            //processTimes.samplingTime = sw.Elapsed;
+
+            sw.Restart();
+            PlottableData plottableData = new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
+            sw.Stop();
+
+            processTimes.fftTime = sw.Elapsed;
+
+            return plottableData;
         }
 
         /****************************************************************************
@@ -186,9 +218,10 @@ namespace PM2Waveform
          * Input :
          * - offset : the offset into the data buffer to start the display's slice.
         ****************************************************************************/
-        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData)
+        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes)
         {
-            int sampleCount = 1024; // BUFFER_SIZE;
+            Stopwatch sw = new Stopwatch();
+            int sampleCount = 64*2*2*2*2; // BUFFER_SIZE;
             short timeUnit = 0;
             short status = 0;
 
@@ -227,8 +260,9 @@ namespace PM2Waveform
             while (status == 0);
 
             /* Start the device collecting, then wait for completion*/
-
+            sw.Start();
             Imports.RunBlock(handle, sampleCount, timebase, oversample, out int timeIndisposed);
+            
             int timer = 1;
             bool isMessageDisconnect = false;
             short ready = 0;
@@ -245,20 +279,21 @@ namespace PM2Waveform
 
                 // break;
             }
-
+            sw.Stop();
             if (ready > 0)
             {
-
+                
                 Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], null, null, null, out short overflow, timeUnit, sampleCount);
-
+                
                 for (int i = 0; i < sampleCount; i++)
                 {
                     amp[i] = adc_to_mv(pinned[0].Target[i], (int)channelSettings[0].range);
                 }
             }
+            
             waveFormData.time = time;
             waveFormData.amp = amp;
-
+            processTimes.samplingTime = sw.Elapsed;
             Imports.Stop(handle);
 
         }
@@ -300,7 +335,7 @@ namespace PM2Waveform
                 switch (fftSettings.Fftstyle)
                 {
                     case 0: //Log
-                        fft[i] = 20 * Math.Log10(fftComplex[i].Magnitude);
+                        fft[i] = 20 * Math.Log10(fftComplex[i].Magnitude); // decibels=20Log,  http://www.arrl.org/files/file/Instructor%20resources/A%20Tutorial%20on%20the%20Dec-N0AX.pdf
                         if (fft[i] == Double.NegativeInfinity || fft[i] == Double.NaN)
                         {
                             fft[i] = 0;
@@ -381,10 +416,7 @@ namespace PM2Waveform
         public void GetLorentzParams(FFTData fftData, LorentzSettings lorentzSettings, ref LorentzParams lorentzParams)
         {
             double[][] dataPoints = new double[][] { fftData.freq, fftData.fft };
-            double[] startPoint = { 10, 25, 1, 1 };
 
-            if (lorentzSettings.isPeakGuess)
-                startPoint[1] = lorentzSettings.PeakGuess;
 
             LMA algorithm;
 
@@ -392,22 +424,33 @@ namespace PM2Waveform
             {
                 LMAFunction lorentzShift = new LorenzianFunctionShift();
 
-                algorithm = new LMA(lorentzShift, new double[] { 10, 24, 1, 1 },
+                double[] startPoint = { 10, 25, 1, 1 };
+
+                if (lorentzSettings.isPeakGuess)
+                    startPoint[1] = lorentzSettings.PeakGuess;
+
+                algorithm = new LMA(lorentzShift, startPoint,
                 dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, lorentzSettings.nIter);
 
-                algorithm.Fit();
+                algorithm.Fit(); 
 
                 lorentzParams.A = algorithm.Parameters[0];
                 lorentzParams.gamma = algorithm.Parameters[2];
                 lorentzParams.f0 = algorithm.Parameters[1];
                 lorentzParams.up = algorithm.Parameters[3];
 
+
             }
             else
             {
                 LMAFunction lorentz = new LorenzianFunction();
 
-                algorithm = new LMA(lorentz, new double[] { 10, 24, 1 },
+                double[] startPoint = { 10, 25, 1};
+
+                if (lorentzSettings.isPeakGuess)
+                    startPoint[1] = lorentzSettings.PeakGuess;
+
+                algorithm = new LMA(lorentz, startPoint,
                 dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, lorentzSettings.nIter);
 
                 algorithm.Fit();
@@ -513,28 +556,31 @@ namespace PM2Waveform
         public void ExportWaveForm(ref PlottableData plottableData, ExportSettings exportSettings)
         {
 
-            string contFileName = GetFileName(exportSettings.fileSavePath + exportSettings.fileNamePrefix + "cont_");
+            //string contFileName = GetFileName(exportSettings.fileSavePath + exportSettings.fileNamePrefix + "cont_");
             string waveFileName = GetFileName(exportSettings.fileNamePrefix + exportSettings.fileNamePrefix + "wave_");
 
             TextWriter waveWriter = new StreamWriter(waveFileName, false);
-            TextWriter contWriter = new StreamWriter(contFileName, false);
+            //TextWriter contWriter = new StreamWriter(contFileName, false);
 
             //wave export
             if (exportSettings.isWaveForm)
             {
-                waveWriter.Write("Time\t");
-                waveWriter.Write("Amplitude\t");
+                waveWriter.Write("Time,");
+                waveWriter.Write("Amplitude,");
             }
 
             if (exportSettings.isFFT)
             {
-                waveWriter.Write("FFT_frequency\t");
-                waveWriter.Write("FFT_mag\t");
+                waveWriter.Write("FFT_frequency,");
+                waveWriter.Write("FFT_mag,");
             }
 
             if (exportSettings.isLorentzian)
-                waveWriter.Write("Lorentz_frequency\t");
-                waveWriter.Write("Lorentz_mag\t");
+            {
+                waveWriter.Write("Lorentz_frequency,");
+                waveWriter.Write("Lorentz_mag,");
+            }
+
 
 
             waveWriter.WriteLine();
@@ -544,20 +590,20 @@ namespace PM2Waveform
                 
                 if (exportSettings.isWaveForm)
                 {
-                    waveWriter.Write(plottableData.WaveFormData.time[i].ToString() + "\t");
-                    waveWriter.Write(plottableData.WaveFormData.amp[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.WaveFormData.time[i].ToString() + ",");
+                    waveWriter.Write(plottableData.WaveFormData.amp[i].ToString() + ",");
                 }
                     
-                if (exportSettings.isWaveForm & i < plottableData.fftData.freq.Length)
+                if (exportSettings.isFFT & i < plottableData.fftData.freq.Length)
                 {
-                    waveWriter.Write(plottableData.fftData.freq[i].ToString() + "\t");
-                    waveWriter.Write(plottableData.fftData.fft[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.fftData.freq[i].ToString() + ",");
+                    waveWriter.Write(plottableData.fftData.fft[i].ToString() + ",");
                 }
 
-                if (exportSettings.isLorentzian & i < plottableData.lorentzFftData.freq.Length)
+                if (exportSettings.isLorentzian & (plottableData.lorentzFftData == null || i < plottableData.lorentzFftData.freq.Length))
                 {
-                    waveWriter.Write(plottableData.lorentzFftData.freq[i].ToString() + "\t");
-                    waveWriter.Write(plottableData.lorentzFftData.fft[i].ToString() + "\t");
+                    waveWriter.Write(plottableData.lorentzFftData.freq[i].ToString() + ",");
+                    waveWriter.Write(plottableData.lorentzFftData.fft[i].ToString() + ",");
                 }
                  
                 waveWriter.WriteLine();
@@ -565,6 +611,8 @@ namespace PM2Waveform
                 
                 //cont writer
             }
+
+            waveWriter.Close();
         }
 
         /****************************************************************************
@@ -574,7 +622,8 @@ namespace PM2Waveform
        private string GetFileName(string prefix)
         {
             DateTime dateTime = DateTime.Now;
-            string fileName = prefix + dateTime.ToString();
+            int dateTimeMiliSeconds = DateTime.Now.Millisecond;
+            string fileName = prefix + dateTime.ToString() + ":" + dateTimeMiliSeconds + ".txt";
             return fileName.Replace(" ", "_").Replace("/","-").Replace(":","-");
         }
 
