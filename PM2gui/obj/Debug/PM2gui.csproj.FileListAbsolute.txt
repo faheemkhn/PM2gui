@@ -55,8 +55,6 @@ C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\GeneralMatrix.dll
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\LMA.dll
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\nunit.framework.dll
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\GeneralMatrix.pdb
-C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\LMA.pdb
-C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\nunit.framework.xml
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\PM2gui.exe.CodeAnalysisLog.xml
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\PM2gui.exe.lastcodeanalysissucceeded
 C:\Users\NIME\source\repos\PM2gui\PM2gui\bin\Debug\aa\PM2gui.resources.dll

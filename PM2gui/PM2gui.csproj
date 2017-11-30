@@ -132,14 +132,16 @@
     <Reference Include="GeneralMatrix">
       <HintPath>..\..\..\..\Downloads\LMA (2)\LMA\LMA\bin\Debug\GeneralMatrix.dll</HintPath>
     </Reference>
-    <Reference Include="LMA">
-      <HintPath>..\..\..\..\Downloads\LMA (2)\LMA\LMA\bin\Debug\LMA.dll</HintPath>
+    <Reference Include="LMA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\LMA.dll</HintPath>
     </Reference>
     <Reference Include="MathNet.Numerics, Version=3.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.3.20.0\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\Downloads\LMA (2)\LMA\LMA\bin\Debug\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -222,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fourien_icon.ico" />
+    <Content Include="Resources\GeneralMatrix.dll" />
+    <Content Include="Resources\LMA.dll" />
+    <Content Include="Resources\nunit.framework.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
