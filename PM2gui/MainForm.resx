@@ -611,9 +611,6 @@
   <data name="FreqMaxComboBox.Items15" xml:space="preserve">
     <value>1526 Hz (327 us)</value>
   </data>
-  <data name="FreqMaxComboBox.Items16" xml:space="preserve">
-    <value>763 Hz (655 us)</value>
-  </data>
   <data name="FreqMaxComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 190</value>
   </data>

@@ -221,7 +221,7 @@ namespace PM2Waveform
         private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes)
         {
             Stopwatch sw = new Stopwatch();
-            int sampleCount = 64*2*2*2*2; // BUFFER_SIZE;
+            int sampleCount = 64;//*2*2*2*2; // BUFFER_SIZE;
             short timeUnit = 0;
             short status = 0;
 
@@ -249,7 +249,7 @@ namespace PM2Waveform
                     timebase++;
                 }
 
-                if (timebase > 23)
+                if (timebase > 250)
                 {
                     MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
                     break;
@@ -271,15 +271,22 @@ namespace PM2Waveform
                 ready = Imports.Isready(handle);
                 Thread.Sleep(1);
                 timer++;
-                if (timer > 1e2 & !isMessageDisconnect)
+                if (timer > 25 & !isMessageDisconnect)
                 {
                     isMessageDisconnect = true;
-                    MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+                    ready = -1;
+                    //MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+                    //MessageBox.Show("Test");
                 }
 
                 // break;
             }
+
+            if (ready == -1)
+                //MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+
             sw.Stop();
+
             if (ready > 0)
             {
                 
