@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -83,7 +83,7 @@
             this.peakTrackerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.PeakGuessTextBox = new System.Windows.Forms.TextBox();
+            this.MidFreqGuessTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.peakGuessCheckBox = new System.Windows.Forms.CheckBox();
             this.StartExportButton = new System.Windows.Forms.Button();
@@ -150,6 +150,12 @@
             this.LorentzianFittingTimeLabel = new System.Windows.Forms.Label();
             this.TimeDomainPlottingTimeLabel = new System.Windows.Forms.Label();
             this.DataSamplingTimeLabel = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
+            this.AmpGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.InterGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
@@ -190,38 +196,38 @@
             // 
             // WaveFormChart
             // 
-            chartArea6.Name = "ChartArea1";
-            this.WaveFormChart.ChartAreas.Add(chartArea6);
+            chartArea1.Name = "ChartArea1";
+            this.WaveFormChart.ChartAreas.Add(chartArea1);
             resources.ApplyResources(this.WaveFormChart, "WaveFormChart");
             this.WaveFormChart.Name = "WaveFormChart";
             this.WaveFormChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Color = System.Drawing.Color.Black;
-            series7.Name = "Series1";
-            this.WaveFormChart.Series.Add(series7);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Black;
+            series1.Name = "Series1";
+            this.WaveFormChart.Series.Add(series1);
             // 
             // FftChart
             // 
-            chartArea7.Name = "ChartArea1";
-            this.FftChart.ChartAreas.Add(chartArea7);
+            chartArea2.Name = "ChartArea1";
+            this.FftChart.ChartAreas.Add(chartArea2);
             resources.ApplyResources(this.FftChart, "FftChart");
             this.FftChart.Name = "FftChart";
             this.FftChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series8.BorderWidth = 3;
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Color = System.Drawing.Color.Black;
-            series8.Name = "Series1";
-            series9.BorderWidth = 2;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Color = System.Drawing.Color.Red;
-            series9.LabelForeColor = System.Drawing.Color.Bisque;
-            series9.Name = "Series2";
-            this.FftChart.Series.Add(series8);
-            this.FftChart.Series.Add(series9);
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Black;
+            series2.Name = "Series1";
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Red;
+            series3.LabelForeColor = System.Drawing.Color.Bisque;
+            series3.Name = "Series2";
+            this.FftChart.Series.Add(series2);
+            this.FftChart.Series.Add(series3);
             // 
             // CamPictureBox
             // 
@@ -450,49 +456,49 @@
             // 
             // DeflectionChart
             // 
-            chartArea8.Name = "ChartArea1";
-            this.DeflectionChart.ChartAreas.Add(chartArea8);
+            chartArea3.Name = "ChartArea1";
+            this.DeflectionChart.ChartAreas.Add(chartArea3);
             resources.ApplyResources(this.DeflectionChart, "DeflectionChart");
             this.DeflectionChart.Name = "DeflectionChart";
             this.DeflectionChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series10.BorderWidth = 2;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series10.Color = System.Drawing.Color.Black;
-            series10.Name = "Series1";
-            series10.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-            series10.YValuesPerPoint = 2;
-            this.DeflectionChart.Series.Add(series10);
-            title4.Name = "Title1";
-            title4.Position.Auto = false;
-            title4.Position.Height = 5.516974F;
-            title4.Position.Width = 85F;
-            title4.Position.X = 8F;
-            title4.Position.Y = 45F;
-            title4.Text = "Deflection";
-            this.DeflectionChart.Titles.Add(title4);
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.Color = System.Drawing.Color.Black;
+            series4.Name = "Series1";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+            series4.YValuesPerPoint = 2;
+            this.DeflectionChart.Series.Add(series4);
+            title1.Name = "Title1";
+            title1.Position.Auto = false;
+            title1.Position.Height = 5.516974F;
+            title1.Position.Width = 85F;
+            title1.Position.X = 8F;
+            title1.Position.Y = 45F;
+            title1.Text = "Deflection";
+            this.DeflectionChart.Titles.Add(title1);
             // 
             // peakTrackerChart
             // 
-            chartArea9.Name = "ChartArea1";
-            this.peakTrackerChart.ChartAreas.Add(chartArea9);
+            chartArea4.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea4);
             resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
             this.peakTrackerChart.Name = "peakTrackerChart";
             this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series11.BorderWidth = 2;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Color = System.Drawing.Color.Black;
-            series11.Name = "Series1";
-            this.peakTrackerChart.Series.Add(series11);
-            title5.Name = "Peak Tracker";
-            title5.Position.Auto = false;
-            title5.Position.Height = 5.516974F;
-            title5.Position.Width = 70F;
-            title5.Position.X = 15F;
-            title5.Position.Y = 45F;
-            title5.Text = "Peak Tracker";
-            this.peakTrackerChart.Titles.Add(title5);
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.Black;
+            series5.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series5);
+            title2.Name = "Peak Tracker";
+            title2.Position.Auto = false;
+            title2.Position.Height = 5.516974F;
+            title2.Position.Width = 70F;
+            title2.Position.X = 15F;
+            title2.Position.Y = 45F;
+            title2.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title2);
             // 
             // groupBox2
             // 
@@ -507,7 +513,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.PeakGuessTextBox);
+            this.groupBox3.Controls.Add(this.InterGuessTextBox);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.AmpGuessTextBox);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.MidFreqGuessTextBox);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.peakGuessCheckBox);
             this.groupBox3.Controls.Add(this.IterTextBox);
@@ -523,10 +533,10 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
-            // PeakGuessTextBox
+            // MidFreqGuessTextBox
             // 
-            resources.ApplyResources(this.PeakGuessTextBox, "PeakGuessTextBox");
-            this.PeakGuessTextBox.Name = "PeakGuessTextBox";
+            resources.ApplyResources(this.MidFreqGuessTextBox, "MidFreqGuessTextBox");
+            this.MidFreqGuessTextBox.Name = "MidFreqGuessTextBox";
             // 
             // label4
             // 
@@ -721,6 +731,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.BufferSizeComboBox);
+            this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.EqualizeRefreshRateCheckBox);
             this.groupBox6.Controls.Add(this.label20);
             this.groupBox6.Controls.Add(this.ReadingRefreshRateTextBox);
@@ -927,26 +939,26 @@
             // 
             // SpectrumBuildChart
             // 
-            chartArea10.Name = "ChartArea1";
-            this.SpectrumBuildChart.ChartAreas.Add(chartArea10);
+            chartArea5.Name = "ChartArea1";
+            this.SpectrumBuildChart.ChartAreas.Add(chartArea5);
             resources.ApplyResources(this.SpectrumBuildChart, "SpectrumBuildChart");
             this.SpectrumBuildChart.Name = "SpectrumBuildChart";
             this.SpectrumBuildChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series12.BorderWidth = 2;
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-            series12.Color = System.Drawing.Color.Black;
-            series12.Name = "Series1";
-            series12.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-            this.SpectrumBuildChart.Series.Add(series12);
-            title6.Name = "Title1";
-            title6.Position.Auto = false;
-            title6.Position.Height = 5.516974F;
-            title6.Position.Width = 85F;
-            title6.Position.X = 8F;
-            title6.Position.Y = 45F;
-            title6.Text = "Spectrum Building";
-            this.SpectrumBuildChart.Titles.Add(title6);
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series6.Color = System.Drawing.Color.Black;
+            series6.Name = "Series1";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+            this.SpectrumBuildChart.Series.Add(series6);
+            title3.Name = "Title1";
+            title3.Position.Auto = false;
+            title3.Position.Height = 5.516974F;
+            title3.Position.Width = 85F;
+            title3.Position.X = 8F;
+            title3.Position.Y = 45F;
+            title3.Text = "Spectrum Building";
+            this.SpectrumBuildChart.Titles.Add(title3);
             // 
             // groupBox10
             // 
@@ -995,6 +1007,47 @@
             // 
             resources.ApplyResources(this.DataSamplingTimeLabel, "DataSamplingTimeLabel");
             this.DataSamplingTimeLabel.Name = "DataSamplingTimeLabel";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // BufferSizeComboBox
+            // 
+            this.BufferSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BufferSizeComboBox.FormattingEnabled = true;
+            this.BufferSizeComboBox.Items.AddRange(new object[] {
+            resources.GetString("BufferSizeComboBox.Items"),
+            resources.GetString("BufferSizeComboBox.Items1"),
+            resources.GetString("BufferSizeComboBox.Items2"),
+            resources.GetString("BufferSizeComboBox.Items3"),
+            resources.GetString("BufferSizeComboBox.Items4"),
+            resources.GetString("BufferSizeComboBox.Items5"),
+            resources.GetString("BufferSizeComboBox.Items6"),
+            resources.GetString("BufferSizeComboBox.Items7")});
+            resources.ApplyResources(this.BufferSizeComboBox, "BufferSizeComboBox");
+            this.BufferSizeComboBox.Name = "BufferSizeComboBox";
+            // 
+            // AmpGuessTextBox
+            // 
+            resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
+            this.AmpGuessTextBox.Name = "AmpGuessTextBox";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // InterGuessTextBox
+            // 
+            resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
+            this.InterGuessTextBox.Name = "InterGuessTextBox";
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
             // 
             // PM2gui
             // 
@@ -1092,7 +1145,7 @@
         public System.Windows.Forms.DataVisualization.Charting.Chart peakTrackerChart;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox PeakGuessTextBox;
+        private System.Windows.Forms.TextBox MidFreqGuessTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox peakGuessCheckBox;
         private System.Windows.Forms.Button StartExportButton;
@@ -1159,6 +1212,12 @@
         private System.Windows.Forms.Label FreqDomainPlottingTimeLabel;
         private System.Windows.Forms.Label TimeDomainPlottingTimeLabel;
         private System.Windows.Forms.Label FftTimeLabel;
+        private System.Windows.Forms.ComboBox BufferSizeComboBox;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox AmpGuessTextBox;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox InterGuessTextBox;
+        private System.Windows.Forms.Label label25;
     }
 }
 

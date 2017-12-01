@@ -75,11 +75,11 @@ namespace PM2Waveform
         {
             public bool isYShiftLorentz;
             public bool isTrimFft;
-            public bool isPeakGuess;
+            public bool isStartingPointGuess;
             public int nIter;
             public double trimStartFreq;
             public double trimStopFreq;
-            public double PeakGuess;
+            public LorentzParams startPointLP;
         }
         public class FittingMetrics
         {
@@ -187,7 +187,7 @@ namespace PM2Waveform
         *  this function demonstrates how to collect a single block of data
         *  from the unit (start collecting immediately)
         ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes)
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveFormTimer, int SampleCount)
         {
             Stopwatch sw = new Stopwatch();
 
@@ -196,7 +196,7 @@ namespace PM2Waveform
             WaveFormData waveFormData = new WaveFormData();
 
             // Method that communicates with Pico to get blocked data
-            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes);
+            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount);
             //sw.Stop();
 
             //processTimes.samplingTime = sw.Elapsed;
@@ -218,10 +218,10 @@ namespace PM2Waveform
          * Input :
          * - offset : the offset into the data buffer to start the display's slice.
         ****************************************************************************/
-        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes)
+        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveformTimer, int SampleCount)
         {
             Stopwatch sw = new Stopwatch();
-            int sampleCount = 64;//*2*2*2*2; // BUFFER_SIZE;
+            int sampleCount = SampleCount;//*2*2*2*2; // BUFFER_SIZE;
             short timeUnit = 0;
             short status = 0;
 
@@ -251,7 +251,6 @@ namespace PM2Waveform
 
                 if (timebase > 250)
                 {
-                    MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
                     break;
                 }
 
@@ -283,7 +282,12 @@ namespace PM2Waveform
             }
 
             if (ready == -1)
-                //MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+            {
+                WaveformTimer.Stop();
+                MessageBox.Show("Cannot connect to Picoscope: Check the USB Connection and Restart");
+            }
+                
+            
 
             sw.Stop();
 
@@ -431,10 +435,47 @@ namespace PM2Waveform
             {
                 LMAFunction lorentzShift = new LorenzianFunctionShift();
 
-                double[] startPoint = { 10, 25, 1, 1 };
+                double[] startPoint = new double[4];
 
-                if (lorentzSettings.isPeakGuess)
-                    startPoint[1] = lorentzSettings.PeakGuess;
+                try
+                {
+                    startPoint[0] = lorentzSettings.startPointLP.A;
+                }
+                catch (Exception)
+                {
+                    startPoint[0] = 10;
+                }
+
+                try
+                {
+                    startPoint[1] = lorentzSettings.startPointLP.f0;
+                }
+                catch (Exception)
+                {
+                    startPoint[1] = 25;
+                }
+
+                try
+                {
+                    startPoint[2] = lorentzSettings.startPointLP.gamma;
+                }
+                catch (Exception)
+                {
+                    startPoint[2] = 1;
+                }
+
+                try
+                {
+
+                    startPoint[3] = lorentzSettings.startPointLP.up;
+                }
+                catch (Exception)
+                {
+                    startPoint[3] = 1;
+                }
+
+
+
 
                 algorithm = new LMA(lorentzShift, startPoint,
                 dataPoints, null, new GeneralMatrix(4, 4), 1d - 20, lorentzSettings.nIter);
@@ -452,10 +493,34 @@ namespace PM2Waveform
             {
                 LMAFunction lorentz = new LorenzianFunction();
 
-                double[] startPoint = { 10, 25, 1};
+                double[] startPoint = new double[3];
 
-                if (lorentzSettings.isPeakGuess)
-                    startPoint[1] = lorentzSettings.PeakGuess;
+                try
+                {
+                    startPoint[0] = lorentzSettings.startPointLP.A;
+                }
+                catch (Exception)
+                {
+                    startPoint[0] = 10;
+                }
+
+                try
+                {
+                    startPoint[1] = lorentzSettings.startPointLP.f0;
+                }
+                catch (Exception)
+                {
+                    startPoint[1] = 25;
+                }
+
+                try
+                {
+                    startPoint[2] = lorentzSettings.startPointLP.gamma;
+                }
+                catch (Exception)
+                {
+                    startPoint[2] = 1;
+                }
 
                 algorithm = new LMA(lorentz, startPoint,
                 dataPoints, null, new GeneralMatrix(3, 3), 1d - 20, lorentzSettings.nIter);

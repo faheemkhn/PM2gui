@@ -68,6 +68,7 @@ namespace PM2gui
         List<double> DeflectionList = new List<double>();
         DateTime DeflectionStartTime;
         DateTime SpecBuildStartTime;
+        PM2WaveForm.LorentzParams lp = new PM2WaveForm.LorentzParams();
 
         short handle;
         double[] lastfft = null;
@@ -91,6 +92,10 @@ namespace PM2gui
             ButtonInit();
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
             specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text);
+            BufferSizeComboBox.SelectedIndex = 5;
+            // init lorentz guess
+            lorentzSettings.startPointLP = lp;
+            
         }
 
         private void PicoscopeInit()
@@ -306,14 +311,14 @@ namespace PM2gui
         {
 
             totalSW.Restart();
-
+            int SampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
             Stopwatch sw = new Stopwatch();
 
            // ReInitProcessTimes();
 
 
             sw.Start();
-            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes);
+            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount);
             sw.Stop();
 
             fftSettings.isFftStyleChange = false;
@@ -543,10 +548,12 @@ namespace PM2gui
             bool canTrimFFT;
             bool isIterMessage = false;
             bool isTrimMessage = false;
-            bool isPeakMessage = false;
+            bool isGuessMessage = false;
             lorentzSettings.trimStartFreq = 0;
             lorentzSettings.trimStopFreq = plottableData.fftData.freq.Max();
-            
+
+            //
+            UpdateLorentzStartingPoints();
 
             // get trim frequency from user
             try
@@ -577,20 +584,6 @@ namespace PM2gui
                 isIterMessage = true;
                 lorentzSettings.nIter = 100;
                 
-            }
-
-            // get peak guess from user
-            try
-            {
-                lorentzSettings.PeakGuess = double.Parse(PeakGuessTextBox.Text);
-            }
-            catch (Exception)
-            {
-                if (!isPeakMessage)
-                    MessageBox.Show("The peak guess is not a double, a default value of 25 will be used");
-                isPeakMessage = true;
-                lorentzSettings.PeakGuess = 25;
-
             }
 
             // trim FFT array based on user specifications
@@ -670,7 +663,34 @@ namespace PM2gui
 
         private void PeakGuessCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            PeakGuessTextBox.Enabled = peakGuessCheckBox.Checked;
+            lorentzSettings.isStartingPointGuess = peakGuessCheckBox.Checked;
+            if (lorentzSettings.isStartingPointGuess)
+                UpdateLorentzStartingPoints();
+        }
+
+        private void UpdateLorentzStartingPoints()
+        {
+            try
+            {
+                lorentzSettings.startPointLP.f0 = double.Parse(MidFreqGuessTextBox.Text);
+
+                lorentzSettings.startPointLP.up = double.Parse(InterGuessTextBox.Text);
+                if (YShiftCheckBox.Checked)
+                {
+                    lorentzSettings.startPointLP.A = (double.Parse(AmpGuessTextBox.Text) - lorentzSettings.startPointLP.up);
+                    lorentzSettings.startPointLP.gamma = 1;//- Math.Sqrt((lorentzSettings.startPointLP.A)/(lorentzSettings.startPointLP.A - lorentzSettings.startPointLP.up));
+                }
+                else
+                {
+                    lorentzSettings.startPointLP.A = double.Parse(AmpGuessTextBox.Text);
+                    lorentzSettings.startPointLP.gamma =  1;
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LorentzRefreshRateTextBox_TextChanged(object sender, EventArgs e)
