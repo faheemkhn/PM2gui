@@ -1,4 +1,6 @@
-﻿namespace PM2gui
+﻿using System.Windows.Forms;
+
+namespace PM2gui
 {
     partial class PM2gui
     {
@@ -1054,7 +1056,7 @@
             // 
             this.AcceptButton = this.StartWaveButton;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.StopViewingButton;
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.SpectrumBuildChart);
