@@ -83,6 +83,10 @@
             this.peakTrackerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.InterGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.AmpGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.MidFreqGuessTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.peakGuessCheckBox = new System.Windows.Forms.CheckBox();
@@ -113,6 +117,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.EqualizeRefreshRateCheckBox = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.ReadingRefreshRateTextBox = new System.Windows.Forms.TextBox();
@@ -150,12 +156,6 @@
             this.LorentzianFittingTimeLabel = new System.Windows.Forms.Label();
             this.TimeDomainPlottingTimeLabel = new System.Windows.Forms.Label();
             this.DataSamplingTimeLabel = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
-            this.AmpGuessTextBox = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.InterGuessTextBox = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
@@ -463,10 +463,10 @@
             this.DeflectionChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
             series4.BorderWidth = 2;
             series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Color = System.Drawing.Color.Black;
             series4.Name = "Series1";
-            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series4.YValuesPerPoint = 2;
             this.DeflectionChart.Series.Add(series4);
             title1.Name = "Title1";
@@ -532,6 +532,26 @@
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // InterGuessTextBox
+            // 
+            resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
+            this.InterGuessTextBox.Name = "InterGuessTextBox";
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
+            // 
+            // AmpGuessTextBox
+            // 
+            resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
+            this.AmpGuessTextBox.Name = "AmpGuessTextBox";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
             // 
             // MidFreqGuessTextBox
             // 
@@ -747,6 +767,28 @@
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // BufferSizeComboBox
+            // 
+            this.BufferSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BufferSizeComboBox.FormattingEnabled = true;
+            this.BufferSizeComboBox.Items.AddRange(new object[] {
+            resources.GetString("BufferSizeComboBox.Items"),
+            resources.GetString("BufferSizeComboBox.Items1"),
+            resources.GetString("BufferSizeComboBox.Items2"),
+            resources.GetString("BufferSizeComboBox.Items3"),
+            resources.GetString("BufferSizeComboBox.Items4"),
+            resources.GetString("BufferSizeComboBox.Items5"),
+            resources.GetString("BufferSizeComboBox.Items6"),
+            resources.GetString("BufferSizeComboBox.Items7")});
+            resources.ApplyResources(this.BufferSizeComboBox, "BufferSizeComboBox");
+            this.BufferSizeComboBox.Name = "BufferSizeComboBox";
+            this.BufferSizeComboBox.SelectionChangeCommitted += new System.EventHandler(this.BufferSizeComboBox_SelectionChangeCommitted);
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
             // 
             // EqualizeRefreshRateCheckBox
             // 
@@ -1007,47 +1049,6 @@
             // 
             resources.ApplyResources(this.DataSamplingTimeLabel, "DataSamplingTimeLabel");
             this.DataSamplingTimeLabel.Name = "DataSamplingTimeLabel";
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
-            // 
-            // BufferSizeComboBox
-            // 
-            this.BufferSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BufferSizeComboBox.FormattingEnabled = true;
-            this.BufferSizeComboBox.Items.AddRange(new object[] {
-            resources.GetString("BufferSizeComboBox.Items"),
-            resources.GetString("BufferSizeComboBox.Items1"),
-            resources.GetString("BufferSizeComboBox.Items2"),
-            resources.GetString("BufferSizeComboBox.Items3"),
-            resources.GetString("BufferSizeComboBox.Items4"),
-            resources.GetString("BufferSizeComboBox.Items5"),
-            resources.GetString("BufferSizeComboBox.Items6"),
-            resources.GetString("BufferSizeComboBox.Items7")});
-            resources.ApplyResources(this.BufferSizeComboBox, "BufferSizeComboBox");
-            this.BufferSizeComboBox.Name = "BufferSizeComboBox";
-            // 
-            // AmpGuessTextBox
-            // 
-            resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
-            this.AmpGuessTextBox.Name = "AmpGuessTextBox";
-            // 
-            // label24
-            // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Name = "label24";
-            // 
-            // InterGuessTextBox
-            // 
-            resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
-            this.InterGuessTextBox.Name = "InterGuessTextBox";
-            // 
-            // label25
-            // 
-            resources.ApplyResources(this.label25, "label25");
-            this.label25.Name = "label25";
             // 
             // PM2gui
             // 

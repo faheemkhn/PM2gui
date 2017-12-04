@@ -798,16 +798,16 @@
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 48</value>
+    <value>39, 48</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
+    <value>53, 13</value>
   </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Start Freq (kHz)</value>
+    <value>Start Freq</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -825,16 +825,16 @@
     <value>True</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 50</value>
+    <value>150, 47</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
+    <value>53, 13</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Stop Freq (kHz)</value>
+    <value>Stop Freq</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
@@ -1104,7 +1104,7 @@
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 48</value>
+    <value>236, 47</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
@@ -1335,16 +1335,16 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 95</value>
+    <value>43, 95</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
+    <value>49, 13</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>54</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>f0 Guess (kHz)</value>
+    <value>f0 Guess</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>

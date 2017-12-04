@@ -93,6 +93,7 @@ namespace PM2gui
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
             specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text);
             BufferSizeComboBox.SelectedIndex = 5;
+            _sampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
             // init lorentz guess
             lorentzSettings.startPointLP = lp;
             
@@ -154,11 +155,11 @@ namespace PM2gui
             FftChart.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
             FftChart.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
             FftChart.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = true;
-            FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
+
             FftChart.ChartAreas[0].AxisY.Title = "Magnitude";
             //pM2fD.ChartAreas[0].AxisY.Interval = 2000;
             //pM2fD.ChartAreas[0].AxisX.Minimum = 0;
-            //pM2fD.ChartAreas[0].AxisX.Maximum = 100;
+            //pM2fD.ChartAreas[0].AxisX.Ma            FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";ximum = 100;
             //pM2fD.ChartAreas[0].AxisY.Minimum = 0;
             //pM2fD.ChartAreas[0].AxisY.Maximum = 100;
             //pM2fD.ChartAreas[0].AxisX.Interval = -2000;
@@ -307,11 +308,13 @@ namespace PM2gui
 
         }
 
+        private int _sampleCount;
+
         private void WaveFormTimer_Tick(object sender, EventArgs e)
         {
 
             totalSW.Restart();
-            int SampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
+            int SampleCount = _sampleCount;
             Stopwatch sw = new Stopwatch();
 
            // ReInitProcessTimes();
@@ -382,6 +385,8 @@ namespace PM2gui
             ExportSnapShotButton.Enabled = false;
             PiezoButton.Enabled = false;
 
+            DeflectionChart.Series["Series1"].Points.Clear();
+            SpectrumBuildChart.Series["Series1"].Points.Clear();
         }
 
         private void UpdateWaveCharts()
@@ -422,6 +427,17 @@ namespace PM2gui
         {
             pM2WaveForm.timebase = (short)(FreqMaxComboBox.SelectedIndex + 1);
             NoAvButton.PerformClick();
+            if (FreqMaxComboBox.SelectedIndex > 7)
+            {
+                WaveFormChart.ChartAreas[0].AxisX.Title = "Time (us)";
+                FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
+            }
+            else
+            {
+                WaveFormChart.ChartAreas[0].AxisX.Title = "Time (ns)";
+                FftChart.ChartAreas[0].AxisX.Title = "Frequency (MHz)";
+            }
+
         }
 
         private void VoltRangComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -859,6 +875,7 @@ namespace PM2gui
 
         private void StartDeflectionButton_Click(object sender, EventArgs e)
         {
+            DeflectionChart.Series["Series1"].Points.Clear();
             appSettings.isDeflectionReading = true;
             StartDeflectionButton.Enabled = false;
             StopDeflectionButton.Enabled = true;
@@ -878,7 +895,8 @@ namespace PM2gui
         private void UpdateDeflectionCharts()
         {
             //Convert.ToDouble(DateTime.Now - DeflectionStartTime)
-            DeflectionChart.Series["Series1"].Points.AddXY(DateTime.Now/*deflectionTrackTime*/, plottableData.WaveFormData.amp.Average());
+            DeflectionChart.ChartAreas[0].AxisX.Minimum = TimeSpantoMilisecond(DateTime.Now - DeflectionStartTime) - specBuildPeriod * 10;
+            DeflectionChart.Series["Series1"].Points.AddXY(TimeSpantoMilisecond(DateTime.Now - DeflectionStartTime), plottableData.WaveFormData.amp.Average());
             deflectionTrackTime += WaveFormTimer.Interval;
 
             DeflectionList.Add(plottableData.WaveFormData.amp.Average());
@@ -898,10 +916,15 @@ namespace PM2gui
         private void UpdateSpectrumBuildingChart()
         {
 
-            SpectrumBuildChart.Series["Series1"].Points.AddXY(DateTime.Now/*spectBuilTrackTime*/, DeflectionList.Skip(GetSpecBuildDataPointsToSkip()).Average());
+            SpectrumBuildChart.Series["Series1"].Points.AddXY(TimeSpantoMilisecond(DateTime.Now - SpecBuildStartTime), DeflectionList.Skip(GetSpecBuildDataPointsToSkip()).Average());
             spectBuilTrackTime += specBuildPeriod; //pulse period
             DeflectionList.Clear();
             
+        }
+
+        private double TimeSpantoMilisecond( TimeSpan timeSpan)
+        {
+            return timeSpan.TotalMilliseconds;
         }
 
         private int GetMaxDeflectionListLength()
@@ -920,7 +943,7 @@ namespace PM2gui
 
         private void PulseFrequencyTextBox_TextChanged(object sender, EventArgs e)
         {
-            specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text);
+            specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text) / 2 ;
         }
 
         private void SpectrumBuildCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -928,5 +951,24 @@ namespace PM2gui
             if (SpectrumBuildCheckBox.Checked)
                 SpecBuildStartTime = DateTime.Now;
         }
+
+
+        private void BufferSizeComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            NoAvButton.Checked = true;
+            _sampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
+
+            if (BufferSizeComboBox.SelectedIndex > 2)
+            {
+                WaveFormChart.ChartAreas[0].AxisX.Title = "Time (us)";
+                FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
+            }
+            else
+            {
+                WaveFormChart.ChartAreas[0].AxisX.Title = "Time (ns)";
+                FftChart.ChartAreas[0].AxisX.Title = "Frequency (MHz)";
+            }
+        }
+
     }
 }

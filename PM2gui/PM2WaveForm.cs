@@ -23,7 +23,7 @@ namespace PM2Waveform
         //define parameters based on Pico.Pico
         static short handle;
         ushort[] inputRanges = Pico.PicoInterfacer.inputRanges;
-        public const int BUFFER_SIZE = Pico.PicoInterfacer.BUFFER_SIZE;
+        //public const int BUFFER_SIZE = Pico.PicoInterfacer.BUFFER_SIZE;
         public const int SINGLE_SCOPE = Pico.PicoInterfacer.SINGLE_SCOPE;
         public const int DUAL_SCOPE = Pico.PicoInterfacer.DUAL_SCOPE;
         public short timebase = Pico.PicoInterfacer.timebase;
@@ -173,6 +173,11 @@ namespace PM2Waveform
 
         }
 
+        public void UpdatePicoBufferSize(int sampleCount)
+        {
+            pi.BUFFER_SIZE = sampleCount;
+        }
+
         /****************************************************************************
         * ShutDowm
         * Disconnects from device
@@ -202,7 +207,7 @@ namespace PM2Waveform
             //processTimes.samplingTime = sw.Elapsed;
 
             sw.Restart();
-            PlottableData plottableData = new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft), WaveFormData = waveFormData };
+            PlottableData plottableData = new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft, SampleCount), WaveFormData = waveFormData };
             sw.Stop();
 
             processTimes.fftTime = sw.Elapsed;
@@ -224,6 +229,8 @@ namespace PM2Waveform
             int sampleCount = SampleCount;//*2*2*2*2; // BUFFER_SIZE;
             short timeUnit = 0;
             short status = 0;
+
+            UpdatePicoBufferSize(sampleCount);
 
             int[] time = new int[sampleCount];
             int[] amp = new int[sampleCount];
@@ -270,7 +277,7 @@ namespace PM2Waveform
                 ready = Imports.Isready(handle);
                 Thread.Sleep(1);
                 timer++;
-                if (timer > 25 & !isMessageDisconnect)
+                if (timer > 500 & !isMessageDisconnect)
                 {
                     isMessageDisconnect = true;
                     ready = -1;
@@ -314,7 +321,7 @@ namespace PM2Waveform
             * GetFFT
             *  Get the raw FFT of an array
         ****************************************************************************/
-        private FFTData GetFFT(int[] amp, int[] time, FFTSettings fftSettings, double[] lastfft)
+        private FFTData GetFFT(int[] amp, int[] time, FFTSettings fftSettings, double[] lastfft, int SampleCount)
         {
             FFTData fftData = new FFTData();
             double[] fft = new double[amp.Length];
@@ -371,7 +378,7 @@ namespace PM2Waveform
 
                 if (i % 2 == 0)
                 {
-                    freq[i / 2] = Convert.ToDouble(i / 2) / (time[9] - time[8]) * 1e3;
+                    freq[i / 2] = /*Math.Pow(2,1024/SampleCount-1) */ (1024 / SampleCount) * Convert.ToDouble(i / 2) * 1e3 / (time[9] - time[8])  ;
                 }
             }
 
@@ -391,8 +398,19 @@ namespace PM2Waveform
             if (fftSettings.isFftContAvg)
             {
                 for (int i = 0; i < fft.Length; i++)
-                    fft[i] = fft[i] * 1 / fftSettings.nFftContAvg + lastfft[i] * (fftSettings.nFftContAvg - 1) / fftSettings.nFftContAvg;
+                {
+                    try
+                    {
+                        fft[i] = fft[i] * 1 / fftSettings.nFftContAvg + lastfft[i] * (fftSettings.nFftContAvg - 1) / fftSettings.nFftContAvg;
+
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+
                 fftSettings.nFftContAvg++;
+
             }
 
             fftData.fft = fft;
