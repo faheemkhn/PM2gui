@@ -905,6 +905,7 @@ namespace PM2gui
                 List<double> DeflectionList = new List<double>();
                 plottableData.DeflectionList = DeflectionList;
                 plottableData.DeflectionList[0] = plottableData.WaveFormData.amp.Average();
+            
             }
             else */
             if (appSettings.isSpectrumBuilding & DeflectionList.Count >= GetMaxDeflectionListLength())

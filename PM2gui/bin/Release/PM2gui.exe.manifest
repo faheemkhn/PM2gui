@@ -235,14 +235,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="200664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="201688">
       <assemblyIdentity name="PM2gui" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>s8EVzLUsAmLEEnfb1ltgwKFv+xU0cSQorlmD0mT61Eo=</dsig:DigestValue>
+        <dsig:DigestValue>1wf/QIugrB874uG3BYWV4C44Uf/ARozYA68v94ZFxV4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -254,7 +254,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OjtkU6hmPLJDV0y+5ls8NE9APWsyC+zcfiQIMMEPasc=</dsig:DigestValue>
+        <dsig:DigestValue>uPFRO3RcNX0J9uOebPO0K8iyezIBRp6iyZLq5z/sjCw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

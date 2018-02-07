@@ -219,7 +219,7 @@ namespace PM2Waveform
          * HandlePicoBlockData
          * - acquires data 
          * Output:
-         *  - exports times and voltage readings of Channel A as an array.
+         *  - exports the times and voltage readings of Channel A as an array.
          * Input :
          * - offset : the offset into the data buffer to start the display's slice.
         ****************************************************************************/
