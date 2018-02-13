@@ -208,7 +208,7 @@ namespace PM2gui
         private void TimersIntervalUpdate(bool equalizeRefreshRate)
         {
             WaveFormTimer.Interval = int.Parse(Math.Round(double.Parse(ReadingRefreshRateTextBox.Text)).ToString());
-            lblChanelBRefreshRate.Text = $"x ${WaveFormTimer.Interval.ToString()}";
+            lblChanelBRefreshRate.Text = $"x {WaveFormTimer.Interval.ToString()}";
             if (equalizeRefreshRate)
             {
                 ExportRateTextBox.Text = ReadingRefreshRateTextBox.Text;
