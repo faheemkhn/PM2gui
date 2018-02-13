@@ -29,7 +29,7 @@ namespace PM2Waveform
         public short timebase = Pico.PicoInterfacer.timebase;
         public short oversample = Pico.PicoInterfacer.oversample;
         public short MAX_CHANNELS = Pico.PicoInterfacer.MAX_CHANNELS;
-        private int channelCount = SINGLE_SCOPE; //DUAL_SCOPE;
+        private int channelCount = DUAL_SCOPE; //DUAL_SCOPE;
 
         //instantiate classes and structures
         public Pico.PicoInterfacer pi = new Pico.PicoInterfacer(handle);
@@ -192,7 +192,7 @@ namespace PM2Waveform
         *  this function demonstrates how to collect a single block of data
         *  from the unit (start collecting immediately)
         ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveFormTimer, int SampleCount)
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveFormTimer, int SampleCount, bool ChanelB, ref TextBox ChanelBTextBox)
         {
             Stopwatch sw = new Stopwatch();
 
@@ -201,7 +201,7 @@ namespace PM2Waveform
             WaveFormData waveFormData = new WaveFormData();
 
             // Method that communicates with Pico to get blocked data
-            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount);
+            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount, ChanelB, ref ChanelBTextBox);
             //sw.Stop();
 
             //processTimes.samplingTime = sw.Elapsed;
@@ -223,7 +223,7 @@ namespace PM2Waveform
          * Input :
          * - offset : the offset into the data buffer to start the display's slice.
         ****************************************************************************/
-        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveformTimer, int SampleCount)
+        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveformTimer, int SampleCount, bool ChanelB, ref TextBox ChanelBTextBox)
         {
             Stopwatch sw = new Stopwatch();
             int sampleCount = SampleCount;//*2*2*2*2; // BUFFER_SIZE;
@@ -300,9 +300,27 @@ namespace PM2Waveform
 
             if (ready > 0)
             {
+                if (ChanelB)
+                {
+                    Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], pinned[1], null, null, out short overflow, timeUnit, sampleCount);
+                    // handle chanel 2 data
+                    double average=0;
+                    int i = 0;
+                    for (i = 0; i < sampleCount; i++)
+                    {
+                        average += adc_to_mv(pinned[1].Target[i], (int)channelSettings[1].range);
+                    }
+                    if (i != 0)
+                        average = Math.Round(average / i);
+
+                    ChanelBTextBox.Text = average.ToString();
+                }
+                else
+                {
+                    Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], null, null, null, out short overflow, timeUnit, sampleCount);
+                }
                 
-                Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], null, null, null, out short overflow, timeUnit, sampleCount);
-                
+                // handle channel 1
                 for (int i = 0; i < sampleCount; i++)
                 {
                     amp[i] = adc_to_mv(pinned[0].Target[i], (int)channelSettings[0].range);

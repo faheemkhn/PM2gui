@@ -38,6 +38,7 @@ namespace PM2gui
             public bool isViewing = false;
             public bool isPiezo = false;
             public bool isSnapExporting = false;
+            public bool isChanelB = false;
         }
 
         #region Initialize Public Classes and Variables
@@ -70,6 +71,7 @@ namespace PM2gui
         DateTime SpecBuildStartTime;
         PM2WaveForm.LorentzParams lp = new PM2WaveForm.LorentzParams();
 
+        int ChanelBCountDown;
         short handle;
         double[] lastfft = null;
         bool isPicoPortOpen = false;
@@ -125,7 +127,8 @@ namespace PM2gui
             {
                 CamComboBox.Items.Add(Device.Name);
             }
-            CamComboBox.SelectedIndex = 0;
+            if (CamComboBox.Items.Count > 0)
+                CamComboBox.SelectedIndex = 0;
             FinalFrame = new VideoCaptureDevice();
         }
 
@@ -198,13 +201,14 @@ namespace PM2gui
             StopPeakTrackButton.Enabled = false;
             ExportSnapShotButton.Enabled = false;
             PiezoButton.Enabled = false;
-
+            btnStartChanelB.Enabled = false;
+            btnStopChanelB.Enabled = false;
         }
 
         private void TimersIntervalUpdate(bool equalizeRefreshRate)
         {
             WaveFormTimer.Interval = int.Parse(Math.Round(double.Parse(ReadingRefreshRateTextBox.Text)).ToString());
-
+            lblChanelBRefreshRate.Text = $"x ${WaveFormTimer.Interval.ToString()}";
             if (equalizeRefreshRate)
             {
                 ExportRateTextBox.Text = ReadingRefreshRateTextBox.Text;
@@ -305,6 +309,7 @@ namespace PM2gui
             StartExportButton.Enabled = true;
             StartFilterButton.Enabled = true;
             StartDeflectionButton.Enabled = true;
+            btnStartChanelB.Enabled = true;
 
         }
 
@@ -317,11 +322,20 @@ namespace PM2gui
             int SampleCount = _sampleCount;
             Stopwatch sw = new Stopwatch();
 
-           // ReInitProcessTimes();
+            // ReInitProcessTimes();
 
+            // determine if we shuold get chanel B data
+            bool ChanelB = false;
+            if (appSettings.isChanelB)
+            {
+                int multiplier = int.Parse(tbChanelBRefreshRate.Text);
+                if (ChanelBCountDown == 0)
+                    ChanelB = true;
+                ChanelBCountDown = (ChanelBCountDown + 1) % multiplier;
+            }
 
             sw.Start();
-            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount);
+            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount, ChanelB, ref tbChanelBReading);
             sw.Stop();
 
             fftSettings.isFftStyleChange = false;
@@ -384,6 +398,9 @@ namespace PM2gui
             StopPeakTrackButton.Enabled = false;
             ExportSnapShotButton.Enabled = false;
             PiezoButton.Enabled = false;
+            btnStopChanelB.Enabled = false;
+            btnStartChanelB.Enabled = false;
+            tbChanelBRefreshRate.Enabled = true;
 
             DeflectionChart.Series["Series1"].Points.Clear();
             SpectrumBuildChart.Series["Series1"].Points.Clear();
@@ -971,5 +988,25 @@ namespace PM2gui
             }
         }
 
+
+        private void btnStartChanelB_Click(object sender, EventArgs e)
+        {
+            btnStopChanelB.Enabled = true;
+            btnStartChanelB.Enabled = false;
+            tbChanelBRefreshRate.Enabled = false;
+
+            appSettings.isChanelB = true;
+            ChanelBCountDown = 0;
+        }
+
+        private void btnStopChanelB_Click(object sender, EventArgs e)
+        {
+            btnStartChanelB.Enabled = true;
+            btnStopChanelB.Enabled = false;
+            tbChanelBRefreshRate.Enabled = true;
+
+            appSettings.isChanelB = false;
+            ChanelBCountDown = -1;
+        }
     }
 }

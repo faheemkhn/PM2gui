@@ -235,14 +235,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="201688">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PM2gui.exe" size="200704">
       <assemblyIdentity name="PM2gui" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1wf/QIugrB874uG3BYWV4C44Uf/ARozYA68v94ZFxV4=</dsig:DigestValue>
+        <dsig:DigestValue>hRB7QSP0ooxpiwxVp2OJrzI+cWaVN5Po4yQwSFY3EFE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -254,7 +254,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uPFRO3RcNX0J9uOebPO0K8iyezIBRp6iyZLq5z/sjCw=</dsig:DigestValue>
+        <dsig:DigestValue>J7WtOFGH6NI5kr7SVfK6up2aFLNTQVvUZy+1xhoP08E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -276,13 +276,13 @@
       <dsig:DigestValue>JT+QVAl7tBBicFuyDnqhWS6K+bLkn1Hb+T9EwUl7970=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PM2gui.exe.config" size="768">
+  <file name="PM2gui.exe.config" size="751">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QyscAmMvGh6OV5G4GYR3lPTXNVG1ozk3GHEjwC9urg4=</dsig:DigestValue>
+      <dsig:DigestValue>IWlCfDqvFgbfnRjA90ir0UDtVUwv5zi/yYtvfgHFzQA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\GeneralMatrix.dll" size="58368">
