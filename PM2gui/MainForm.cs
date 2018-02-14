@@ -93,7 +93,7 @@ namespace PM2gui
             PicoPortInit();
             ButtonInit();
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
-            specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text);
+            
             BufferSizeComboBox.SelectedIndex = 5;
             _sampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
             // init lorentz guess
@@ -191,12 +191,8 @@ namespace PM2gui
 
             LorentzStartButton.Enabled = false;
             LorentzStopButton.Enabled = false;
-            StartDeflectionButton.Enabled = false;
-            StopDeflectionButton.Enabled = false;
             StartExportButton.Enabled = false;
             StopExportButton.Enabled = false;
-            StartFilterButton.Enabled = false;
-            StopFilterButton.Enabled = false;
             StartPeakTrackButton.Enabled = false;
             StopPeakTrackButton.Enabled = false;
             ExportSnapShotButton.Enabled = false;
@@ -307,8 +303,6 @@ namespace PM2gui
             StartWaveButton.Enabled = false;
             StopWaveButton.Enabled = true;
             StartExportButton.Enabled = true;
-            StartFilterButton.Enabled = true;
-            StartDeflectionButton.Enabled = true;
             btnStartChanelB.Enabled = true;
 
         }
@@ -343,9 +337,7 @@ namespace PM2gui
             sw.Restart();
 
             UpdateWaveCharts();
-            appSettings.isSpectrumBuilding = SpectrumBuildCheckBox.Checked;
-            if (appSettings.isDeflectionReading)
-                UpdateDeflectionCharts();
+
 
             sw.Stop();
             processTimes.wavePlottingTime = sw.Elapsed;
@@ -383,27 +375,21 @@ namespace PM2gui
 
             LorentzStopButton.PerformClick();
             StopExportButton.PerformClick();
-            StopFilterButton.PerformClick();
-            StopDeflectionButton.PerformClick();
+            btnStopChanelB.PerformClick();
 
             LorentzStartButton.Enabled = false;
             LorentzStopButton.Enabled = false;
-            StartDeflectionButton.Enabled = false;
-            StopDeflectionButton.Enabled = false;
+
             StartExportButton.Enabled = false;
             StopExportButton.Enabled = false;
-            StartFilterButton.Enabled = false;
-            StopFilterButton.Enabled = false;
+
             StartPeakTrackButton.Enabled = false;
             StopPeakTrackButton.Enabled = false;
             ExportSnapShotButton.Enabled = false;
             PiezoButton.Enabled = false;
             btnStopChanelB.Enabled = false;
             btnStartChanelB.Enabled = false;
-            tbChanelBRefreshRate.Enabled = true;
 
-            DeflectionChart.Series["Series1"].Points.Clear();
-            SpectrumBuildChart.Series["Series1"].Points.Clear();
         }
 
         private void UpdateWaveCharts()
@@ -890,85 +876,7 @@ namespace PM2gui
 
         // LONG TIME DOMAIN
 
-        private void StartDeflectionButton_Click(object sender, EventArgs e)
-        {
-            DeflectionChart.Series["Series1"].Points.Clear();
-            appSettings.isDeflectionReading = true;
-            StartDeflectionButton.Enabled = false;
-            StopDeflectionButton.Enabled = true;
-            DeflectionStartTime = DateTime.Now;
-            if(SpectrumBuildCheckBox.Checked)
-                SpecBuildStartTime = DateTime.Now;
-            
-        }
 
-        private void StopDeflectionButton_Click(object sender, EventArgs e)
-        {
-            appSettings.isDeflectionReading = false;
-            StartDeflectionButton.Enabled = true;
-            StopDeflectionButton.Enabled = false;
-        }
-
-        private void UpdateDeflectionCharts()
-        {
-            //Convert.ToDouble(DateTime.Now - DeflectionStartTime)
-            DeflectionChart.ChartAreas[0].AxisX.Minimum = TimeSpantoMilisecond(DateTime.Now - DeflectionStartTime) - specBuildPeriod * 10;
-            DeflectionChart.Series["Series1"].Points.AddXY(TimeSpantoMilisecond(DateTime.Now - DeflectionStartTime), plottableData.WaveFormData.amp.Average());
-            deflectionTrackTime += WaveFormTimer.Interval;
-
-            DeflectionList.Add(plottableData.WaveFormData.amp.Average());
-            /*if (plottableData.DeflectionList == null)
-            {
-                List<double> DeflectionList = new List<double>();
-                plottableData.DeflectionList = DeflectionList;
-                plottableData.DeflectionList[0] = plottableData.WaveFormData.amp.Average();
-            
-            }
-            else */
-            if (appSettings.isSpectrumBuilding & DeflectionList.Count >= GetMaxDeflectionListLength())
-                    UpdateSpectrumBuildingChart();
-            
-
-        }
-
-        private void UpdateSpectrumBuildingChart()
-        {
-
-            SpectrumBuildChart.Series["Series1"].Points.AddXY(TimeSpantoMilisecond(DateTime.Now - SpecBuildStartTime), DeflectionList.Skip(GetSpecBuildDataPointsToSkip()).Average());
-            spectBuilTrackTime += specBuildPeriod; //pulse period
-            DeflectionList.Clear();
-            
-        }
-
-        private double TimeSpantoMilisecond( TimeSpan timeSpan)
-        {
-            return timeSpan.TotalMilliseconds;
-        }
-
-        private int GetMaxDeflectionListLength()
-        {
-            return Convert.ToInt32(specBuildPeriod / WaveFormTimer.Interval); // max  = 1000 / pulse frequency / refresh rate 
-        }
-
-        private int GetSpecBuildDataPointsToSkip()
-        {
-            int maxDeflectionListLength = GetMaxDeflectionListLength();
-            double lookBackTime = double.Parse(BackAvPeriodTextBox.Text);
-            int lookBackTimeDataPointsLength = Convert.ToInt32(Math.Ceiling(specBuildPeriod / lookBackTime));
-
-            return maxDeflectionListLength - lookBackTimeDataPointsLength;
-        }
-
-        private void PulseFrequencyTextBox_TextChanged(object sender, EventArgs e)
-        {
-            specBuildPeriod = 1e3 / double.Parse(PulseFrequencyTextBox.Text) / 2 ;
-        }
-
-        private void SpectrumBuildCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (SpectrumBuildCheckBox.Checked)
-                SpecBuildStartTime = DateTime.Now;
-        }
 
 
         private void BufferSizeComboBox_SelectionChangeCommitted(object sender, EventArgs e)
