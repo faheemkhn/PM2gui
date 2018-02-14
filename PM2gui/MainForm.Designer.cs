@@ -32,16 +32,16 @@ namespace PM2gui
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -133,12 +133,12 @@ namespace PM2gui
             this.TimeDomainPlottingTimeLabel = new System.Windows.Forms.Label();
             this.DataSamplingTimeLabel = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ChanelBWave = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnStopChanelB = new System.Windows.Forms.Button();
             this.btnStartChanelB = new System.Windows.Forms.Button();
-            this.lblChanelBRefreshRate = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.tbChanelBRefreshRate = new System.Windows.Forms.TextBox();
+            this.ChanelBTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
@@ -152,7 +152,7 @@ namespace PM2gui
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChanelBWave)).BeginInit();
             this.SuspendLayout();
             // 
             // StartWaveButton
@@ -177,38 +177,38 @@ namespace PM2gui
             // 
             // WaveFormChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.WaveFormChart.ChartAreas.Add(chartArea1);
+            chartArea13.Name = "ChartArea1";
+            this.WaveFormChart.ChartAreas.Add(chartArea13);
             resources.ApplyResources(this.WaveFormChart, "WaveFormChart");
             this.WaveFormChart.Name = "WaveFormChart";
             this.WaveFormChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Black;
-            series1.Name = "Series1";
-            this.WaveFormChart.Series.Add(series1);
+            series16.BorderWidth = 2;
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series16.Color = System.Drawing.Color.Black;
+            series16.Name = "Series1";
+            this.WaveFormChart.Series.Add(series16);
             // 
             // FftChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.FftChart.ChartAreas.Add(chartArea2);
+            chartArea14.Name = "ChartArea1";
+            this.FftChart.ChartAreas.Add(chartArea14);
             resources.ApplyResources(this.FftChart, "FftChart");
             this.FftChart.Name = "FftChart";
             this.FftChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.Name = "Series1";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Red;
-            series3.LabelForeColor = System.Drawing.Color.Bisque;
-            series3.Name = "Series2";
-            this.FftChart.Series.Add(series2);
-            this.FftChart.Series.Add(series3);
+            series17.BorderWidth = 3;
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series17.Color = System.Drawing.Color.Black;
+            series17.Name = "Series1";
+            series18.BorderWidth = 2;
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series18.Color = System.Drawing.Color.Red;
+            series18.LabelForeColor = System.Drawing.Color.Bisque;
+            series18.Name = "Series2";
+            this.FftChart.Series.Add(series17);
+            this.FftChart.Series.Add(series18);
             // 
             // CamPictureBox
             // 
@@ -437,25 +437,25 @@ namespace PM2gui
             // 
             // peakTrackerChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.peakTrackerChart.ChartAreas.Add(chartArea3);
+            chartArea15.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea15);
             resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
             this.peakTrackerChart.Name = "peakTrackerChart";
             this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Color = System.Drawing.Color.Black;
-            series4.Name = "Series1";
-            this.peakTrackerChart.Series.Add(series4);
-            title1.Name = "Peak Tracker";
-            title1.Position.Auto = false;
-            title1.Position.Height = 5.516974F;
-            title1.Position.Width = 70F;
-            title1.Position.X = 15F;
-            title1.Position.Y = 45F;
-            title1.Text = "Peak Tracker";
-            this.peakTrackerChart.Titles.Add(title1);
+            series19.BorderWidth = 2;
+            series19.ChartArea = "ChartArea1";
+            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series19.Color = System.Drawing.Color.Black;
+            series19.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series19);
+            title4.Name = "Peak Tracker";
+            title4.Position.Auto = false;
+            title4.Position.Height = 5.516974F;
+            title4.Position.Width = 70F;
+            title4.Position.X = 15F;
+            title4.Position.Y = 45F;
+            title4.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title4);
             // 
             // groupBox2
             // 
@@ -847,26 +847,26 @@ namespace PM2gui
             // 
             this.groupBox11.Controls.Add(this.btnStopChanelB);
             this.groupBox11.Controls.Add(this.btnStartChanelB);
-            this.groupBox11.Controls.Add(this.lblChanelBRefreshRate);
             this.groupBox11.Controls.Add(this.label26);
             this.groupBox11.Controls.Add(this.tbChanelBRefreshRate);
             resources.ApplyResources(this.groupBox11, "groupBox11");
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.TabStop = false;
             // 
-            // chart1
+            // ChanelBWave
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            resources.ApplyResources(this.chart1, "chart1");
-            this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Black;
-            series5.Name = "Series1";
-            this.chart1.Series.Add(series5);
+            chartArea16.Name = "ChartArea1";
+            this.ChanelBWave.ChartAreas.Add(chartArea16);
+            resources.ApplyResources(this.ChanelBWave, "ChanelBWave");
+            this.ChanelBWave.Name = "ChanelBWave";
+            this.ChanelBWave.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series20.BorderWidth = 2;
+            series20.ChartArea = "ChartArea1";
+            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series20.Color = System.Drawing.Color.Black;
+            series20.Name = "Series1";
+            this.ChanelBWave.Series.Add(series20);
+            this.ChanelBWave.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChanelBWave_MouseMove);
             // 
             // btnStopChanelB
             // 
@@ -884,11 +884,6 @@ namespace PM2gui
             this.btnStartChanelB.UseVisualStyleBackColor = true;
             this.btnStartChanelB.Click += new System.EventHandler(this.btnStartChanelB_Click);
             // 
-            // lblChanelBRefreshRate
-            // 
-            resources.ApplyResources(this.lblChanelBRefreshRate, "lblChanelBRefreshRate");
-            this.lblChanelBRefreshRate.Name = "lblChanelBRefreshRate";
-            // 
             // label26
             // 
             resources.ApplyResources(this.label26, "label26");
@@ -898,6 +893,11 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.tbChanelBRefreshRate, "tbChanelBRefreshRate");
             this.tbChanelBRefreshRate.Name = "tbChanelBRefreshRate";
+            this.tbChanelBRefreshRate.TextChanged += new System.EventHandler(this.tbChanelBRefreshRate_TextChanged);
+            // 
+            // ChanelBTimer
+            // 
+            this.ChanelBTimer.Tick += new System.EventHandler(this.ChanelBTimer_Tick);
             // 
             // PM2gui
             // 
@@ -905,7 +905,7 @@ namespace PM2gui
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.StopViewingButton;
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.ChanelBWave);
             this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox8);
@@ -945,7 +945,7 @@ namespace PM2gui
             this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChanelBWave)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1044,10 +1044,10 @@ namespace PM2gui
         private GroupBox groupBox11;
         private Label label26;
         private TextBox tbChanelBRefreshRate;
-        private Label lblChanelBRefreshRate;
         private Button btnStopChanelB;
         private Button btnStartChanelB;
-        public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        public System.Windows.Forms.DataVisualization.Charting.Chart ChanelBWave;
+        private Timer ChanelBTimer;
     }
 }
 

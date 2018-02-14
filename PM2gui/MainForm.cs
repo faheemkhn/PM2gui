@@ -82,7 +82,13 @@ namespace PM2gui
         double deflectionTrackTime = 0;
         double spectBuilTrackTime = 0;
         double specBuildPeriod;
+
         #endregion
+
+        #region Private Variables
+        private int _sampleCount;
+        #endregion
+
 
         private void PM2gui_Load(object sender, EventArgs e)
         {
@@ -149,6 +155,17 @@ namespace PM2gui
             WaveFormChart.ChartAreas[0].AxisY.Title = "Amplitude (mV)";
 
 
+            // chanle B charts
+            ChanelBWave.ChartAreas[0].CursorX.IsUserEnabled = true;
+            ChanelBWave.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
+            ChanelBWave.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
+            ChanelBWave.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
+            ChanelBWave.ChartAreas[0].AxisX.Minimum = 0;
+            ChanelBWave.ChartAreas[0].AxisY.Maximum = inputRanges[VoltRangComboBox.SelectedIndex];
+            ChanelBWave.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex] * -1;
+            ChanelBWave.ChartAreas[0].AxisX.Title = "Time (us)";
+            ChanelBWave.ChartAreas[0].AxisY.Title = "Amplitude (mV)";
+
             //frequency domain
             FftChart.ChartAreas[0].CursorX.IsUserEnabled = true;
             FftChart.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
@@ -204,7 +221,8 @@ namespace PM2gui
         private void TimersIntervalUpdate(bool equalizeRefreshRate)
         {
             WaveFormTimer.Interval = int.Parse(Math.Round(double.Parse(ReadingRefreshRateTextBox.Text)).ToString());
-            lblChanelBRefreshRate.Text = $"x {WaveFormTimer.Interval.ToString()}";
+            ChanelBTimer.Interval = int.Parse(Math.Round(double.Parse(tbChanelBRefreshRate.Text)).ToString());
+
             if (equalizeRefreshRate)
             {
                 ExportRateTextBox.Text = ReadingRefreshRateTextBox.Text;
@@ -291,6 +309,36 @@ namespace PM2gui
             }
         }
 
+        private void ChanelBWave_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;
+            if (prevPositionfD.HasValue && pos == prevPositionfD.Value)
+                return;
+            tooltipfD.RemoveAll();
+            prevPositionfD = pos;
+            var results = ChanelBWave.HitTest(pos.X, pos.Y, false,
+                                            ChartElementType.DataPoint);
+            foreach (var result in results)
+            {
+                if (result.ChartElementType == ChartElementType.DataPoint)
+                {
+                    if (result.Object is DataPoint prop)
+                    {
+                        var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
+                        var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
+
+                        // check if the cursor is really close to the point (2 pixels around)
+                        if (Math.Abs(pos.X - pointXPixel) < 2 &&
+                            Math.Abs(pos.Y - pointYPixel) < 2)
+                        {
+                            tooltipfD.Show("X=" + prop.XValue + ", Y=" + prop.YValues[0], this.ChanelBWave,
+                                            pos.X, pos.Y - 15);
+                        }
+                    }
+                }
+            }
+        }
+
 
 
         // PICO READING AND FFT
@@ -307,7 +355,7 @@ namespace PM2gui
 
         }
 
-        private int _sampleCount;
+        
 
         private void WaveFormTimer_Tick(object sender, EventArgs e)
         {
@@ -319,17 +367,8 @@ namespace PM2gui
             // ReInitProcessTimes();
 
             // determine if we shuold get chanel B data
-            bool ChanelB = false;
-            if (appSettings.isChanelB)
-            {
-                int multiplier = int.Parse(tbChanelBRefreshRate.Text);
-                if (ChanelBCountDown == 0)
-                    ChanelB = true;
-                ChanelBCountDown = (ChanelBCountDown + 1) % multiplier;
-            }
-
             sw.Start();
-            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount, ChanelB, ref tbChanelBReading);
+            plottableData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount, false);
             sw.Stop();
 
             fftSettings.isFftStyleChange = false;
@@ -433,11 +472,13 @@ namespace PM2gui
             if (FreqMaxComboBox.SelectedIndex > 7)
             {
                 WaveFormChart.ChartAreas[0].AxisX.Title = "Time (us)";
+                ChanelBWave.ChartAreas[0].AxisX.Title = "Time (us)";
                 FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
             }
             else
             {
                 WaveFormChart.ChartAreas[0].AxisX.Title = "Time (ns)";
+                ChanelBWave.ChartAreas[0].AxisX.Title = "Time (ns)";
                 FftChart.ChartAreas[0].AxisX.Title = "Frequency (MHz)";
             }
 
@@ -449,6 +490,9 @@ namespace PM2gui
             pM2WaveForm.ChangePicoVoltage(handle, channelSettings);
             WaveFormChart.ChartAreas[0].AxisY.Maximum = inputRanges[VoltRangComboBox.SelectedIndex];
             WaveFormChart.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex] * -1;
+
+            ChanelBWave.ChartAreas[0].AxisY.Maximum = inputRanges[VoltRangComboBox.SelectedIndex];
+            ChanelBWave.ChartAreas[0].AxisY.Minimum = inputRanges[VoltRangComboBox.SelectedIndex] * -1;
         }
 
         private void MovAvButton_CheckedChanged_1(object sender, EventArgs e)
@@ -482,6 +526,7 @@ namespace PM2gui
             FftChart.Series["Series2"].Points.Clear();
             WaveFormChart.Series["Series1"].Points.Clear();
             FftChart.Series["Series1"].Points.Clear();
+            ChanelBWave.Series["Series1"].Points.Clear();
 
         }
 
@@ -887,11 +932,13 @@ namespace PM2gui
             if (BufferSizeComboBox.SelectedIndex > 2)
             {
                 WaveFormChart.ChartAreas[0].AxisX.Title = "Time (us)";
+                ChanelBWave.ChartAreas[0].AxisX.Title = "Time (us)";
                 FftChart.ChartAreas[0].AxisX.Title = "Frequency (kHz)";
             }
             else
             {
                 WaveFormChart.ChartAreas[0].AxisX.Title = "Time (ns)";
+                ChanelBWave.ChartAreas[0].AxisX.Title = "Time (ns)";
                 FftChart.ChartAreas[0].AxisX.Title = "Frequency (MHz)";
             }
         }
@@ -903,18 +950,63 @@ namespace PM2gui
             btnStartChanelB.Enabled = false;
             tbChanelBRefreshRate.Enabled = false;
 
+
             appSettings.isChanelB = true;
             ChanelBCountDown = 0;
+
+            ChanelBTimer.Start();
         }
 
         private void btnStopChanelB_Click(object sender, EventArgs e)
         {
+            ChanelBTimer.Stop();
+
             btnStartChanelB.Enabled = true;
             btnStopChanelB.Enabled = false;
             tbChanelBRefreshRate.Enabled = true;
 
             appSettings.isChanelB = false;
             ChanelBCountDown = -1;
+        }
+
+        private void ChanelBTimer_Tick(object sender, EventArgs e)
+        {
+            totalSW.Start();
+            int SampleCount = _sampleCount;
+            Stopwatch sw = new Stopwatch();
+
+            var chanelBData = new PM2WaveForm.PlottableData();
+
+            sw.Start();
+            chanelBData = pM2WaveForm.GetPlottableData(handle, channelSettings, fftSettings, lastfft, ref processTimes, ref WaveFormTimer, SampleCount, true);
+            sw.Stop();
+
+            sw.Restart();
+            UpdateChanelBChart(chanelBData);
+            sw.Stop();
+            processTimes.chanelBPlottingTime = sw.Elapsed;
+
+            TimeDomainPlottingTimeLabel.Text = "Time Domain Plotting (ms) = " + Convert.ToString(processTimes.wavePlottingTime.Milliseconds);
+            DataSamplingTimeLabel.Text = "Data Sampling (ms) = " + Convert.ToString(processTimes.samplingTime.Milliseconds);
+            FftTimeLabel.Text = "FFT (ms) = " + Convert.ToString(processTimes.fftTime.Milliseconds);
+            totalSW.Stop();
+        }
+
+        private void UpdateChanelBChart(PM2WaveForm.PlottableData data)
+        {
+            ChanelBWave.Series["Series1"].Points.Clear();
+
+
+            for (int i = 0; i < data.WaveFormData.amp.Length; i++)
+            {
+                ChanelBWave.Series["Series1"].Points.AddXY(data.WaveFormData.time[i] / 1e6, data.WaveFormData.amp[i]); // time in us
+
+            }
+        }
+
+        private void tbChanelBRefreshRate_TextChanged(object sender, EventArgs e)
+        {
+            TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
     }
 }

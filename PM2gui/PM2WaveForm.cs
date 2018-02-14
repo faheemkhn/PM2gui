@@ -116,10 +116,11 @@ namespace PM2Waveform
             public TimeSpan microViewingTime;
             public TimeSpan ardunioComTime;
             public TimeSpan exportTime;
+            public TimeSpan chanelBPlottingTime;
 
             public TimeSpan sumAllProcessTimes()
             {
-                return samplingTime + fftTime + wavePlottingTime + freqPlottingTime + fittingTime + microViewingTime + ardunioComTime + exportTime; 
+                return samplingTime + fftTime + wavePlottingTime + freqPlottingTime + fittingTime + microViewingTime + ardunioComTime + exportTime + chanelBPlottingTime; 
             }
         }
         
@@ -192,7 +193,7 @@ namespace PM2Waveform
         *  this function demonstrates how to collect a single block of data
         *  from the unit (start collecting immediately)
         ****************************************************************************/
-        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveFormTimer, int SampleCount, bool ChanelB, ref TextBox ChanelBTextBox)
+        public PlottableData GetPlottableData(short handle, Pico.ChannelSettings[] channelSettings, FFTSettings fftSettings, double[] lastfft, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveFormTimer, int SampleCount, bool isChanelB)
         {
             Stopwatch sw = new Stopwatch();
 
@@ -201,11 +202,14 @@ namespace PM2Waveform
             WaveFormData waveFormData = new WaveFormData();
 
             // Method that communicates with Pico to get blocked data
-            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount, ChanelB, ref ChanelBTextBox);
+            HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount, isChanelB);
             //sw.Stop();
 
-            //processTimes.samplingTime = sw.Elapsed;
+            //return if it's chanel B
+            if (isChanelB)
+                return new PlottableData { fftData = new FFTData(), WaveFormData = waveFormData };
 
+            // calculate fft data if is not chanel B
             sw.Restart();
             PlottableData plottableData = new PlottableData { fftData = GetFFT(waveFormData.amp, waveFormData.time, fftSettings, lastfft, SampleCount), WaveFormData = waveFormData };
             sw.Stop();
@@ -223,7 +227,7 @@ namespace PM2Waveform
          * Input :
          * - offset : the offset into the data buffer to start the display's slice.
         ****************************************************************************/
-        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveformTimer, int SampleCount, bool ChanelB, ref TextBox ChanelBTextBox)
+        private void HandlePicoBlockData(int offset, Pico.ChannelSettings[] channelSettings, short handle, ref WaveFormData waveFormData, ref ProcessTimes processTimes, ref System.Windows.Forms.Timer WaveformTimer, int SampleCount, bool ChanelB)
         {
             Stopwatch sw = new Stopwatch();
             int sampleCount = SampleCount;//*2*2*2*2; // BUFFER_SIZE;
@@ -302,18 +306,7 @@ namespace PM2Waveform
             {
                 if (ChanelB)
                 {
-                    Imports.GetTimesAndValues(handle, pinnedTimes, pinned[0], pinned[1], null, null, out short overflow, timeUnit, sampleCount);
-                    // handle chanel 2 data
-                    double average=0;
-                    int i = 0;
-                    for (i = 0; i < sampleCount; i++)
-                    {
-                        average += adc_to_mv(pinned[1].Target[i], (int)channelSettings[1].range);
-                    }
-                    if (i != 0)
-                        average = Math.Round(average / i);
-
-                    ChanelBTextBox.Text = average.ToString();
+                    Imports.GetTimesAndValues(handle, pinnedTimes, null, pinned[0], null, null, out short overflow, timeUnit, sampleCount);
                 }
                 else
                 {
