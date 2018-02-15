@@ -861,11 +861,13 @@ namespace PM2gui
 
         private void PiezoButton_Click(object sender, EventArgs e)
         {
-            int Start = 0, End = 0;
+            int Start = 0, End = 0, Fixed = 0;
+            string outputString;
             try
             {
                 Start = int.Parse(startFreqPiezoTextBox.Text);
                 End = int.Parse(stopFreqPiezoTextBox.Text);
+                Fixed = int.Parse(FixedFreqPiezoTextBox.Text);
             }
             catch
             {
@@ -873,11 +875,16 @@ namespace PM2gui
                 return;
             }
 
+            if (radioButtonFixed.Checked)
+                outputString = $"fs{Fixed:000}";
+            else
+                outputString = $"sS{Start:000}E{End:000}";
+
             Stopwatch sw = new Stopwatch();
 
             sw.Start();
             if (isPicoPortOpen)
-                picoPort.Write($"sS{Start:000}E{End:000}");
+                picoPort.Write(outputString);
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
@@ -1126,6 +1133,14 @@ namespace PM2gui
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            sweepGroup.Visible = radioButtonSweep.Checked;
+            sweepGroup.Location = new Point(12, 86);
+        }
+
+        private void radioButtonFixed_CheckedChanged(object sender, EventArgs e)
+        {
+            fixedGroup.Visible = radioButtonFixed.Checked;
+            fixedGroup.Location = new Point(12, 86);
 
         }
     }
