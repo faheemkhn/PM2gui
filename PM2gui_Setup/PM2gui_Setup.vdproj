@@ -117,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AA9BD1869CBF4A40870790CBA00C47DC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AB7F8C17F62A2997EF5B5829D7A34FD4"
         "OwnerKey" = "8:_64E1E5800CE5B27B1791ABBCDA96956E"
         "MsmSig" = "8:_UNDEFINED"
@@ -142,7 +148,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B35A7B2298185F9E22E3104204A8D6EE"
-        "OwnerKey" = "8:_FF7998096D10CCFF5D9E61478EE2C1C0"
+        "OwnerKey" = "8:_427F9CDD430B33C57E387B27B77C7354"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,7 +160,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B35A7B2298185F9E22E3104204A8D6EE"
-        "OwnerKey" = "8:_427F9CDD430B33C57E387B27B77C7354"
+        "OwnerKey" = "8:_FF7998096D10CCFF5D9E61478EE2C1C0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -196,12 +202,6 @@
         "Entry"
         {
         "MsmKey" = "8:_D1D0B832EC080470DEFD3898A269CA06"
-        "OwnerKey" = "8:_A953508090BA3D510E51D5A4AE1A5407"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D1D0B832EC080470DEFD3898A269CA06"
         "OwnerKey" = "8:_427F9CDD430B33C57E387B27B77C7354"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -209,6 +209,12 @@
         {
         "MsmKey" = "8:_D1D0B832EC080470DEFD3898A269CA06"
         "OwnerKey" = "8:_F515F6A041A64F3B8C383F973D19CA89"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D1D0B832EC080470DEFD3898A269CA06"
+        "OwnerKey" = "8:_A953508090BA3D510E51D5A4AE1A5407"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -269,12 +275,6 @@
         {
         "MsmKey" = "8:_FF7998096D10CCFF5D9E61478EE2C1C0"
         "OwnerKey" = "8:_A953508090BA3D510E51D5A4AE1A5407"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_02FD1AAE615FFA36198DD3C8F842FF04"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -385,6 +385,12 @@
         "OwnerKey" = "8:_4922DDF4CC17E081AF594802C83DE5DE"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_02FD1AAE615FFA36198DD3C8F842FF04"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -403,6 +409,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -419,6 +441,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -787,6 +817,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA9BD1869CBF4A40870790CBA00C47DC"
+            {
+            "SourcePath" = "8:..\\PM2gui\\Resources\\Cantilever.png"
+            "TargetName" = "8:Cantilever.png"
+            "Tag" = "8:"
+            "Folder" = "8:_699B3E85CA314C73A1C2501D4E93DFA9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AB7F8C17F62A2997EF5B5829D7A34FD4"
             {
             "AssemblyRegister" = "3:1"
@@ -1143,7 +1193,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PM2gui_Setup"
         "ProductCode" = "8:{CBC93EDA-B06C-4808-9021-CB0B6E8D5561}"
-        "PackageCode" = "8:{4887BF5F-6D1A-4382-AAF1-9016A924AFAB}"
+        "PackageCode" = "8:{3B4F0F8B-9243-45FA-B7B2-7CD580B2D5A8}"
         "UpgradeCode" = "8:{A0FD529E-2468-4F64-AB95-975AC039D78C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

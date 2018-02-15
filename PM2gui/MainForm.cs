@@ -17,6 +17,7 @@ namespace PM2gui
 {
     public partial class PM2gui : Form
     {
+        public int PressureTL { get; set; }
         public PM2gui()
         {
             InitializeComponent();
@@ -96,9 +97,11 @@ namespace PM2gui
             PicoscopeInit();
             AmscopeInit();
             ChartsInit();
-            PicoPortInit();
             ButtonInit();
+            PicoPortInit();
+            
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
+
             
             BufferSizeComboBox.SelectedIndex = 5;
             _sampleCount = int.Parse(BufferSizeComboBox.SelectedItem.ToString());
@@ -188,16 +191,7 @@ namespace PM2gui
         private void PicoPortInit()
         {
             //arduino
-            try
-            {
-                picoPort = new SerialPort(AutodetectArduinoPort(), 9600, Parity.None, 8, StopBits.One);
-                picoPort.Open();
-                isPicoPortOpen = true;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Could not connect to Arduino.");
-            }
+            btnRefreshPorts.PerformClick();
         }
 
         private void ButtonInit()
@@ -216,6 +210,10 @@ namespace PM2gui
             PiezoButton.Enabled = false;
             btnStartChanelB.Enabled = false;
             btnStopChanelB.Enabled = false;
+
+            btnConnectPort.Enabled = false;
+            btnDisconnectPort.Enabled = false;
+            btnPressure.Enabled = false;
         }
 
         private void TimersIntervalUpdate(bool equalizeRefreshRate)
@@ -863,12 +861,23 @@ namespace PM2gui
 
         private void PiezoButton_Click(object sender, EventArgs e)
         {
+            int Start = 0, End = 0;
+            try
+            {
+                Start = int.Parse(startFreqPiezoTextBox.Text);
+                End = int.Parse(stopFreqPiezoTextBox.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Could not parse frequence to INT");
+                return;
+            }
 
             Stopwatch sw = new Stopwatch();
 
             sw.Start();
             if (isPicoPortOpen)
-                picoPort.Write("P" + startFreqPiezoTextBox.Text + stopFreqPiezoTextBox.Text);
+                picoPort.Write($"sS{Start:000}E{End:000}");
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
@@ -1007,6 +1016,117 @@ namespace PM2gui
         private void tbChanelBRefreshRate_TextChanged(object sender, EventArgs e)
         {
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
+        }
+
+        private void btnPressure_Click(object sender, EventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            if (isPicoPortOpen)
+                picoPort.Write($"TL{trackBarTL.Value:0000}TR{trackBarTR.Value:0000}BL{trackBarBL.Value:0000}BR{trackBarBR.Value:0000}");
+            sw.Stop();
+
+            processTimes.ardunioComTime = sw.Elapsed;
+            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+        }
+
+        #region Bind trackbar and textbox
+
+
+
+        private void trackBarTL_Scroll(object sender, EventArgs e)
+        {
+            textBoxTL.Text = $"{trackBarTL.Value / 100.0}";
+        }
+
+        private void trackBarBL_Scroll(object sender, EventArgs e)
+        {
+            textBoxBL.Text = $"{trackBarBL.Value / 100.0}";
+        }
+
+        private void trackBarTR_Scroll(object sender, EventArgs e)
+        {
+            textBoxTR.Text = $"{trackBarTR.Value / 100.0}";
+        }
+
+        private void trackBarBR_Scroll(object sender, EventArgs e)
+        {
+            textBoxBR.Text = $"{trackBarBR.Value / 100.0}";
+        }
+
+        private void textBoxTL_TextChanged(object sender, EventArgs e)
+        {
+            trackBarTL.Value = Convert.ToInt32(100 * (double.Parse(textBoxTL.Text)));
+        }
+
+        private void textBoxTR_TextChanged(object sender, EventArgs e)
+        {
+            trackBarTR.Value = Convert.ToInt32(100 * (double.Parse(textBoxTR.Text)));
+        }
+
+        private void textBoxBR_TextChanged(object sender, EventArgs e)
+        {
+            trackBarBR.Value = Convert.ToInt32(100 * (double.Parse(textBoxBR.Text)));
+        }
+
+        private void textBoxBL_TextChanged(object sender, EventArgs e)
+        {
+            trackBarBL.Value = Convert.ToInt32(100 * (double.Parse(textBoxBL.Text)));
+        }
+
+        #endregion
+
+        private void btnRefreshPorts_Click(object sender, EventArgs e)
+        {
+            string[] names = SerialPort.GetPortNames();
+
+            if (names.Length == 0)
+            {
+                MessageBox.Show("Could not find any COM ports");
+                return;
+            } 
+
+            foreach (string name in names)
+            {
+                cbPorts.Items.Add(name);
+            }
+
+            btnConnectPort.Enabled = true;
+        }
+
+        private void btnConnectPort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string portName = cbPorts.SelectedItem.ToString();
+                picoPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                picoPort.Open();
+                isPicoPortOpen = true;
+
+                btnDisconnectPort.Enabled = true;
+                btnRefreshPorts.Enabled = false;
+                btnConnectPort.Enabled = false;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Could not connect to Arduino.");
+            }
+        }
+
+        private void btnDisconnectPort_Click(object sender, EventArgs e)
+        {
+            picoPort.Close();
+            isPicoPortOpen = false;
+            btnRefreshPorts.Enabled = true;
+
+            btnRefreshPorts.PerformClick();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
