@@ -876,7 +876,7 @@ namespace PM2gui
             }
 
             if (radioButtonFixed.Checked)
-                outputString = $"fs{Fixed:000}";
+                outputString = $"fS{Fixed:000}";
             else
                 outputString = $"sS{Start:000}E{End:000}";
 
@@ -1115,6 +1115,9 @@ namespace PM2gui
                 btnRefreshPorts.Enabled = false;
                 btnConnectPort.Enabled = false;
 
+                PiezoButton.Enabled = true;
+                btnPressure.Enabled = true;
+
             }
             catch (Exception)
             {
@@ -1127,6 +1130,9 @@ namespace PM2gui
             picoPort.Close();
             isPicoPortOpen = false;
             btnRefreshPorts.Enabled = true;
+            PiezoButton.Enabled = false;
+            btnPressure.Enabled = false;
+            btnDisconnectPort.Enabled = false;
 
             btnRefreshPorts.PerformClick();
         }
