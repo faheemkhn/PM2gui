@@ -51,3 +51,4 @@ C:\Users\Aaron\Desktop\PM2gui\PM2gui\obj\x86\Debug\PM2gui.exe.manifest
 C:\Users\Aaron\Desktop\PM2gui\PM2gui\obj\x86\Debug\PM2gui.application
 C:\Users\Aaron\Desktop\PM2gui\PM2gui\obj\x86\Debug\PM2gui.exe
 C:\Users\Aaron\Desktop\PM2gui\PM2gui\obj\x86\Debug\PM2gui.pdb
+C:\Users\Aaron\Desktop\PM2gui\PM2gui\obj\x86\Debug\PM2gui.NumberBox.resources

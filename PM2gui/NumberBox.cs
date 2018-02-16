@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace PM2gui
 {
@@ -14,16 +15,15 @@ namespace PM2gui
     {
         public string Type { get; set; }
 
-        public int? Digit { get; set; }
-
         public double? Max { get; set; }
         public double? Min { get; set; }
 
-        public NumberBox(string type, double? max, double? min, int? digit)
+
+        public NumberBox(string type, double? max, double? min)
         {
             InitializeComponent();
+
             this.Type = type;
-            this.Digit = digit;
             this.Max = max;
             this.Min = min;
         }
@@ -35,27 +35,22 @@ namespace PM2gui
 
         protected override void OnTextChanged(EventArgs e)
         {
-            if (this.Text.Length == 0) {
+            if (this.Text.Length == 0)
+            {
                 this.Text = "0";
+                this.SelectionStart = 1;
                 base.OnTextChanged(e);
                 return;
-            } else
-            {
-                double number = double.Parse(this.Text);
-                if ((this.Max != null && number > this.Max) || (this.Min != null && number < this.Min))
-                    return;
-                else
-                {
-                    this.Text = $"{number}";
-                    base.OnTextChanged(e);
-                }
-                    
-                
             }
-            
+            else
+            {
+                base.OnTextChanged(e);
+            }
+
         }
 
-        
+
+
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
             if (IsIllegalChar(e.KeyChar))
@@ -65,10 +60,22 @@ namespace PM2gui
             }
             else
             {
+                string preview = this.Text.Insert(this.SelectionStart, e.KeyChar.ToString());
+                if (!char.IsControl(e.KeyChar) && e.KeyChar != '.')
+                {
+                    double number = double.Parse(preview);
+                    if ((this.Max != null && number > this.Max) || (this.Min != null && number < this.Min))
+                    {
+                        MessageBox.Show("Number out of range");
+                        e.Handled = true;
+                        return;
+                    }
+                }
+
                 base.OnKeyPress(e);
 
             }
-                
+
         }
 
         private bool IsIllegalChar(char c)
@@ -80,7 +87,7 @@ namespace PM2gui
             switch (this.Type)
             {
                 case "INT":
-                    return !char.IsControl(c) && !char.IsDigit(c) ;
+                    return !char.IsControl(c) && !char.IsDigit(c);
                     break;
                 default:
                     return (!char.IsControl(c) && !char.IsDigit(c) && c != '.') || isDecimalPointAtTheStart || isSecondDecimalPoint;
