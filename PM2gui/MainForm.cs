@@ -457,6 +457,7 @@ namespace PM2gui
 
         private void MovAvTextBox_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             if (!Int32.TryParse(MovAvTextBox.Text, out fftSettings.nFftMovAvg))
             {
                 MessageBox.Show("The input to the number of averages textbox must be an integer");
