@@ -32,16 +32,16 @@ namespace PM2gui
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -180,6 +180,8 @@ namespace PM2gui
             this.label38 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CamPictureBox = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -225,38 +227,38 @@ namespace PM2gui
             // 
             // WaveFormChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.WaveFormChart.ChartAreas.Add(chartArea1);
+            chartArea5.Name = "ChartArea1";
+            this.WaveFormChart.ChartAreas.Add(chartArea5);
             resources.ApplyResources(this.WaveFormChart, "WaveFormChart");
             this.WaveFormChart.Name = "WaveFormChart";
             this.WaveFormChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Black;
-            series1.Name = "Series1";
-            this.WaveFormChart.Series.Add(series1);
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Color = System.Drawing.Color.Black;
+            series6.Name = "Series1";
+            this.WaveFormChart.Series.Add(series6);
             // 
             // FftChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.FftChart.ChartAreas.Add(chartArea2);
+            chartArea6.Name = "ChartArea1";
+            this.FftChart.ChartAreas.Add(chartArea6);
             resources.ApplyResources(this.FftChart, "FftChart");
             this.FftChart.Name = "FftChart";
             this.FftChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.Name = "Series1";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Red;
-            series3.LabelForeColor = System.Drawing.Color.Bisque;
-            series3.Name = "Series2";
-            this.FftChart.Series.Add(series2);
-            this.FftChart.Series.Add(series3);
+            series7.BorderWidth = 3;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Color = System.Drawing.Color.Black;
+            series7.Name = "Series1";
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Color = System.Drawing.Color.Red;
+            series8.LabelForeColor = System.Drawing.Color.Bisque;
+            series8.Name = "Series2";
+            this.FftChart.Series.Add(series7);
+            this.FftChart.Series.Add(series8);
             // 
             // CamComboBox
             // 
@@ -305,6 +307,7 @@ namespace PM2gui
             resources.ApplyResources(this.MovAvTextBox, "MovAvTextBox");
             this.MovAvTextBox.Name = "MovAvTextBox";
             this.MovAvTextBox.TextChanged += new System.EventHandler(this.MovAvTextBox_TextChanged);
+            this.MovAvTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // FftComboBox
             // 
@@ -375,6 +378,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.startFreqPiezoTextBox, "startFreqPiezoTextBox");
             this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
+            this.startFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.startFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // PiezoButton
             // 
@@ -415,16 +420,22 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.stopFreqPiezoTextBox, "stopFreqPiezoTextBox");
             this.stopFreqPiezoTextBox.Name = "stopFreqPiezoTextBox";
+            this.stopFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.stopFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // trimStartFreqTextBox
             // 
             resources.ApplyResources(this.trimStartFreqTextBox, "trimStartFreqTextBox");
             this.trimStartFreqTextBox.Name = "trimStartFreqTextBox";
+            this.trimStartFreqTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.trimStartFreqTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // trimStopFreqTextBox
             // 
             resources.ApplyResources(this.trimStopFreqTextBox, "trimStopFreqTextBox");
             this.trimStopFreqTextBox.Name = "trimStopFreqTextBox";
+            this.trimStopFreqTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.trimStopFreqTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // TrimFftCheckBox
             // 
@@ -470,6 +481,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.IterTextBox, "IterTextBox");
             this.IterTextBox.Name = "IterTextBox";
+            this.IterTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.IterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // label9
             // 
@@ -478,28 +491,29 @@ namespace PM2gui
             // 
             // peakTrackerChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.peakTrackerChart.ChartAreas.Add(chartArea3);
+            chartArea7.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea7);
             resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
             this.peakTrackerChart.Name = "peakTrackerChart";
             this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Color = System.Drawing.Color.Black;
-            series4.Name = "Series1";
-            this.peakTrackerChart.Series.Add(series4);
-            title1.Name = "Peak Tracker";
-            title1.Position.Auto = false;
-            title1.Position.Height = 5.516974F;
-            title1.Position.Width = 70F;
-            title1.Position.X = 15F;
-            title1.Position.Y = 45F;
-            title1.Text = "Peak Tracker";
-            this.peakTrackerChart.Titles.Add(title1);
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Color = System.Drawing.Color.Black;
+            series9.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series9);
+            title2.Name = "Peak Tracker";
+            title2.Position.Auto = false;
+            title2.Position.Height = 5.516974F;
+            title2.Position.Width = 70F;
+            title2.Position.X = 15F;
+            title2.Position.Y = 45F;
+            title2.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title2);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.fixedGroup);
             this.groupBox2.Controls.Add(this.radioButtonFixed);
             this.groupBox2.Controls.Add(this.radioButtonSweep);
@@ -525,6 +539,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.FixedFreqPiezoTextBox, "FixedFreqPiezoTextBox");
             this.FixedFreqPiezoTextBox.Name = "FixedFreqPiezoTextBox";
+            this.FixedFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.FixedFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // label40
             // 
@@ -614,6 +630,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
             this.InterGuessTextBox.Name = "InterGuessTextBox";
+            this.InterGuessTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.InterGuessTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // label25
             // 
@@ -624,6 +642,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
             this.AmpGuessTextBox.Name = "AmpGuessTextBox";
+            this.AmpGuessTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.AmpGuessTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // label24
             // 
@@ -634,6 +654,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.MidFreqGuessTextBox, "MidFreqGuessTextBox");
             this.MidFreqGuessTextBox.Name = "MidFreqGuessTextBox";
+            this.MidFreqGuessTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
+            this.MidFreqGuessTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IntegerTextInputBox_OnKeyPress);
             // 
             // label4
             // 
@@ -713,6 +735,7 @@ namespace PM2gui
             resources.ApplyResources(this.ExportRateTextBox, "ExportRateTextBox");
             this.ExportRateTextBox.Name = "ExportRateTextBox";
             this.ExportRateTextBox.TextChanged += new System.EventHandler(this.ExportRateTextBox_TextChanged);
+            this.ExportRateTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // label12
             // 
@@ -804,6 +827,7 @@ namespace PM2gui
             resources.ApplyResources(this.ReadingRefreshRateTextBox, "ReadingRefreshRateTextBox");
             this.ReadingRefreshRateTextBox.Name = "ReadingRefreshRateTextBox";
             this.ReadingRefreshRateTextBox.TextChanged += new System.EventHandler(this.ReadingRefreshRateTextBox_TextChanged);
+            this.ReadingRefreshRateTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // label19
             // 
@@ -865,6 +889,7 @@ namespace PM2gui
             resources.ApplyResources(this.LorentzRefreshRateTextBox, "LorentzRefreshRateTextBox");
             this.LorentzRefreshRateTextBox.Name = "LorentzRefreshRateTextBox";
             this.LorentzRefreshRateTextBox.TextChanged += new System.EventHandler(this.LorentzRefreshRateTextBox_TextChanged);
+            this.LorentzRefreshRateTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // QLabel
             // 
@@ -999,20 +1024,21 @@ namespace PM2gui
             resources.ApplyResources(this.tbChanelBRefreshRate, "tbChanelBRefreshRate");
             this.tbChanelBRefreshRate.Name = "tbChanelBRefreshRate";
             this.tbChanelBRefreshRate.TextChanged += new System.EventHandler(this.tbChanelBRefreshRate_TextChanged);
+            this.tbChanelBRefreshRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // ChanelBWave
             // 
-            chartArea4.Name = "ChartArea1";
-            this.ChanelBWave.ChartAreas.Add(chartArea4);
+            chartArea8.Name = "ChartArea1";
+            this.ChanelBWave.ChartAreas.Add(chartArea8);
             resources.ApplyResources(this.ChanelBWave, "ChanelBWave");
             this.ChanelBWave.Name = "ChanelBWave";
             this.ChanelBWave.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.Black;
-            series5.Name = "Series1";
-            this.ChanelBWave.Series.Add(series5);
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Color = System.Drawing.Color.Black;
+            series10.Name = "Series1";
+            this.ChanelBWave.Series.Add(series10);
             this.ChanelBWave.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChanelBWave_MouseMove);
             // 
             // ChanelBTimer
@@ -1059,44 +1085,52 @@ namespace PM2gui
             resources.ApplyResources(this.textBoxTR, "textBoxTR");
             this.textBoxTR.Name = "textBoxTR";
             this.textBoxTR.TextChanged += new System.EventHandler(this.textBoxTR_TextChanged);
+            this.textBoxTR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // textBox3
             // 
             resources.ApplyResources(this.textBox3, "textBox3");
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             // 
             // textBox1
             // 
             resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             // 
             // textBoxTL
             // 
             resources.ApplyResources(this.textBoxTL, "textBoxTL");
             this.textBoxTL.Name = "textBoxTL";
             this.textBoxTL.TextChanged += new System.EventHandler(this.textBoxTL_TextChanged);
+            this.textBoxTL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // textBox5
             // 
             resources.ApplyResources(this.textBox5, "textBox5");
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             // 
             // textBoxBL
             // 
             resources.ApplyResources(this.textBoxBL, "textBoxBL");
             this.textBoxBL.Name = "textBoxBL";
             this.textBoxBL.TextChanged += new System.EventHandler(this.textBoxBL_TextChanged);
+            this.textBoxBL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // BR
             // 
             resources.ApplyResources(this.BR, "BR");
             this.BR.Name = "BR";
+            this.BR.ReadOnly = true;
             // 
             // textBoxBR
             // 
             resources.ApplyResources(this.textBoxBR, "textBoxBR");
             this.textBoxBR.Name = "textBoxBR";
             this.textBoxBR.TextChanged += new System.EventHandler(this.textBoxBR_TextChanged);
+            this.textBoxBR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
             // 
             // label13
             // 
@@ -1200,12 +1234,26 @@ namespace PM2gui
             this.CamPictureBox.Name = "CamPictureBox";
             this.CamPictureBox.TabStop = false;
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.TabStop = false;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // PM2gui
             // 
             this.AcceptButton = this.StartWaveButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.StopViewingButton;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label37);
             this.Controls.Add(this.label36);
@@ -1430,6 +1478,8 @@ namespace PM2gui
         private Panel fixedGroup;
         private MaskedTextBox FixedFreqPiezoTextBox;
         private Label label40;
+        private Button button2;
+        private Button button1;
     }
 }
 

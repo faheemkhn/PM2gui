@@ -530,6 +530,7 @@ namespace PM2gui
 
         private void ReadingRefreshRateTextBox_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
 
@@ -757,6 +758,7 @@ namespace PM2gui
 
         private void LorentzRefreshRateTextBox_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
 
@@ -932,6 +934,7 @@ namespace PM2gui
 
         private void ExportRateTextBox_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
 
@@ -1022,6 +1025,7 @@ namespace PM2gui
 
         private void tbChanelBRefreshRate_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
 
@@ -1064,21 +1068,25 @@ namespace PM2gui
 
         private void textBoxTL_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             trackBarTL.Value = Convert.ToInt32(100 * (double.Parse(textBoxTL.Text)));
         }
 
         private void textBoxTR_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             trackBarTR.Value = Convert.ToInt32(100 * (double.Parse(textBoxTR.Text)));
         }
 
         private void textBoxBR_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             trackBarBR.Value = Convert.ToInt32(100 * (double.Parse(textBoxBR.Text)));
         }
 
         private void textBoxBL_TextChanged(object sender, EventArgs e)
         {
+            NonZeroTextBox_OnTextChanged(sender, e);
             trackBarBL.Value = Convert.ToInt32(100 * (double.Parse(textBoxBL.Text)));
         }
 
@@ -1149,5 +1157,46 @@ namespace PM2gui
             fixedGroup.Location = new Point(12, 86);
 
         }
+
+        #region Text Input Handling
+        private void IntegerTextInputBox_OnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            bool isIllegalChar = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar); ;
+
+            if (isIllegalChar)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Handled = true;
+            }
+        }
+
+        public void DoubleTextInputBox_OnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox thisBox = (TextBox)sender;
+
+            bool isDecimalPointAtTheStart = thisBox.SelectionStart == 0 && (e.KeyChar == '.');
+            bool isSecondDecimalPoint = thisBox.SelectionStart != 0 && e.KeyChar == '.' && thisBox.Text.Contains('.');
+
+            bool isIllegalChar = (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.') || isDecimalPointAtTheStart || isSecondDecimalPoint;
+
+            if (isIllegalChar)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Handled = true;
+            }
+        }
+
+        private void NonZeroTextBox_OnTextChanged(object sender, EventArgs e)
+        {
+            TextBox thisBox = (TextBox)sender;
+            if (thisBox.Text.Length == 0)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                thisBox.Text = "0";
+                thisBox.SelectionStart = 1;
+            }
+
+        }
+        #endregion
     }
 }
