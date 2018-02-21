@@ -207,13 +207,15 @@ namespace PM2gui
             StartPeakTrackButton.Enabled = false;
             StopPeakTrackButton.Enabled = false;
             ExportSnapShotButton.Enabled = false;
-            PiezoButton.Enabled = false;
             btnStartChanelB.Enabled = false;
             btnStopChanelB.Enabled = false;
 
+            PiezoButton.Enabled = false;
             btnConnectPort.Enabled = false;
             btnDisconnectPort.Enabled = false;
             btnPressure.Enabled = false;
+            btnFreqStop.Enabled = false;
+            btnPressureStop.Enabled = false;
         }
 
         private void TimersIntervalUpdate(bool equalizeRefreshRate)
@@ -426,6 +428,8 @@ namespace PM2gui
             PiezoButton.Enabled = false;
             btnStopChanelB.Enabled = false;
             btnStartChanelB.Enabled = false;
+            btnPressure.Enabled = false;
+
 
         }
 
@@ -1126,6 +1130,8 @@ namespace PM2gui
 
                 PiezoButton.Enabled = true;
                 btnPressure.Enabled = true;
+                btnFreqStop.Enabled = true;
+                btnPressureStop.Enabled = true;
 
             }
             catch (Exception)
@@ -1142,6 +1148,8 @@ namespace PM2gui
             PiezoButton.Enabled = false;
             btnPressure.Enabled = false;
             btnDisconnectPort.Enabled = false;
+            btnPressureStop.Enabled = false;
+            btnFreqStop.Enabled = false;
 
             btnRefreshPorts.PerformClick();
         }
@@ -1199,5 +1207,31 @@ namespace PM2gui
 
         }
         #endregion
+
+        private void btnPressureStop_Click(object sender, EventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            if (isPicoPortOpen)
+                picoPort.Write("pstop");
+            sw.Stop();
+
+            processTimes.ardunioComTime = sw.Elapsed;
+            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+        }
+
+        private void btnFreqStop_Click(object sender, EventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            if (isPicoPortOpen)
+                picoPort.Write("fstop");
+            sw.Stop();
+
+            processTimes.ardunioComTime = sw.Elapsed;
+            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+        }
     }
 }
