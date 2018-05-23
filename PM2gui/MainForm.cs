@@ -391,6 +391,12 @@ namespace PM2gui
 
             totalSW.Stop();
 
+
+            if (isPicoPortOpen)
+            {
+                // send message with the frequecy to the pizzo
+                picoPort.Write($"p{WaveFormTimer.Interval}");
+            }
         }
 
         private void ReInitProcessTimes()
