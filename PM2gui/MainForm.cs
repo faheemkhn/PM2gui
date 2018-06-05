@@ -395,7 +395,7 @@ namespace PM2gui
             if (isPicoPortOpen)
             {
                 // send message with the frequecy to the pizzo
-                picoPort.Write($"p{WaveFormTimer.Interval}");
+                picoPort.Write($"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text)}T{nudTime.Value:0000}");
             }
         }
 
