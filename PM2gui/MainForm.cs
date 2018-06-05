@@ -1269,5 +1269,6 @@ namespace PM2gui
                 MessageBox.Show("Pizzo is not connected");
             }
         }
+
     }
 }
