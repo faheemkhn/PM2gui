@@ -32,24 +32,18 @@ namespace PM2gui
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.StartPeakTrackButton = new System.Windows.Forms.Button();
-            this.FittingRefreshRateTextBox = new System.Windows.Forms.Label();
-            this.LorentzRefreshRateTextBox = new System.Windows.Forms.TextBox();
-            this.QLabel = new System.Windows.Forms.Label();
-            this.amplitudeLabel = new System.Windows.Forms.Label();
+            this.Single = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.FftTimeLabel = new System.Windows.Forms.Label();
             this.FreqDomainPlottingTimeLabel = new System.Windows.Forms.Label();
@@ -59,30 +53,28 @@ namespace PM2gui
             this.TimeDomainPlottingTimeLabel = new System.Windows.Forms.Label();
             this.DataSamplingTimeLabel = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.StartPeakTrackButton = new System.Windows.Forms.Button();
             this.StopPeakTrackButton = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.btnStopChanelB = new System.Windows.Forms.Button();
             this.btnStartChanelB = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.tbChanelBRefreshRate = new System.Windows.Forms.TextBox();
-            this.f2Label = new System.Windows.Forms.Label();
-            this.f1Label = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.FittingRefreshRateTextBox = new System.Windows.Forms.Label();
+            this.LorentzRefreshRateTextBox = new System.Windows.Forms.TextBox();
+            this.QLabel = new System.Windows.Forms.Label();
+            this.amplitudeLabel = new System.Windows.Forms.Label();
             this.LorentzStartButton = new System.Windows.Forms.Button();
+            this.f2Label = new System.Windows.Forms.Label();
             this.LorentzStopButton = new System.Windows.Forms.Button();
+            this.f1Label = new System.Windows.Forms.Label();
             this.f0Label = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.EqualizeRefreshRateCheckBox = new System.Windows.Forms.CheckBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.ReadingRefreshRateTextBox = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.nudTime = new System.Windows.Forms.NumericUpDown();
             this.btnPressureStop = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -97,7 +89,6 @@ namespace PM2gui
             this.label28 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -117,6 +108,12 @@ namespace PM2gui
             this.trackBarTR = new System.Windows.Forms.TrackBar();
             this.ChanelBWave = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.EqualizeRefreshRateCheckBox = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.ReadingRefreshRateTextBox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.VoltRangComboBox = new System.Windows.Forms.ComboBox();
@@ -124,40 +121,17 @@ namespace PM2gui
             this.label6 = new System.Windows.Forms.Label();
             this.FftComboBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.NoAvButton = new System.Windows.Forms.RadioButton();
-            this.ContAvButton = new System.Windows.Forms.RadioButton();
-            this.MovAvButton = new System.Windows.Forms.RadioButton();
-            this.stopFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.PiezoButton = new System.Windows.Forms.Button();
-            this.startFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.InterGuessTextBox = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.AmpGuessTextBox = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.StopViewingButton = new System.Windows.Forms.Button();
-            this.MovAvTextBox = new System.Windows.Forms.TextBox();
-            this.peakGuessCheckBox = new System.Windows.Forms.CheckBox();
             this.StartVideoButton = new System.Windows.Forms.Button();
             this.CamComboBox = new System.Windows.Forms.ComboBox();
             this.FftChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.WaveFormChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label4 = new System.Windows.Forms.Label();
             this.CamPictureBox = new System.Windows.Forms.PictureBox();
-            this.MidFreqGuessTextBox = new System.Windows.Forms.TextBox();
-            this.IterTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.StartExportButton = new System.Windows.Forms.Button();
-            this.btnFreqStop = new System.Windows.Forms.Button();
-            this.fixedGroup = new System.Windows.Forms.Panel();
-            this.FixedFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label40 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.fileNamePrefixTextBox = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.DeflectionCheckBox = new System.Windows.Forms.CheckBox();
             this.PeakTrackCheckBox = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.ExportSnapShotButton = new System.Windows.Forms.Button();
             this.LorentzCheckBox = new System.Windows.Forms.CheckBox();
             this.ExportRateTextBox = new System.Windows.Forms.TextBox();
@@ -165,35 +139,65 @@ namespace PM2gui
             this.FreqExportCheckBox = new System.Windows.Forms.CheckBox();
             this.WaveFormExportCheckBox = new System.Windows.Forms.CheckBox();
             this.StopExportButton = new System.Windows.Forms.Button();
+            this.StartExportButton = new System.Windows.Forms.Button();
+            this.peakTrackerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.InterGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.AmpGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.MidFreqGuessTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.peakGuessCheckBox = new System.Windows.Forms.CheckBox();
+            this.IterTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.trimStartFreqTextBox = new System.Windows.Forms.TextBox();
+            this.YShiftCheckBox = new System.Windows.Forms.CheckBox();
+            this.TrimFftCheckBox = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.NoAvButton = new System.Windows.Forms.RadioButton();
+            this.ContAvButton = new System.Windows.Forms.RadioButton();
+            this.MovAvButton = new System.Windows.Forms.RadioButton();
+            this.MovAvTextBox = new System.Windows.Forms.TextBox();
+            this.trimStopFreqTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnFreqStop = new System.Windows.Forms.Button();
+            this.fixedGroup = new System.Windows.Forms.Panel();
+            this.FixedFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.radioButtonFixed = new System.Windows.Forms.RadioButton();
             this.radioButtonSweep = new System.Windows.Forms.RadioButton();
             this.sweepGroup = new System.Windows.Forms.Panel();
+            this.nudTime = new System.Windows.Forms.NumericUpDown();
+            this.label39 = new System.Windows.Forms.Label();
+            this.startFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.stopFreqPiezoTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnRefreshPorts = new System.Windows.Forms.Button();
             this.btnDisconnectPort = new System.Windows.Forms.Button();
             this.btnConnectPort = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
             this.cbPorts = new System.Windows.Forms.ComboBox();
-            this.peakTrackerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label5 = new System.Windows.Forms.Label();
-            this.YShiftCheckBox = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.trimStartFreqTextBox = new System.Windows.Forms.TextBox();
-            this.TrimFftCheckBox = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.trimStopFreqTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PiezoButton = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.ChanelBTimer = new System.Windows.Forms.Timer(this.components);
             this.ExportTimer = new System.Windows.Forms.Timer(this.components);
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
             this.LorentzTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnArrayStartScan = new System.Windows.Forms.Button();
+            this.btnArrayStopScan = new System.Windows.Forms.Button();
+            this.btnArrayPosition = new System.Windows.Forms.Button();
+            this.nudArrayPosition = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.Single.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTL)).BeginInit();
@@ -204,108 +208,79 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
-            this.fixedGroup.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.sweepGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peakTrackerChart)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.fixedGroup.SuspendLayout();
+            this.sweepGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.Single);
             this.tabControl1.Controls.Add(this.tabPage2);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
-            // tabPage1
+            // Single
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Controls.Add(this.groupBox10);
-            this.tabPage1.Controls.Add(this.groupBox8);
-            this.tabPage1.Controls.Add(this.groupBox11);
-            this.tabPage1.Controls.Add(this.groupBox7);
-            this.tabPage1.Controls.Add(this.btnPressureStop);
-            this.tabPage1.Controls.Add(this.label38);
-            this.tabPage1.Controls.Add(this.label37);
-            this.tabPage1.Controls.Add(this.label36);
-            this.tabPage1.Controls.Add(this.label35);
-            this.tabPage1.Controls.Add(this.label34);
-            this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.label32);
-            this.tabPage1.Controls.Add(this.label31);
-            this.tabPage1.Controls.Add(this.btnPressure);
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.label27);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.BR);
-            this.tabPage1.Controls.Add(this.textBoxBR);
-            this.tabPage1.Controls.Add(this.textBox5);
-            this.tabPage1.Controls.Add(this.textBoxBL);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.textBoxTL);
-            this.tabPage1.Controls.Add(this.textBox3);
-            this.tabPage1.Controls.Add(this.textBoxTR);
-            this.tabPage1.Controls.Add(this.trackBarBL);
-            this.tabPage1.Controls.Add(this.trackBarBR);
-            this.tabPage1.Controls.Add(this.trackBarTL);
-            this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Controls.Add(this.trackBarTR);
-            this.tabPage1.Controls.Add(this.ChanelBWave);
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.StopViewingButton);
-            this.tabPage1.Controls.Add(this.StartVideoButton);
-            this.tabPage1.Controls.Add(this.CamComboBox);
-            this.tabPage1.Controls.Add(this.FftChart);
-            this.tabPage1.Controls.Add(this.WaveFormChart);
-            this.tabPage1.Controls.Add(this.CamPictureBox);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.peakTrackerChart);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // StartPeakTrackButton
-            // 
-            resources.ApplyResources(this.StartPeakTrackButton, "StartPeakTrackButton");
-            this.StartPeakTrackButton.Name = "StartPeakTrackButton";
-            this.StartPeakTrackButton.TabStop = false;
-            this.StartPeakTrackButton.UseVisualStyleBackColor = true;
-            // 
-            // FittingRefreshRateTextBox
-            // 
-            resources.ApplyResources(this.FittingRefreshRateTextBox, "FittingRefreshRateTextBox");
-            this.FittingRefreshRateTextBox.Name = "FittingRefreshRateTextBox";
-            // 
-            // LorentzRefreshRateTextBox
-            // 
-            resources.ApplyResources(this.LorentzRefreshRateTextBox, "LorentzRefreshRateTextBox");
-            this.LorentzRefreshRateTextBox.Name = "LorentzRefreshRateTextBox";
-            // 
-            // QLabel
-            // 
-            resources.ApplyResources(this.QLabel, "QLabel");
-            this.QLabel.Name = "QLabel";
-            // 
-            // amplitudeLabel
-            // 
-            resources.ApplyResources(this.amplitudeLabel, "amplitudeLabel");
-            this.amplitudeLabel.Name = "amplitudeLabel";
+            resources.ApplyResources(this.Single, "Single");
+            this.Single.Controls.Add(this.groupBox10);
+            this.Single.Controls.Add(this.groupBox8);
+            this.Single.Controls.Add(this.groupBox11);
+            this.Single.Controls.Add(this.groupBox7);
+            this.Single.Controls.Add(this.btnPressureStop);
+            this.Single.Controls.Add(this.label38);
+            this.Single.Controls.Add(this.label37);
+            this.Single.Controls.Add(this.label36);
+            this.Single.Controls.Add(this.label35);
+            this.Single.Controls.Add(this.label34);
+            this.Single.Controls.Add(this.label33);
+            this.Single.Controls.Add(this.label32);
+            this.Single.Controls.Add(this.label31);
+            this.Single.Controls.Add(this.btnPressure);
+            this.Single.Controls.Add(this.label29);
+            this.Single.Controls.Add(this.label28);
+            this.Single.Controls.Add(this.label27);
+            this.Single.Controls.Add(this.label22);
+            this.Single.Controls.Add(this.label21);
+            this.Single.Controls.Add(this.label15);
+            this.Single.Controls.Add(this.label14);
+            this.Single.Controls.Add(this.label13);
+            this.Single.Controls.Add(this.BR);
+            this.Single.Controls.Add(this.textBoxBR);
+            this.Single.Controls.Add(this.textBox5);
+            this.Single.Controls.Add(this.textBoxBL);
+            this.Single.Controls.Add(this.textBox1);
+            this.Single.Controls.Add(this.textBoxTL);
+            this.Single.Controls.Add(this.textBox3);
+            this.Single.Controls.Add(this.textBoxTR);
+            this.Single.Controls.Add(this.trackBarBL);
+            this.Single.Controls.Add(this.trackBarBR);
+            this.Single.Controls.Add(this.trackBarTL);
+            this.Single.Controls.Add(this.pictureBox1);
+            this.Single.Controls.Add(this.trackBarTR);
+            this.Single.Controls.Add(this.ChanelBWave);
+            this.Single.Controls.Add(this.groupBox6);
+            this.Single.Controls.Add(this.StopViewingButton);
+            this.Single.Controls.Add(this.StartVideoButton);
+            this.Single.Controls.Add(this.CamComboBox);
+            this.Single.Controls.Add(this.FftChart);
+            this.Single.Controls.Add(this.WaveFormChart);
+            this.Single.Controls.Add(this.CamPictureBox);
+            this.Single.Controls.Add(this.groupBox4);
+            this.Single.Controls.Add(this.peakTrackerChart);
+            this.Single.Controls.Add(this.groupBox3);
+            this.Single.Controls.Add(this.groupBox2);
+            this.Single.Name = "Single";
+            this.Single.UseVisualStyleBackColor = true;
             // 
             // groupBox10
             // 
@@ -363,6 +338,13 @@ namespace PM2gui
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
             // 
+            // StartPeakTrackButton
+            // 
+            resources.ApplyResources(this.StartPeakTrackButton, "StartPeakTrackButton");
+            this.StartPeakTrackButton.Name = "StartPeakTrackButton";
+            this.StartPeakTrackButton.TabStop = false;
+            this.StartPeakTrackButton.UseVisualStyleBackColor = true;
+            // 
             // StopPeakTrackButton
             // 
             resources.ApplyResources(this.StopPeakTrackButton, "StopPeakTrackButton");
@@ -404,16 +386,6 @@ namespace PM2gui
             resources.ApplyResources(this.tbChanelBRefreshRate, "tbChanelBRefreshRate");
             this.tbChanelBRefreshRate.Name = "tbChanelBRefreshRate";
             // 
-            // f2Label
-            // 
-            resources.ApplyResources(this.f2Label, "f2Label");
-            this.f2Label.Name = "f2Label";
-            // 
-            // f1Label
-            // 
-            resources.ApplyResources(this.f1Label, "f1Label");
-            this.f1Label.Name = "f1Label";
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.FittingRefreshRateTextBox);
@@ -434,6 +406,26 @@ namespace PM2gui
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
+            // FittingRefreshRateTextBox
+            // 
+            resources.ApplyResources(this.FittingRefreshRateTextBox, "FittingRefreshRateTextBox");
+            this.FittingRefreshRateTextBox.Name = "FittingRefreshRateTextBox";
+            // 
+            // LorentzRefreshRateTextBox
+            // 
+            resources.ApplyResources(this.LorentzRefreshRateTextBox, "LorentzRefreshRateTextBox");
+            this.LorentzRefreshRateTextBox.Name = "LorentzRefreshRateTextBox";
+            // 
+            // QLabel
+            // 
+            resources.ApplyResources(this.QLabel, "QLabel");
+            this.QLabel.Name = "QLabel";
+            // 
+            // amplitudeLabel
+            // 
+            resources.ApplyResources(this.amplitudeLabel, "amplitudeLabel");
+            this.amplitudeLabel.Name = "amplitudeLabel";
+            // 
             // LorentzStartButton
             // 
             resources.ApplyResources(this.LorentzStartButton, "LorentzStartButton");
@@ -441,12 +433,22 @@ namespace PM2gui
             this.LorentzStartButton.TabStop = false;
             this.LorentzStartButton.UseVisualStyleBackColor = true;
             // 
+            // f2Label
+            // 
+            resources.ApplyResources(this.f2Label, "f2Label");
+            this.f2Label.Name = "f2Label";
+            // 
             // LorentzStopButton
             // 
             resources.ApplyResources(this.LorentzStopButton, "LorentzStopButton");
             this.LorentzStopButton.Name = "LorentzStopButton";
             this.LorentzStopButton.TabStop = false;
             this.LorentzStopButton.UseVisualStyleBackColor = true;
+            // 
+            // f1Label
+            // 
+            resources.ApplyResources(this.f1Label, "f1Label");
+            this.f1Label.Name = "f1Label";
             // 
             // f0Label
             // 
@@ -477,49 +479,6 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
-            // 
-            // EqualizeRefreshRateCheckBox
-            // 
-            resources.ApplyResources(this.EqualizeRefreshRateCheckBox, "EqualizeRefreshRateCheckBox");
-            this.EqualizeRefreshRateCheckBox.Checked = true;
-            this.EqualizeRefreshRateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.EqualizeRefreshRateCheckBox.Name = "EqualizeRefreshRateCheckBox";
-            this.EqualizeRefreshRateCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // ReadingRefreshRateTextBox
-            // 
-            resources.ApplyResources(this.ReadingRefreshRateTextBox, "ReadingRefreshRateTextBox");
-            this.ReadingRefreshRateTextBox.Name = "ReadingRefreshRateTextBox";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.Name = "label39";
-            // 
-            // nudTime
-            // 
-            resources.ApplyResources(this.nudTime, "nudTime");
-            this.nudTime.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudTime.Name = "nudTime";
             // 
             // btnPressureStop
             // 
@@ -592,22 +551,6 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
-            // 
-            // BufferSizeComboBox
-            // 
-            this.BufferSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BufferSizeComboBox.FormattingEnabled = true;
-            this.BufferSizeComboBox.Items.AddRange(new object[] {
-            resources.GetString("BufferSizeComboBox.Items"),
-            resources.GetString("BufferSizeComboBox.Items1"),
-            resources.GetString("BufferSizeComboBox.Items2"),
-            resources.GetString("BufferSizeComboBox.Items3"),
-            resources.GetString("BufferSizeComboBox.Items4"),
-            resources.GetString("BufferSizeComboBox.Items5"),
-            resources.GetString("BufferSizeComboBox.Items6"),
-            resources.GetString("BufferSizeComboBox.Items7")});
-            resources.ApplyResources(this.BufferSizeComboBox, "BufferSizeComboBox");
-            this.BufferSizeComboBox.Name = "BufferSizeComboBox";
             // 
             // label21
             // 
@@ -714,17 +657,17 @@ namespace PM2gui
             // 
             // ChanelBWave
             // 
-            chartArea1.Name = "ChartArea1";
-            this.ChanelBWave.ChartAreas.Add(chartArea1);
+            chartArea9.Name = "ChartArea1";
+            this.ChanelBWave.ChartAreas.Add(chartArea9);
             resources.ApplyResources(this.ChanelBWave, "ChanelBWave");
             this.ChanelBWave.Name = "ChanelBWave";
             this.ChanelBWave.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Black;
-            series1.Name = "Series1";
-            this.ChanelBWave.Series.Add(series1);
+            series11.BorderWidth = 2;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Color = System.Drawing.Color.Black;
+            series11.Name = "Series1";
+            this.ChanelBWave.Series.Add(series11);
             // 
             // groupBox6
             // 
@@ -744,6 +687,50 @@ namespace PM2gui
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // BufferSizeComboBox
+            // 
+            this.BufferSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BufferSizeComboBox.FormattingEnabled = true;
+            this.BufferSizeComboBox.Items.AddRange(new object[] {
+            resources.GetString("BufferSizeComboBox.Items"),
+            resources.GetString("BufferSizeComboBox.Items1"),
+            resources.GetString("BufferSizeComboBox.Items2"),
+            resources.GetString("BufferSizeComboBox.Items3"),
+            resources.GetString("BufferSizeComboBox.Items4"),
+            resources.GetString("BufferSizeComboBox.Items5"),
+            resources.GetString("BufferSizeComboBox.Items6"),
+            resources.GetString("BufferSizeComboBox.Items7")});
+            resources.ApplyResources(this.BufferSizeComboBox, "BufferSizeComboBox");
+            this.BufferSizeComboBox.Name = "BufferSizeComboBox";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // EqualizeRefreshRateCheckBox
+            // 
+            resources.ApplyResources(this.EqualizeRefreshRateCheckBox, "EqualizeRefreshRateCheckBox");
+            this.EqualizeRefreshRateCheckBox.Checked = true;
+            this.EqualizeRefreshRateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.EqualizeRefreshRateCheckBox.Name = "EqualizeRefreshRateCheckBox";
+            this.EqualizeRefreshRateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // ReadingRefreshRateTextBox
+            // 
+            resources.ApplyResources(this.ReadingRefreshRateTextBox, "ReadingRefreshRateTextBox");
+            this.ReadingRefreshRateTextBox.Name = "ReadingRefreshRateTextBox";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
             // 
             // StopWaveButton
             // 
@@ -821,90 +808,12 @@ namespace PM2gui
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
-            // NoAvButton
-            // 
-            resources.ApplyResources(this.NoAvButton, "NoAvButton");
-            this.NoAvButton.Checked = true;
-            this.NoAvButton.Name = "NoAvButton";
-            this.NoAvButton.TabStop = true;
-            this.NoAvButton.UseVisualStyleBackColor = true;
-            // 
-            // ContAvButton
-            // 
-            resources.ApplyResources(this.ContAvButton, "ContAvButton");
-            this.ContAvButton.Name = "ContAvButton";
-            this.ContAvButton.UseVisualStyleBackColor = true;
-            // 
-            // MovAvButton
-            // 
-            resources.ApplyResources(this.MovAvButton, "MovAvButton");
-            this.MovAvButton.Name = "MovAvButton";
-            this.MovAvButton.UseVisualStyleBackColor = true;
-            // 
-            // stopFreqPiezoTextBox
-            // 
-            resources.ApplyResources(this.stopFreqPiezoTextBox, "stopFreqPiezoTextBox");
-            this.stopFreqPiezoTextBox.Name = "stopFreqPiezoTextBox";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // PiezoButton
-            // 
-            resources.ApplyResources(this.PiezoButton, "PiezoButton");
-            this.PiezoButton.Name = "PiezoButton";
-            this.PiezoButton.TabStop = false;
-            this.PiezoButton.UseVisualStyleBackColor = true;
-            // 
-            // startFreqPiezoTextBox
-            // 
-            resources.ApplyResources(this.startFreqPiezoTextBox, "startFreqPiezoTextBox");
-            this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
-            // 
-            // InterGuessTextBox
-            // 
-            resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
-            this.InterGuessTextBox.Name = "InterGuessTextBox";
-            // 
-            // label25
-            // 
-            resources.ApplyResources(this.label25, "label25");
-            this.label25.Name = "label25";
-            // 
-            // AmpGuessTextBox
-            // 
-            resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
-            this.AmpGuessTextBox.Name = "AmpGuessTextBox";
-            // 
-            // label24
-            // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Name = "label24";
-            // 
             // StopViewingButton
             // 
             this.StopViewingButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.StopViewingButton, "StopViewingButton");
             this.StopViewingButton.Name = "StopViewingButton";
             this.StopViewingButton.UseVisualStyleBackColor = true;
-            // 
-            // MovAvTextBox
-            // 
-            resources.ApplyResources(this.MovAvTextBox, "MovAvTextBox");
-            this.MovAvTextBox.Name = "MovAvTextBox";
-            // 
-            // peakGuessCheckBox
-            // 
-            resources.ApplyResources(this.peakGuessCheckBox, "peakGuessCheckBox");
-            this.peakGuessCheckBox.Name = "peakGuessCheckBox";
-            this.peakGuessCheckBox.UseVisualStyleBackColor = true;
             // 
             // StartVideoButton
             // 
@@ -920,43 +829,38 @@ namespace PM2gui
             // 
             // FftChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.FftChart.ChartAreas.Add(chartArea2);
+            chartArea10.Name = "ChartArea1";
+            this.FftChart.ChartAreas.Add(chartArea10);
             resources.ApplyResources(this.FftChart, "FftChart");
             this.FftChart.Name = "FftChart";
             this.FftChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.Name = "Series1";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Red;
-            series3.LabelForeColor = System.Drawing.Color.Bisque;
-            series3.Name = "Series2";
-            this.FftChart.Series.Add(series2);
-            this.FftChart.Series.Add(series3);
+            series12.BorderWidth = 3;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Color = System.Drawing.Color.Black;
+            series12.Name = "Series1";
+            series13.BorderWidth = 2;
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series13.Color = System.Drawing.Color.Red;
+            series13.LabelForeColor = System.Drawing.Color.Bisque;
+            series13.Name = "Series2";
+            this.FftChart.Series.Add(series12);
+            this.FftChart.Series.Add(series13);
             // 
             // WaveFormChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.WaveFormChart.ChartAreas.Add(chartArea3);
+            chartArea11.Name = "ChartArea1";
+            this.WaveFormChart.ChartAreas.Add(chartArea11);
             resources.ApplyResources(this.WaveFormChart, "WaveFormChart");
             this.WaveFormChart.Name = "WaveFormChart";
             this.WaveFormChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.Black;
-            series4.Name = "Series1";
-            this.WaveFormChart.Series.Add(series4);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            series14.BorderWidth = 2;
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series14.Color = System.Drawing.Color.Black;
+            series14.Name = "Series1";
+            this.WaveFormChart.Series.Add(series14);
             // 
             // CamPictureBox
             // 
@@ -965,51 +869,23 @@ namespace PM2gui
             this.CamPictureBox.Name = "CamPictureBox";
             this.CamPictureBox.TabStop = false;
             // 
-            // MidFreqGuessTextBox
+            // groupBox4
             // 
-            resources.ApplyResources(this.MidFreqGuessTextBox, "MidFreqGuessTextBox");
-            this.MidFreqGuessTextBox.Name = "MidFreqGuessTextBox";
-            // 
-            // IterTextBox
-            // 
-            resources.ApplyResources(this.IterTextBox, "IterTextBox");
-            this.IterTextBox.Name = "IterTextBox";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // StartExportButton
-            // 
-            resources.ApplyResources(this.StartExportButton, "StartExportButton");
-            this.StartExportButton.Name = "StartExportButton";
-            this.StartExportButton.TabStop = false;
-            this.StartExportButton.UseVisualStyleBackColor = true;
-            // 
-            // btnFreqStop
-            // 
-            resources.ApplyResources(this.btnFreqStop, "btnFreqStop");
-            this.btnFreqStop.Name = "btnFreqStop";
-            this.btnFreqStop.TabStop = false;
-            this.btnFreqStop.UseVisualStyleBackColor = true;
-            // 
-            // fixedGroup
-            // 
-            this.fixedGroup.Controls.Add(this.FixedFreqPiezoTextBox);
-            this.fixedGroup.Controls.Add(this.label40);
-            resources.ApplyResources(this.fixedGroup, "fixedGroup");
-            this.fixedGroup.Name = "fixedGroup";
-            // 
-            // FixedFreqPiezoTextBox
-            // 
-            resources.ApplyResources(this.FixedFreqPiezoTextBox, "FixedFreqPiezoTextBox");
-            this.FixedFreqPiezoTextBox.Name = "FixedFreqPiezoTextBox";
-            // 
-            // label40
-            // 
-            resources.ApplyResources(this.label40, "label40");
-            this.label40.Name = "label40";
+            this.groupBox4.Controls.Add(this.fileNamePrefixTextBox);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.DeflectionCheckBox);
+            this.groupBox4.Controls.Add(this.PeakTrackCheckBox);
+            this.groupBox4.Controls.Add(this.ExportSnapShotButton);
+            this.groupBox4.Controls.Add(this.LorentzCheckBox);
+            this.groupBox4.Controls.Add(this.ExportRateTextBox);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.FreqExportCheckBox);
+            this.groupBox4.Controls.Add(this.WaveFormExportCheckBox);
+            this.groupBox4.Controls.Add(this.StopExportButton);
+            this.groupBox4.Controls.Add(this.StartExportButton);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
             // 
             // fileNamePrefixTextBox
             // 
@@ -1032,24 +908,6 @@ namespace PM2gui
             resources.ApplyResources(this.PeakTrackCheckBox, "PeakTrackCheckBox");
             this.PeakTrackCheckBox.Name = "PeakTrackCheckBox";
             this.PeakTrackCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.fileNamePrefixTextBox);
-            this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.DeflectionCheckBox);
-            this.groupBox4.Controls.Add(this.PeakTrackCheckBox);
-            this.groupBox4.Controls.Add(this.ExportSnapShotButton);
-            this.groupBox4.Controls.Add(this.LorentzCheckBox);
-            this.groupBox4.Controls.Add(this.ExportRateTextBox);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.FreqExportCheckBox);
-            this.groupBox4.Controls.Add(this.WaveFormExportCheckBox);
-            this.groupBox4.Controls.Add(this.StopExportButton);
-            this.groupBox4.Controls.Add(this.StartExportButton);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
             // 
             // ExportSnapShotButton
             // 
@@ -1093,6 +951,212 @@ namespace PM2gui
             this.StopExportButton.TabStop = false;
             this.StopExportButton.UseVisualStyleBackColor = true;
             // 
+            // StartExportButton
+            // 
+            resources.ApplyResources(this.StartExportButton, "StartExportButton");
+            this.StartExportButton.Name = "StartExportButton";
+            this.StartExportButton.TabStop = false;
+            this.StartExportButton.UseVisualStyleBackColor = true;
+            // 
+            // peakTrackerChart
+            // 
+            chartArea12.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea12);
+            resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
+            this.peakTrackerChart.Name = "peakTrackerChart";
+            this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series15.BorderWidth = 2;
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series15.Color = System.Drawing.Color.Black;
+            series15.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series15);
+            title3.Name = "Peak Tracker";
+            title3.Position.Auto = false;
+            title3.Position.Height = 5.516974F;
+            title3.Position.Width = 70F;
+            title3.Position.X = 15F;
+            title3.Position.Y = 45F;
+            title3.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title3);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.InterGuessTextBox);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.AmpGuessTextBox);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.MidFreqGuessTextBox);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.peakGuessCheckBox);
+            this.groupBox3.Controls.Add(this.IterTextBox);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.trimStartFreqTextBox);
+            this.groupBox3.Controls.Add(this.YShiftCheckBox);
+            this.groupBox3.Controls.Add(this.TrimFftCheckBox);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.groupBox1);
+            this.groupBox3.Controls.Add(this.trimStopFreqTextBox);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // InterGuessTextBox
+            // 
+            resources.ApplyResources(this.InterGuessTextBox, "InterGuessTextBox");
+            this.InterGuessTextBox.Name = "InterGuessTextBox";
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
+            // 
+            // AmpGuessTextBox
+            // 
+            resources.ApplyResources(this.AmpGuessTextBox, "AmpGuessTextBox");
+            this.AmpGuessTextBox.Name = "AmpGuessTextBox";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // MidFreqGuessTextBox
+            // 
+            resources.ApplyResources(this.MidFreqGuessTextBox, "MidFreqGuessTextBox");
+            this.MidFreqGuessTextBox.Name = "MidFreqGuessTextBox";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // peakGuessCheckBox
+            // 
+            resources.ApplyResources(this.peakGuessCheckBox, "peakGuessCheckBox");
+            this.peakGuessCheckBox.Name = "peakGuessCheckBox";
+            this.peakGuessCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // IterTextBox
+            // 
+            resources.ApplyResources(this.IterTextBox, "IterTextBox");
+            this.IterTextBox.Name = "IterTextBox";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // trimStartFreqTextBox
+            // 
+            resources.ApplyResources(this.trimStartFreqTextBox, "trimStartFreqTextBox");
+            this.trimStartFreqTextBox.Name = "trimStartFreqTextBox";
+            // 
+            // YShiftCheckBox
+            // 
+            resources.ApplyResources(this.YShiftCheckBox, "YShiftCheckBox");
+            this.YShiftCheckBox.Name = "YShiftCheckBox";
+            this.YShiftCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TrimFftCheckBox
+            // 
+            resources.ApplyResources(this.TrimFftCheckBox, "TrimFftCheckBox");
+            this.TrimFftCheckBox.Name = "TrimFftCheckBox";
+            this.TrimFftCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.NoAvButton);
+            this.groupBox1.Controls.Add(this.ContAvButton);
+            this.groupBox1.Controls.Add(this.MovAvButton);
+            this.groupBox1.Controls.Add(this.MovAvTextBox);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // NoAvButton
+            // 
+            resources.ApplyResources(this.NoAvButton, "NoAvButton");
+            this.NoAvButton.Checked = true;
+            this.NoAvButton.Name = "NoAvButton";
+            this.NoAvButton.TabStop = true;
+            this.NoAvButton.UseVisualStyleBackColor = true;
+            // 
+            // ContAvButton
+            // 
+            resources.ApplyResources(this.ContAvButton, "ContAvButton");
+            this.ContAvButton.Name = "ContAvButton";
+            this.ContAvButton.UseVisualStyleBackColor = true;
+            // 
+            // MovAvButton
+            // 
+            resources.ApplyResources(this.MovAvButton, "MovAvButton");
+            this.MovAvButton.Name = "MovAvButton";
+            this.MovAvButton.UseVisualStyleBackColor = true;
+            // 
+            // MovAvTextBox
+            // 
+            resources.ApplyResources(this.MovAvTextBox, "MovAvTextBox");
+            this.MovAvTextBox.Name = "MovAvTextBox";
+            // 
+            // trimStopFreqTextBox
+            // 
+            resources.ApplyResources(this.trimStopFreqTextBox, "trimStopFreqTextBox");
+            this.trimStopFreqTextBox.Name = "trimStopFreqTextBox";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnFreqStop);
+            this.groupBox2.Controls.Add(this.fixedGroup);
+            this.groupBox2.Controls.Add(this.radioButtonFixed);
+            this.groupBox2.Controls.Add(this.radioButtonSweep);
+            this.groupBox2.Controls.Add(this.sweepGroup);
+            this.groupBox2.Controls.Add(this.btnRefreshPorts);
+            this.groupBox2.Controls.Add(this.btnDisconnectPort);
+            this.groupBox2.Controls.Add(this.btnConnectPort);
+            this.groupBox2.Controls.Add(this.label30);
+            this.groupBox2.Controls.Add(this.cbPorts);
+            this.groupBox2.Controls.Add(this.PiezoButton);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // btnFreqStop
+            // 
+            resources.ApplyResources(this.btnFreqStop, "btnFreqStop");
+            this.btnFreqStop.Name = "btnFreqStop";
+            this.btnFreqStop.TabStop = false;
+            this.btnFreqStop.UseVisualStyleBackColor = true;
+            // 
+            // fixedGroup
+            // 
+            this.fixedGroup.Controls.Add(this.FixedFreqPiezoTextBox);
+            this.fixedGroup.Controls.Add(this.label40);
+            resources.ApplyResources(this.fixedGroup, "fixedGroup");
+            this.fixedGroup.Name = "fixedGroup";
+            // 
+            // FixedFreqPiezoTextBox
+            // 
+            resources.ApplyResources(this.FixedFreqPiezoTextBox, "FixedFreqPiezoTextBox");
+            this.FixedFreqPiezoTextBox.Name = "FixedFreqPiezoTextBox";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            // 
             // radioButtonFixed
             // 
             resources.ApplyResources(this.radioButtonFixed, "radioButtonFixed");
@@ -1117,6 +1181,41 @@ namespace PM2gui
             this.sweepGroup.Controls.Add(this.label11);
             resources.ApplyResources(this.sweepGroup, "sweepGroup");
             this.sweepGroup.Name = "sweepGroup";
+            // 
+            // nudTime
+            // 
+            resources.ApplyResources(this.nudTime, "nudTime");
+            this.nudTime.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudTime.Name = "nudTime";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // startFreqPiezoTextBox
+            // 
+            resources.ApplyResources(this.startFreqPiezoTextBox, "startFreqPiezoTextBox");
+            this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
+            // 
+            // stopFreqPiezoTextBox
+            // 
+            resources.ApplyResources(this.stopFreqPiezoTextBox, "stopFreqPiezoTextBox");
+            this.stopFreqPiezoTextBox.Name = "stopFreqPiezoTextBox";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
             // 
             // btnRefreshPorts
             // 
@@ -1147,109 +1246,31 @@ namespace PM2gui
             resources.ApplyResources(this.cbPorts, "cbPorts");
             this.cbPorts.Name = "cbPorts";
             // 
-            // peakTrackerChart
+            // PiezoButton
             // 
-            chartArea4.Name = "ChartArea1";
-            this.peakTrackerChart.ChartAreas.Add(chartArea4);
-            resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
-            this.peakTrackerChart.Name = "peakTrackerChart";
-            this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Color = System.Drawing.Color.Black;
-            series5.Name = "Series1";
-            this.peakTrackerChart.Series.Add(series5);
-            title1.Name = "Peak Tracker";
-            title1.Position.Auto = false;
-            title1.Position.Height = 5.516974F;
-            title1.Position.Width = 70F;
-            title1.Position.X = 15F;
-            title1.Position.Y = 45F;
-            title1.Text = "Peak Tracker";
-            this.peakTrackerChart.Titles.Add(title1);
+            resources.ApplyResources(this.PiezoButton, "PiezoButton");
+            this.PiezoButton.Name = "PiezoButton";
+            this.PiezoButton.TabStop = false;
+            this.PiezoButton.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // tabPage2
             // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
+            this.tabPage2.Controls.Add(this.nudArrayPosition);
+            this.tabPage2.Controls.Add(this.btnArrayPosition);
+            this.tabPage2.Controls.Add(this.btnArrayStopScan);
+            this.tabPage2.Controls.Add(this.btnArrayStartScan);
+            this.tabPage2.Controls.Add(this.pictureBox3);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // YShiftCheckBox
+            // pictureBox3
             // 
-            resources.ApplyResources(this.YShiftCheckBox, "YShiftCheckBox");
-            this.YShiftCheckBox.Name = "YShiftCheckBox";
-            this.YShiftCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // trimStartFreqTextBox
-            // 
-            resources.ApplyResources(this.trimStartFreqTextBox, "trimStartFreqTextBox");
-            this.trimStartFreqTextBox.Name = "trimStartFreqTextBox";
-            // 
-            // TrimFftCheckBox
-            // 
-            resources.ApplyResources(this.TrimFftCheckBox, "TrimFftCheckBox");
-            this.TrimFftCheckBox.Name = "TrimFftCheckBox";
-            this.TrimFftCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.NoAvButton);
-            this.groupBox1.Controls.Add(this.ContAvButton);
-            this.groupBox1.Controls.Add(this.MovAvButton);
-            this.groupBox1.Controls.Add(this.MovAvTextBox);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // trimStopFreqTextBox
-            // 
-            resources.ApplyResources(this.trimStopFreqTextBox, "trimStopFreqTextBox");
-            this.trimStopFreqTextBox.Name = "trimStopFreqTextBox";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.InterGuessTextBox);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.AmpGuessTextBox);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.MidFreqGuessTextBox);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.peakGuessCheckBox);
-            this.groupBox3.Controls.Add(this.IterTextBox);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.trimStartFreqTextBox);
-            this.groupBox3.Controls.Add(this.YShiftCheckBox);
-            this.groupBox3.Controls.Add(this.TrimFftCheckBox);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.groupBox1);
-            this.groupBox3.Controls.Add(this.trimStopFreqTextBox);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnFreqStop);
-            this.groupBox2.Controls.Add(this.fixedGroup);
-            this.groupBox2.Controls.Add(this.radioButtonFixed);
-            this.groupBox2.Controls.Add(this.radioButtonSweep);
-            this.groupBox2.Controls.Add(this.sweepGroup);
-            this.groupBox2.Controls.Add(this.btnRefreshPorts);
-            this.groupBox2.Controls.Add(this.btnDisconnectPort);
-            this.groupBox2.Controls.Add(this.btnConnectPort);
-            this.groupBox2.Controls.Add(this.label30);
-            this.groupBox2.Controls.Add(this.cbPorts);
-            this.groupBox2.Controls.Add(this.PiezoButton);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
+            this.pictureBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox3.Image = global::PM2gui.Properties.Resources.cantilever_array;
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.TabStop = false;
             // 
             // ExportTimer
             // 
@@ -1258,6 +1279,37 @@ namespace PM2gui
             // LorentzTimer
             // 
             this.LorentzTimer.Interval = 1000;
+            // 
+            // btnArrayStartScan
+            // 
+            resources.ApplyResources(this.btnArrayStartScan, "btnArrayStartScan");
+            this.btnArrayStartScan.Name = "btnArrayStartScan";
+            this.btnArrayStartScan.UseVisualStyleBackColor = true;
+            this.btnArrayStartScan.Click += new System.EventHandler(this.btnArrayStartScan_Click);
+            // 
+            // btnArrayStopScan
+            // 
+            resources.ApplyResources(this.btnArrayStopScan, "btnArrayStopScan");
+            this.btnArrayStopScan.Name = "btnArrayStopScan";
+            this.btnArrayStopScan.UseVisualStyleBackColor = true;
+            this.btnArrayStopScan.Click += new System.EventHandler(this.btnArrayStopScan_Click);
+            // 
+            // btnArrayPosition
+            // 
+            resources.ApplyResources(this.btnArrayPosition, "btnArrayPosition");
+            this.btnArrayPosition.Name = "btnArrayPosition";
+            this.btnArrayPosition.UseVisualStyleBackColor = true;
+            this.btnArrayPosition.Click += new System.EventHandler(this.btnArrayPosition_Click);
+            // 
+            // nudArrayPosition
+            // 
+            resources.ApplyResources(this.nudArrayPosition, "nudArrayPosition");
+            this.nudArrayPosition.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudArrayPosition.Name = "nudArrayPosition";
             // 
             // PM2gui
             // 
@@ -1268,8 +1320,8 @@ namespace PM2gui
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PM2gui_FormClosing);
             this.Load += new System.EventHandler(this.PM2gui_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.Single.ResumeLayout(false);
+            this.Single.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -1277,7 +1329,6 @@ namespace PM2gui
             this.groupBox11.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTL)).EndInit();
@@ -1289,19 +1340,23 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).EndInit();
-            this.fixedGroup.ResumeLayout(false);
-            this.fixedGroup.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.sweepGroup.ResumeLayout(false);
-            this.sweepGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peakTrackerChart)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.fixedGroup.ResumeLayout(false);
+            this.fixedGroup.PerformLayout();
+            this.sweepGroup.ResumeLayout(false);
+            this.sweepGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1309,7 +1364,7 @@ namespace PM2gui
         #endregion
 
         private TabControl tabControl1;
-        private TabPage tabPage1;
+        private TabPage Single;
         private GroupBox groupBox10;
         private Label FftTimeLabel;
         private Label FreqDomainPlottingTimeLabel;
@@ -1453,6 +1508,11 @@ namespace PM2gui
         private Timer ExportTimer;
         private Timer WaveFormTimer;
         private Timer LorentzTimer;
+        private PictureBox pictureBox3;
+        private NumericUpDown nudArrayPosition;
+        private Button btnArrayPosition;
+        private Button btnArrayStopScan;
+        private Button btnArrayStartScan;
     }
 }
 

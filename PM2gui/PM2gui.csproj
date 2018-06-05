@@ -258,6 +258,7 @@
   <ItemGroup>
     <Content Include="fourien_icon.ico" />
     <EmbeddedResource Include="Resources\Cantilever.png" />
+    <EmbeddedResource Include="Resources\cantilever_array.png" />
     <Content Include="Resources\GeneralMatrix.dll" />
     <Content Include="Resources\LMA.dll" />
     <Content Include="Resources\nunit.framework.dll" />
