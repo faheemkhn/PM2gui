@@ -71,7 +71,7 @@ namespace PM2gui
         public class PicoInterfacer
         {
             public readonly short _handle;
-            public const int BUFFER_SIZE = 1024;
+            public int BUFFER_SIZE = 1024;
             public const int SINGLE_SCOPE = 1;
             public const int DUAL_SCOPE = 2;
             public const int MAX_CHANNELS = 4;
