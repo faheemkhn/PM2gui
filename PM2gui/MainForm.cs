@@ -51,6 +51,8 @@ namespace PM2gui
         PM2WaveForm.FFTData LorentzFftData = new PM2WaveForm.FFTData();
         FilterInfoCollection CaptureDevice;
         VideoCaptureDevice FinalFrame;
+        FilterInfoCollection CaptureDevice2;
+        VideoCaptureDevice FinalFrame2;
         Point? prevPositiontD = null;
         ToolTip tooltiptD = new ToolTip();
         Point? prevPositionfD = null;
@@ -139,6 +141,17 @@ namespace PM2gui
             if (CamComboBox.Items.Count > 0)
                 CamComboBox.SelectedIndex = 0;
             FinalFrame = new VideoCaptureDevice();
+
+            // Init second USB Camera
+            StopViewingButton2.Enabled = false;
+            CaptureDevice2 = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo Device2 in CaptureDevice2)
+            {
+                CamComboBox2.Items.Add(Device2.Name);
+            }
+            if (CamComboBox2.Items.Count > 0)
+                CamComboBox2.SelectedIndex = 0;
+            FinalFrame2 = new VideoCaptureDevice();
         }
 
         private void ChartsInit()
@@ -585,6 +598,7 @@ namespace PM2gui
             StopViewingButton.Enabled = false;
         }
 
+        //
         //LORENTZ FITTING
 
         private void LorentzStartButton_Click(object sender, EventArgs e)
@@ -1268,6 +1282,30 @@ namespace PM2gui
             {
                 MessageBox.Show("Pizzo is not connected");
             }
+        }
+
+
+        // Second USB Camera
+        private void StartVideoButton2_Click(object sender, EventArgs e)
+        {
+            StartVideoButton2.Enabled = false;
+            StopViewingButton2.Enabled = true;
+            FinalFrame2 = new VideoCaptureDevice(CaptureDevice2[0].MonikerString);
+            FinalFrame2.NewFrame += new NewFrameEventHandler(FinalFrame2_NewFrame);
+            FinalFrame2.Start();
+        }
+
+        private void StopViewingButton2_Click(object sender, EventArgs e)
+        {
+            FinalFrame2.Stop();
+            StartVideoButton2.Enabled = true;
+            StopViewingButton2.Enabled = false;
+        }
+
+        private void FinalFrame2_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            CamPictureBox2.Image = (Bitmap)eventArgs.Frame.Clone();
+
         }
     }
 }

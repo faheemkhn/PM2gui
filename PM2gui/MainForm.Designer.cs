@@ -192,6 +192,10 @@ namespace PM2gui
             this.btnArrayStopScan = new System.Windows.Forms.Button();
             this.btnArrayPosition = new System.Windows.Forms.Button();
             this.nudArrayPosition = new System.Windows.Forms.NumericUpDown();
+            this.StopViewingButton2 = new System.Windows.Forms.Button();
+            this.StartVideoButton2 = new System.Windows.Forms.Button();
+            this.CamComboBox2 = new System.Windows.Forms.ComboBox();
+            this.CamPictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -219,6 +223,7 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // StartWaveButton
@@ -1315,6 +1320,10 @@ namespace PM2gui
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.StopViewingButton2);
+            this.tabPage2.Controls.Add(this.StartVideoButton2);
+            this.tabPage2.Controls.Add(this.CamComboBox2);
+            this.tabPage2.Controls.Add(this.CamPictureBox2);
             this.tabPage2.Controls.Add(this.nudArrayPosition);
             this.tabPage2.Controls.Add(this.btnArrayPosition);
             this.tabPage2.Controls.Add(this.btnArrayStopScan);
@@ -1393,6 +1402,34 @@ namespace PM2gui
             0});
             this.nudArrayPosition.Name = "nudArrayPosition";
             // 
+            // StopViewingButton2
+            // 
+            this.StopViewingButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.StopViewingButton2, "StopViewingButton2");
+            this.StopViewingButton2.Name = "StopViewingButton2";
+            this.StopViewingButton2.UseVisualStyleBackColor = true;
+            this.StopViewingButton2.Click += new System.EventHandler(this.StopViewingButton2_Click);
+            // 
+            // StartVideoButton2
+            // 
+            resources.ApplyResources(this.StartVideoButton2, "StartVideoButton2");
+            this.StartVideoButton2.Name = "StartVideoButton2";
+            this.StartVideoButton2.UseVisualStyleBackColor = true;
+            this.StartVideoButton2.Click += new System.EventHandler(this.StartVideoButton2_Click);
+            // 
+            // CamComboBox2
+            // 
+            this.CamComboBox2.FormattingEnabled = true;
+            resources.ApplyResources(this.CamComboBox2, "CamComboBox2");
+            this.CamComboBox2.Name = "CamComboBox2";
+            // 
+            // CamPictureBox2
+            // 
+            this.CamPictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.CamPictureBox2, "CamPictureBox2");
+            this.CamPictureBox2.Name = "CamPictureBox2";
+            this.CamPictureBox2.TabStop = false;
+            // 
             // PM2gui
             // 
             this.AcceptButton = this.StartWaveButton;
@@ -1441,6 +1478,7 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1596,6 +1634,10 @@ namespace PM2gui
         private Button btnArrayStartScan;
         private PictureBox pictureBox2;
         private NumericUpDown nudArrayPosition;
+        private Button StopViewingButton2;
+        private Button StartVideoButton2;
+        private ComboBox CamComboBox2;
+        private PictureBox CamPictureBox2;
     }
 }
 
