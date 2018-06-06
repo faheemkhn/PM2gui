@@ -1239,5 +1239,35 @@ namespace PM2gui
             processTimes.ardunioComTime = sw.Elapsed;
             ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
+
+        private void btnArrayStartScan_Click(object sender, EventArgs e)
+        {
+            if (isPicoPortOpen)
+                picoPort.Write("go");
+            else
+            {
+                MessageBox.Show("Pizzo is not connected");
+            }
+        }
+
+        private void btnArrayStopScan_Click(object sender, EventArgs e)
+        {
+            if (isPicoPortOpen)
+                picoPort.Write("no");
+            else
+            {
+                MessageBox.Show("Pizzo is not connected");
+            }
+        }
+
+        private void btnArrayPosition_Click(object sender, EventArgs e)
+        {
+            if (isPicoPortOpen)
+                picoPort.Write($"LA{nudArrayPosition.Value:000}");
+            else
+            {
+                MessageBox.Show("Pizzo is not connected");
+            }
+        }
     }
 }
