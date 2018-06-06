@@ -182,6 +182,9 @@ namespace PM2gui
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CamPictureBox = new System.Windows.Forms.PictureBox();
             this.btnPressureStop = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -203,6 +206,8 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // StartWaveButton
@@ -1249,59 +1254,80 @@ namespace PM2gui
             this.btnPressureStop.UseVisualStyleBackColor = true;
             this.btnPressureStop.Click += new System.EventHandler(this.btnPressureStop_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Controls.Add(this.btnPressureStop);
+            this.tabPage1.Controls.Add(this.label38);
+            this.tabPage1.Controls.Add(this.label37);
+            this.tabPage1.Controls.Add(this.label36);
+            this.tabPage1.Controls.Add(this.label35);
+            this.tabPage1.Controls.Add(this.label34);
+            this.tabPage1.Controls.Add(this.label33);
+            this.tabPage1.Controls.Add(this.label32);
+            this.tabPage1.Controls.Add(this.label31);
+            this.tabPage1.Controls.Add(this.btnPressure);
+            this.tabPage1.Controls.Add(this.label29);
+            this.tabPage1.Controls.Add(this.label28);
+            this.tabPage1.Controls.Add(this.label27);
+            this.tabPage1.Controls.Add(this.label22);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.BR);
+            this.tabPage1.Controls.Add(this.textBoxBR);
+            this.tabPage1.Controls.Add(this.textBox5);
+            this.tabPage1.Controls.Add(this.textBoxBL);
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.textBoxTL);
+            this.tabPage1.Controls.Add(this.textBox3);
+            this.tabPage1.Controls.Add(this.textBoxTR);
+            this.tabPage1.Controls.Add(this.trackBarBL);
+            this.tabPage1.Controls.Add(this.trackBarBR);
+            this.tabPage1.Controls.Add(this.trackBarTL);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.trackBarTR);
+            this.tabPage1.Controls.Add(this.ChanelBWave);
+            this.tabPage1.Controls.Add(this.groupBox11);
+            this.tabPage1.Controls.Add(this.groupBox10);
+            this.tabPage1.Controls.Add(this.groupBox8);
+            this.tabPage1.Controls.Add(this.groupBox7);
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.peakTrackerChart);
+            this.tabPage1.Controls.Add(this.StopViewingButton);
+            this.tabPage1.Controls.Add(this.StartVideoButton);
+            this.tabPage1.Controls.Add(this.CamComboBox);
+            this.tabPage1.Controls.Add(this.CamPictureBox);
+            this.tabPage1.Controls.Add(this.FftChart);
+            this.tabPage1.Controls.Add(this.WaveFormChart);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // PM2gui
             // 
             this.AcceptButton = this.StartWaveButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.StopViewingButton;
-            this.Controls.Add(this.btnPressureStop);
-            this.Controls.Add(this.label38);
-            this.Controls.Add(this.label37);
-            this.Controls.Add(this.label36);
-            this.Controls.Add(this.label35);
-            this.Controls.Add(this.label34);
-            this.Controls.Add(this.label33);
-            this.Controls.Add(this.label32);
-            this.Controls.Add(this.label31);
-            this.Controls.Add(this.btnPressure);
-            this.Controls.Add(this.label29);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.label27);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.BR);
-            this.Controls.Add(this.textBoxBR);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBoxBL);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBoxTL);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBoxTR);
-            this.Controls.Add(this.trackBarBL);
-            this.Controls.Add(this.trackBarBR);
-            this.Controls.Add(this.trackBarTL);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.trackBarTR);
-            this.Controls.Add(this.ChanelBWave);
-            this.Controls.Add(this.groupBox11);
-            this.Controls.Add(this.groupBox10);
-            this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.peakTrackerChart);
-            this.Controls.Add(this.StopViewingButton);
-            this.Controls.Add(this.StartVideoButton);
-            this.Controls.Add(this.CamComboBox);
-            this.Controls.Add(this.CamPictureBox);
-            this.Controls.Add(this.FftChart);
-            this.Controls.Add(this.WaveFormChart);
+            this.Controls.Add(this.tabControl1);
             this.Name = "PM2gui";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PM2gui_FormClosing);
             this.Load += new System.EventHandler(this.PM2gui_Load);
@@ -1336,8 +1362,10 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1482,6 +1510,9 @@ namespace PM2gui
         private Label label40;
         private Button btnFreqStop;
         private Button btnPressureStop;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
     }
 }
 
