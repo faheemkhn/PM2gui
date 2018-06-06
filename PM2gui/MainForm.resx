@@ -676,7 +676,7 @@
     <value>sweepGroup</value>
   </data>
   <data name="&gt;&gt;startFreqPiezoTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="PiezoButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -739,7 +739,7 @@
     <value>sweepGroup</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="YShiftCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -871,7 +871,7 @@
     <value>sweepGroup</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="stopFreqPiezoTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 30</value>
@@ -898,7 +898,7 @@
     <value>sweepGroup</value>
   </data>
   <data name="&gt;&gt;stopFreqPiezoTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="trimStartFreqTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1383,6 +1383,60 @@
   <data name="&gt;&gt;radioButtonSweep.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="numericUpDown1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>77, 59</value>
+  </data>
+  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
+    <value>numericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+    <value>sweepGroup</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label39.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label39.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 61</value>
+  </data>
+  <data name="label39.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 17</value>
+  </data>
+  <data name="label39.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Time (s)</value>
+  </data>
+  <data name="&gt;&gt;label39.Name" xml:space="preserve">
+    <value>label39</value>
+  </data>
+  <data name="&gt;&gt;label39.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label39.Parent" xml:space="preserve">
+    <value>sweepGroup</value>
+  </data>
+  <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="sweepGroup.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 108</value>
   </data>
@@ -1390,7 +1444,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="sweepGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 59</value>
+    <value>336, 90</value>
   </data>
   <data name="sweepGroup.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
@@ -4491,7 +4545,7 @@
     <value>0</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>tabPage1</value>
+    <value>Single</value>
   </data>
   <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
     <value>tabPage1</value>
@@ -4512,13 +4566,13 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>2160, 1064</value>
+    <value>1916, 1026</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>tabPage2</value>
+    <value>Array</value>
   </data>
   <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
     <value>tabPage2</value>

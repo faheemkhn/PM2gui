@@ -185,6 +185,8 @@ namespace PM2gui
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -208,6 +210,7 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // StartWaveButton
@@ -578,6 +581,8 @@ namespace PM2gui
             // 
             // sweepGroup
             // 
+            this.sweepGroup.Controls.Add(this.numericUpDown1);
+            this.sweepGroup.Controls.Add(this.label39);
             this.sweepGroup.Controls.Add(this.startFreqPiezoTextBox);
             this.sweepGroup.Controls.Add(this.stopFreqPiezoTextBox);
             this.sweepGroup.Controls.Add(this.label8);
@@ -1321,6 +1326,21 @@ namespace PM2gui
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // numericUpDown1
+            // 
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            // 
             // PM2gui
             // 
             this.AcceptButton = this.StartWaveButton;
@@ -1365,6 +1385,7 @@ namespace PM2gui
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1513,6 +1534,8 @@ namespace PM2gui
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private NumericUpDown numericUpDown1;
+        private Label label39;
     }
 }
 
