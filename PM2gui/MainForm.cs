@@ -405,10 +405,11 @@ namespace PM2gui
             totalSW.Stop();
 
 
-            if (isPicoPortOpen)
+            if (isPicoPortOpen && radioButtonSweep.Checked)
             {
+                label39.Text = $"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{nudTime.Value:0000}";
                 // send message with the frequecy to the pizzo
-                picoPort.Write($"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text)}T{nudTime.Value:0000}");
+                picoPort.Write($"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{nudTime.Value:0000}");
             }
         }
 
@@ -419,7 +420,7 @@ namespace PM2gui
             FreqDomainPlottingTimeLabel.Text = "Frequency Domain Plotting (ms) = N/A";
             LorentzianFittingTimeLabel.Text = "Lorentzian Fitting (ms) = N/A";
             CameraViewingTimeLabel.Text = "Camera Fitting (ms) = N/A";
-            ArduinoComTimeLabel.Text = "Arduino Communication (ms) = N/A";
+            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = N/A";
         }
 
         private void StopWaveButton_Click(object sender, EventArgs e)
@@ -915,7 +916,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         // DATA EXPORT
@@ -1064,7 +1065,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         #region Bind trackbar and textbox
@@ -1120,6 +1121,7 @@ namespace PM2gui
         private void btnRefreshPorts_Click(object sender, EventArgs e)
         {
             string[] names = SerialPort.GetPortNames();
+            cbPorts.Items.Clear();
 
             if (names.Length == 0)
             {
@@ -1156,7 +1158,7 @@ namespace PM2gui
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not connect to Arduino.");
+                MessageBox.Show("Could not connect to Pizo Controler.");
             }
         }
 
@@ -1215,9 +1217,37 @@ namespace PM2gui
             }
         }
 
+        public void DoubleMaskTextInputBox_OnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            MaskedTextBox thisBox = (MaskedTextBox)sender;
+
+            bool isDecimalPointAtTheStart = thisBox.SelectionStart == 0 && (e.KeyChar == '.');
+            bool isSecondDecimalPoint = thisBox.SelectionStart != 0 && e.KeyChar == '.' && thisBox.Text.Contains('.');
+
+            bool isIllegalChar = (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.') || isDecimalPointAtTheStart || isSecondDecimalPoint;
+
+            if (isIllegalChar)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Handled = true;
+            }
+        }
+
         private void NonZeroTextBox_OnTextChanged(object sender, EventArgs e)
         {
             TextBox thisBox = (TextBox)sender;
+            if (thisBox.Text.Length == 0)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                thisBox.Text = "0";
+                thisBox.SelectionStart = 1;
+            }
+
+        }
+
+        private void NonZeroMaskedTextBox_OnTextChanged(object sender, EventArgs e)
+        {
+            MaskedTextBox thisBox = (MaskedTextBox)sender;
             if (thisBox.Text.Length == 0)
             {
                 System.Media.SystemSounds.Beep.Play();
@@ -1238,7 +1268,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         private void btnFreqStop_Click(object sender, EventArgs e)
@@ -1251,7 +1281,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Ardunio Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         private void btnArrayStartScan_Click(object sender, EventArgs e)
@@ -1306,6 +1336,11 @@ namespace PM2gui
         {
             CamPictureBox2.Image = (Bitmap)eventArgs.Frame.Clone();
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            picoPort.Write("sS000E024T0300");
         }
     }
 }

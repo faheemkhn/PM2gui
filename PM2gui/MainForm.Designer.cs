@@ -32,16 +32,16 @@ namespace PM2gui
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PM2gui));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StartWaveButton = new System.Windows.Forms.Button();
             this.StopWaveButton = new System.Windows.Forms.Button();
             this.WaveFormTimer = new System.Windows.Forms.Timer(this.components);
@@ -85,6 +85,8 @@ namespace PM2gui
             this.radioButtonFixed = new System.Windows.Forms.RadioButton();
             this.radioButtonSweep = new System.Windows.Forms.RadioButton();
             this.sweepGroup = new System.Windows.Forms.Panel();
+            this.nudTime = new System.Windows.Forms.NumericUpDown();
+            this.nudTimes = new System.Windows.Forms.Label();
             this.btnRefreshPorts = new System.Windows.Forms.Button();
             this.btnDisconnectPort = new System.Windows.Forms.Button();
             this.btnConnectPort = new System.Windows.Forms.Button();
@@ -182,20 +184,20 @@ namespace PM2gui
             this.btnPressureStop = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.nudTimes = new System.Windows.Forms.Label();
-            this.nudTime = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.CamPictureBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnArrayStartScan = new System.Windows.Forms.Button();
-            this.btnArrayStopScan = new System.Windows.Forms.Button();
-            this.btnArrayPosition = new System.Windows.Forms.Button();
-            this.nudArrayPosition = new System.Windows.Forms.NumericUpDown();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.StopViewingButton2 = new System.Windows.Forms.Button();
             this.StartVideoButton2 = new System.Windows.Forms.Button();
             this.CamComboBox2 = new System.Windows.Forms.ComboBox();
             this.CamPictureBox2 = new System.Windows.Forms.PictureBox();
+            this.nudArrayPosition = new System.Windows.Forms.NumericUpDown();
+            this.btnArrayPosition = new System.Windows.Forms.Button();
+            this.btnArrayStopScan = new System.Windows.Forms.Button();
+            this.btnArrayStartScan = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.WaveFormChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FftChart)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -203,6 +205,7 @@ namespace PM2gui
             this.groupBox2.SuspendLayout();
             this.fixedGroup.SuspendLayout();
             this.sweepGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -217,13 +220,12 @@ namespace PM2gui
             ((System.ComponentModel.ISupportInitialize)(this.trackBarBL)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).BeginInit();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // StartWaveButton
@@ -248,38 +250,38 @@ namespace PM2gui
             // 
             // WaveFormChart
             // 
-            chartArea13.Name = "ChartArea1";
-            this.WaveFormChart.ChartAreas.Add(chartArea13);
+            chartArea9.Name = "ChartArea1";
+            this.WaveFormChart.ChartAreas.Add(chartArea9);
             resources.ApplyResources(this.WaveFormChart, "WaveFormChart");
             this.WaveFormChart.Name = "WaveFormChart";
             this.WaveFormChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series16.BorderWidth = 2;
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series16.Color = System.Drawing.Color.Black;
-            series16.Name = "Series1";
-            this.WaveFormChart.Series.Add(series16);
+            series11.BorderWidth = 2;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Color = System.Drawing.Color.Black;
+            series11.Name = "Series1";
+            this.WaveFormChart.Series.Add(series11);
             // 
             // FftChart
             // 
-            chartArea14.Name = "ChartArea1";
-            this.FftChart.ChartAreas.Add(chartArea14);
+            chartArea10.Name = "ChartArea1";
+            this.FftChart.ChartAreas.Add(chartArea10);
             resources.ApplyResources(this.FftChart, "FftChart");
             this.FftChart.Name = "FftChart";
             this.FftChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series17.BorderWidth = 3;
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series17.Color = System.Drawing.Color.Black;
-            series17.Name = "Series1";
-            series18.BorderWidth = 2;
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series18.Color = System.Drawing.Color.Red;
-            series18.LabelForeColor = System.Drawing.Color.Bisque;
-            series18.Name = "Series2";
-            this.FftChart.Series.Add(series17);
-            this.FftChart.Series.Add(series18);
+            series12.BorderWidth = 3;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Color = System.Drawing.Color.Black;
+            series12.Name = "Series1";
+            series13.BorderWidth = 2;
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series13.Color = System.Drawing.Color.Red;
+            series13.LabelForeColor = System.Drawing.Color.Bisque;
+            series13.Name = "Series2";
+            this.FftChart.Series.Add(series12);
+            this.FftChart.Series.Add(series13);
             // 
             // CamComboBox
             // 
@@ -399,8 +401,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.startFreqPiezoTextBox, "startFreqPiezoTextBox");
             this.startFreqPiezoTextBox.Name = "startFreqPiezoTextBox";
-            this.startFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
-            this.startFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
+            this.startFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroMaskedTextBox_OnTextChanged);
+            this.startFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleMaskTextInputBox_OnKeyPress);
             // 
             // PiezoButton
             // 
@@ -441,8 +443,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.stopFreqPiezoTextBox, "stopFreqPiezoTextBox");
             this.stopFreqPiezoTextBox.Name = "stopFreqPiezoTextBox";
-            this.stopFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
-            this.stopFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
+            this.stopFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroMaskedTextBox_OnTextChanged);
+            this.stopFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleMaskTextInputBox_OnKeyPress);
             // 
             // trimStartFreqTextBox
             // 
@@ -512,25 +514,25 @@ namespace PM2gui
             // 
             // peakTrackerChart
             // 
-            chartArea15.Name = "ChartArea1";
-            this.peakTrackerChart.ChartAreas.Add(chartArea15);
+            chartArea11.Name = "ChartArea1";
+            this.peakTrackerChart.ChartAreas.Add(chartArea11);
             resources.ApplyResources(this.peakTrackerChart, "peakTrackerChart");
             this.peakTrackerChart.Name = "peakTrackerChart";
             this.peakTrackerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series19.BorderWidth = 2;
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series19.Color = System.Drawing.Color.Black;
-            series19.Name = "Series1";
-            this.peakTrackerChart.Series.Add(series19);
-            title4.Name = "Peak Tracker";
-            title4.Position.Auto = false;
-            title4.Position.Height = 5.516974F;
-            title4.Position.Width = 70F;
-            title4.Position.X = 15F;
-            title4.Position.Y = 45F;
-            title4.Text = "Peak Tracker";
-            this.peakTrackerChart.Titles.Add(title4);
+            series14.BorderWidth = 2;
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series14.Color = System.Drawing.Color.Black;
+            series14.Name = "Series1";
+            this.peakTrackerChart.Series.Add(series14);
+            title3.Name = "Peak Tracker";
+            title3.Position.Auto = false;
+            title3.Position.Height = 5.516974F;
+            title3.Position.Width = 70F;
+            title3.Position.X = 15F;
+            title3.Position.Y = 45F;
+            title3.Text = "Peak Tracker";
+            this.peakTrackerChart.Titles.Add(title3);
             // 
             // groupBox2
             // 
@@ -568,8 +570,8 @@ namespace PM2gui
             // 
             resources.ApplyResources(this.FixedFreqPiezoTextBox, "FixedFreqPiezoTextBox");
             this.FixedFreqPiezoTextBox.Name = "FixedFreqPiezoTextBox";
-            this.FixedFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroTextBox_OnTextChanged);
-            this.FixedFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleTextInputBox_OnKeyPress);
+            this.FixedFreqPiezoTextBox.TextChanged += new System.EventHandler(this.NonZeroMaskedTextBox_OnTextChanged);
+            this.FixedFreqPiezoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DoubleMaskTextInputBox_OnKeyPress);
             // 
             // label40
             // 
@@ -602,6 +604,21 @@ namespace PM2gui
             this.sweepGroup.Controls.Add(this.label11);
             resources.ApplyResources(this.sweepGroup, "sweepGroup");
             this.sweepGroup.Name = "sweepGroup";
+            // 
+            // nudTime
+            // 
+            resources.ApplyResources(this.nudTime, "nudTime");
+            this.nudTime.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudTime.Name = "nudTime";
+            // 
+            // nudTimes
+            // 
+            resources.ApplyResources(this.nudTimes, "nudTimes");
+            this.nudTimes.Name = "nudTimes";
             // 
             // btnRefreshPorts
             // 
@@ -1059,17 +1076,17 @@ namespace PM2gui
             // 
             // ChanelBWave
             // 
-            chartArea16.Name = "ChartArea1";
-            this.ChanelBWave.ChartAreas.Add(chartArea16);
+            chartArea12.Name = "ChartArea1";
+            this.ChanelBWave.ChartAreas.Add(chartArea12);
             resources.ApplyResources(this.ChanelBWave, "ChanelBWave");
             this.ChanelBWave.Name = "ChanelBWave";
             this.ChanelBWave.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
-            series20.BorderWidth = 2;
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series20.Color = System.Drawing.Color.Black;
-            series20.Name = "Series1";
-            this.ChanelBWave.Series.Add(series20);
+            series15.BorderWidth = 2;
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series15.Color = System.Drawing.Color.Black;
+            series15.Name = "Series1";
+            this.ChanelBWave.Series.Add(series15);
             this.ChanelBWave.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ChanelBWave_MouseMove);
             // 
             // ChanelBTimer
@@ -1318,36 +1335,6 @@ namespace PM2gui
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.StopViewingButton2);
-            this.tabPage2.Controls.Add(this.StartVideoButton2);
-            this.tabPage2.Controls.Add(this.CamComboBox2);
-            this.tabPage2.Controls.Add(this.CamPictureBox2);
-            this.tabPage2.Controls.Add(this.nudArrayPosition);
-            this.tabPage2.Controls.Add(this.btnArrayPosition);
-            this.tabPage2.Controls.Add(this.btnArrayStopScan);
-            this.tabPage2.Controls.Add(this.btnArrayStartScan);
-            this.tabPage2.Controls.Add(this.pictureBox2);
-            resources.ApplyResources(this.tabPage2, "tabPage2");
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // nudTimes
-            // 
-            resources.ApplyResources(this.nudTimes, "nudTimes");
-            this.nudTimes.Name = "nudTimes";
-            // 
-            // nudTime
-            // 
-            resources.ApplyResources(this.nudTime, "nudTime");
-            this.nudTime.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudTime.Name = "nudTime";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
@@ -1363,44 +1350,22 @@ namespace PM2gui
             this.CamPictureBox.Name = "CamPictureBox";
             this.CamPictureBox.TabStop = false;
             // 
-            // pictureBox2
+            // tabPage2
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox2.Image = global::PM2gui.Properties.Resources.cantilever_array;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnArrayStartScan
-            // 
-            resources.ApplyResources(this.btnArrayStartScan, "btnArrayStartScan");
-            this.btnArrayStartScan.Name = "btnArrayStartScan";
-            this.btnArrayStartScan.UseVisualStyleBackColor = true;
-            this.btnArrayStartScan.Click += new System.EventHandler(this.btnArrayStartScan_Click);
-            // 
-            // btnArrayStopScan
-            // 
-            resources.ApplyResources(this.btnArrayStopScan, "btnArrayStopScan");
-            this.btnArrayStopScan.Name = "btnArrayStopScan";
-            this.btnArrayStopScan.UseVisualStyleBackColor = true;
-            this.btnArrayStopScan.Click += new System.EventHandler(this.btnArrayStopScan_Click);
-            // 
-            // btnArrayPosition
-            // 
-            resources.ApplyResources(this.btnArrayPosition, "btnArrayPosition");
-            this.btnArrayPosition.Name = "btnArrayPosition";
-            this.btnArrayPosition.UseVisualStyleBackColor = true;
-            this.btnArrayPosition.Click += new System.EventHandler(this.btnArrayPosition_Click);
-            // 
-            // nudArrayPosition
-            // 
-            resources.ApplyResources(this.nudArrayPosition, "nudArrayPosition");
-            this.nudArrayPosition.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudArrayPosition.Name = "nudArrayPosition";
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label39);
+            this.tabPage2.Controls.Add(this.StopViewingButton2);
+            this.tabPage2.Controls.Add(this.StartVideoButton2);
+            this.tabPage2.Controls.Add(this.CamComboBox2);
+            this.tabPage2.Controls.Add(this.CamPictureBox2);
+            this.tabPage2.Controls.Add(this.nudArrayPosition);
+            this.tabPage2.Controls.Add(this.btnArrayPosition);
+            this.tabPage2.Controls.Add(this.btnArrayStopScan);
+            this.tabPage2.Controls.Add(this.btnArrayStartScan);
+            this.tabPage2.Controls.Add(this.pictureBox2);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // StopViewingButton2
             // 
@@ -1430,6 +1395,57 @@ namespace PM2gui
             this.CamPictureBox2.Name = "CamPictureBox2";
             this.CamPictureBox2.TabStop = false;
             // 
+            // nudArrayPosition
+            // 
+            resources.ApplyResources(this.nudArrayPosition, "nudArrayPosition");
+            this.nudArrayPosition.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudArrayPosition.Name = "nudArrayPosition";
+            // 
+            // btnArrayPosition
+            // 
+            resources.ApplyResources(this.btnArrayPosition, "btnArrayPosition");
+            this.btnArrayPosition.Name = "btnArrayPosition";
+            this.btnArrayPosition.UseVisualStyleBackColor = true;
+            this.btnArrayPosition.Click += new System.EventHandler(this.btnArrayPosition_Click);
+            // 
+            // btnArrayStopScan
+            // 
+            resources.ApplyResources(this.btnArrayStopScan, "btnArrayStopScan");
+            this.btnArrayStopScan.Name = "btnArrayStopScan";
+            this.btnArrayStopScan.UseVisualStyleBackColor = true;
+            this.btnArrayStopScan.Click += new System.EventHandler(this.btnArrayStopScan_Click);
+            // 
+            // btnArrayStartScan
+            // 
+            resources.ApplyResources(this.btnArrayStartScan, "btnArrayStartScan");
+            this.btnArrayStartScan.Name = "btnArrayStartScan";
+            this.btnArrayStartScan.UseVisualStyleBackColor = true;
+            this.btnArrayStartScan.Click += new System.EventHandler(this.btnArrayStartScan_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox2.Image = global::PM2gui.Properties.Resources.cantilever_array;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PM2gui
             // 
             this.AcceptButton = this.StartWaveButton;
@@ -1451,6 +1467,7 @@ namespace PM2gui
             this.fixedGroup.PerformLayout();
             this.sweepGroup.ResumeLayout(false);
             this.sweepGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1472,13 +1489,13 @@ namespace PM2gui
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CamPictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArrayPosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1638,6 +1655,8 @@ namespace PM2gui
         private Button StartVideoButton2;
         private ComboBox CamComboBox2;
         private PictureBox CamPictureBox2;
+        private Label label39;
+        private Button button1;
     }
 }
 

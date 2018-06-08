@@ -1644,6 +1644,60 @@
   <data name="&gt;&gt;sweepGroup.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="nudTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>77, 59</value>
+  </data>
+  <data name="nudTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="nudTime.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="&gt;&gt;nudTime.Name" xml:space="preserve">
+    <value>nudTime</value>
+  </data>
+  <data name="&gt;&gt;nudTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nudTime.Parent" xml:space="preserve">
+    <value>sweepGroup</value>
+  </data>
+  <data name="&gt;&gt;nudTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nudTimes.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nudTimes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="nudTimes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 61</value>
+  </data>
+  <data name="nudTimes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="nudTimes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 17</value>
+  </data>
+  <data name="nudTimes.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="nudTimes.Text" xml:space="preserve">
+    <value>Time (s)</value>
+  </data>
+  <data name="&gt;&gt;nudTimes.Name" xml:space="preserve">
+    <value>nudTimes</value>
+  </data>
+  <data name="&gt;&gt;nudTimes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nudTimes.Parent" xml:space="preserve">
+    <value>sweepGroup</value>
+  </data>
+  <data name="&gt;&gt;nudTimes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnRefreshPorts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -5097,6 +5151,57 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 67</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>87</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label39.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 32</value>
+  </data>
+  <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
+  </data>
+  <data name="label39.TabIndex" type="System.Int32, mscorlib">
+    <value>86</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>label39</value>
+  </data>
+  <data name="&gt;&gt;label39.Name" xml:space="preserve">
+    <value>label39</value>
+  </data>
+  <data name="&gt;&gt;label39.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label39.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="StopViewingButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -5125,7 +5230,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;StopViewingButton2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="StartVideoButton2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5155,7 +5260,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;StartVideoButton2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="CamComboBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>972, 516</value>
@@ -5179,7 +5284,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;CamComboBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="CamPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5295,7 +5400,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;CamPictureBox2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="nudArrayPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 373</value>
@@ -5316,7 +5421,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nudArrayPosition.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="btnArrayPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5343,7 +5448,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnArrayPosition.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="btnArrayStopScan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5370,7 +5475,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnArrayStopScan.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnArrayStartScan.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 138</value>
@@ -5394,7 +5499,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;btnArrayStartScan.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="pictureBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5424,7 +5529,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -5475,60 +5580,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="nudTimes.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nudTimes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="nudTimes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 61</value>
-  </data>
-  <data name="nudTimes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="nudTimes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 17</value>
-  </data>
-  <data name="nudTimes.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="nudTimes.Text" xml:space="preserve">
-    <value>Time (s)</value>
-  </data>
-  <data name="&gt;&gt;nudTimes.Name" xml:space="preserve">
-    <value>nudTimes</value>
-  </data>
-  <data name="&gt;&gt;nudTimes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nudTimes.Parent" xml:space="preserve">
-    <value>sweepGroup</value>
-  </data>
-  <data name="&gt;&gt;nudTimes.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="nudTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>77, 59</value>
-  </data>
-  <data name="nudTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="nudTime.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="&gt;&gt;nudTime.Name" xml:space="preserve">
-    <value>nudTime</value>
-  </data>
-  <data name="&gt;&gt;nudTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nudTime.Parent" xml:space="preserve">
-    <value>sweepGroup</value>
-  </data>
-  <data name="&gt;&gt;nudTime.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -5789,9 +5840,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
