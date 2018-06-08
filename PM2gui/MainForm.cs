@@ -420,7 +420,7 @@ namespace PM2gui
             FreqDomainPlottingTimeLabel.Text = "Frequency Domain Plotting (ms) = N/A";
             LorentzianFittingTimeLabel.Text = "Lorentzian Fitting (ms) = N/A";
             CameraViewingTimeLabel.Text = "Camera Fitting (ms) = N/A";
-            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = N/A";
+            ArduinoComTimeLabel.Text = "Pizo Controller Communication (ms) = N/A";
         }
 
         private void StopWaveButton_Click(object sender, EventArgs e)
@@ -916,7 +916,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controller Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         // DATA EXPORT
@@ -1065,7 +1065,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controller Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         #region Bind trackbar and textbox
@@ -1158,7 +1158,7 @@ namespace PM2gui
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not connect to Pizo Controler.");
+                MessageBox.Show("Could not connect to Pizo Controller.");
             }
         }
 
@@ -1268,7 +1268,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controller Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         private void btnFreqStop_Click(object sender, EventArgs e)
@@ -1281,7 +1281,7 @@ namespace PM2gui
             sw.Stop();
 
             processTimes.ardunioComTime = sw.Elapsed;
-            ArduinoComTimeLabel.Text = "Pizo Controler Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
+            ArduinoComTimeLabel.Text = "Pizo Controller Communication (ms) = " + Convert.ToString(processTimes.ardunioComTime.Seconds);
         }
 
         private void btnArrayStartScan_Click(object sender, EventArgs e)
