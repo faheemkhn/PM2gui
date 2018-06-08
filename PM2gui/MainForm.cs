@@ -126,7 +126,7 @@ namespace PM2gui
             }
             StopWaveButton.Enabled = false;
             FreqMaxComboBox.SelectedIndex = 10;
-            VoltRangComboBox.SelectedIndex = 10;
+            VoltRangComboBox.SelectedIndex = 6;
         }
 
         private void AmscopeInit()
@@ -372,6 +372,12 @@ namespace PM2gui
 
         private void WaveFormTimer_Tick(object sender, EventArgs e)
         {
+            if (isPicoPortOpen && radioButtonSweep.Checked)
+            {
+                //label39.Text = $"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{int.Parse(ReadingRefreshRateTextBox.Text):0000}";
+                // send message with the frequecy to the pizzo
+                picoPort.Write($"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{int.Parse(ReadingRefreshRateTextBox.Text):0000}");
+            }
 
             totalSW.Restart();
             int SampleCount = _sampleCount;
@@ -404,13 +410,6 @@ namespace PM2gui
 
             totalSW.Stop();
 
-
-            if (isPicoPortOpen && radioButtonSweep.Checked)
-            {
-                label39.Text = $"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{nudTime.Value:0000}";
-                // send message with the frequecy to the pizzo
-                picoPort.Write($"sS{int.Parse(startFreqPiezoTextBox.Text):000}E{int.Parse(stopFreqPiezoTextBox.Text):000}T{nudTime.Value:0000}");
-            }
         }
 
         private void ReInitProcessTimes()
@@ -555,7 +554,14 @@ namespace PM2gui
 
         private void ReadingRefreshRateTextBox_TextChanged(object sender, EventArgs e)
         {
-            NonZeroTextBox_OnTextChanged(sender, e);
+            TextBox thisBox = (TextBox)sender;
+            if (thisBox.Text.Length == 0)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                thisBox.Text = "1";
+                thisBox.SelectionStart = 1;
+            }
+
             TimersIntervalUpdate(EqualizeRefreshRateCheckBox.Checked);
         }
 
