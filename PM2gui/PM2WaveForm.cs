@@ -201,6 +201,9 @@ namespace PM2Waveform
             //sw.Start();
             WaveFormData waveFormData = new WaveFormData();
 
+            // start AWG
+            short a = Imports.SetSigGenBuiltIn(handle, 0, 1, Imports.WaveType.SINE, 0, 24000, 5, (float)0.01, Imports.SweepType.DOWNUP, 2);
+
             // Method that communicates with Pico to get blocked data
             HandlePicoBlockData(0, channelSettings, handle, ref waveFormData, ref processTimes, ref WaveFormTimer, SampleCount, isChanelB);
             //sw.Stop();
